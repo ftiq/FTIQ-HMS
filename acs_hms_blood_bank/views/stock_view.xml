@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="acs_view_production_lot_form_blood_group" model="ir.ui.view">
+        <field name="name">stock.production.lot.inherit</field>
+        <field name="model">stock.lot</field>
+        <field name="priority">6</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='description']" position="after">
+                <group name="blood_group" string="Blood Group" invisible="not is_blood_product">
+                    <group>
+                        <field name="is_blood_product" invisible="1"/>
+                        <field name="blood_group" readonly="1"/>
+                        <field name="requisition_id" invisible="not is_blood_product"/>
+                        <field name="donor_partner_id" invisible="not is_blood_product"/>
+                    </group>
+                    <group>
+                        <field name="issuance_id" invisible="not is_blood_product"/>
+                        <field name="receiver_partner_id" invisible="not is_blood_product"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="acs_search_blood_lot_filter_inherit" model="ir.ui.view">
+        <field name="name">Production Lots Filter - Inherit Blood</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.search_product_lot_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='product_id']" position="after">
+                <separator/>
+                <filter string="Available for Requisition" name="available_for_requisition"
+                        domain="[('requisition_id', '=', False), ('issuance_id', '=', False)]"/>
+                <filter string="Available for Issuance" name="available_for_issueance"
+                        domain="[('requisition_id', '!=', False), ('issuance_id', '=', False)]"/>
+                <filter string="Issued Product" name="type_company"
+                        domain="[('requisition_id', '!=', False), ('issuance_id', '!=', False)]"/>
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter name="group_by_blood_group" string="Blood Group" domain="[]"
+                        context="{'group_by': 'blood_group'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_blood_product_lots" model="ir.actions.act_window">
+        <field name="name">Lots/Serial Numbers</field>
+        <field name="path">almightyhms-blood-product-lots</field>
+        <field name="res_model">stock.lot</field>
+        <field name="domain">[('is_blood_product','=',True),('product_qty','>',0.0)]</field>
+        <field name="context">{'acs_all_products': 1, 'search_group_by_blood_group': 1, 'display_complete': True, 'default_company_id': allowed_company_ids[0]}</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a Lot Number.
+            </p>
+        </field>
+    </record>
+
+    <record id="product_template_action_blood" model="ir.actions.act_window">
+        <field name="name">Blood Services &amp; Bags</field>
+        <field name="path">almightyhms-blood-bags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('hospital_product_type','=','blood')]</field>
+        <field name="context">{
+            'search_default_hospital_product_type': 'blood',
+            'default_hospital_product_type': 'blood'}</field>
+    </record>
+
+</odoo>

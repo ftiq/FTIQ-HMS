@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="appointment_consent_form" model="acs.consent.form.template">
+            <field name="name">Appointment Consent Form</field>
+            <field name="acs_is_appointment_template">True</field>
+            <field name="consent_form_content" type="html">
+                <p style="margin-bottom: 1rem; text-align: center;">
+                    <span style='color: rgb(0, 0, 0); font-family: "lucida grande", Helvetica, Verdana, Arial, sans-serif;'>
+                        <br/>
+                        <br/>
+                        <font style="font-size: 36px;" class="text-alpha">CONSENT FORM
+                            <br/>
+                            <br/>
+                        </font>
+                    </span>
+                    <font color="#000000">
+                        <span class="mt32 mb32" style="font-size: 18px;">I hereby authorize the medical consultation.</span>
+                        <span class="mt32" style="font-size: 18px;">This consultation will be conducted under the supervision of</span>
+                        <span class="mt32" style="font-size: 18px;">
+                            <b>{{ object.physician_id.name }}</b>
+                        </span>
+                        <span class="mt32" style="font-size: 18px;">The nature, benefits and possible risks of the consultation have been explained to me.</span>
+                        <span class="mt32" style="font-size: 18px;">I understand that no guarantee or insurance has been given to me regarding the outcome of the consultation.</span>
+                        <span class="mt32" style="font-size: 18px;">I also consent to any further diagnostic or therapeutic measures found to be necessary during the consultation.</span>
+                        <span class="mt32" style="font-size: 18px;">I consent to any medical photographs that may be found necessary to be kept in my private folder.</span>
+                        <span class="mt32" style="font-size: 18px;">I consent to the authorized persons of the Medical Center to handle my data according to Medical Ethics.</span>
+                    </font>
+                    <p style="font-size: 20px; font-weight: bolder; text-align: center;">
+                        <b>
+                            <span>
+                        Thanks &amp; Regards
+                                <br/>
+                        {{ object.physician_id.name }}
+                                <br/>
+                        {{ object.date }}
+                            </span>
+                        </b>
+                    </p>
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

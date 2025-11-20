@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="acs_referral_portal_buttons" name="Referral Portal Button - Portal My Home" inherit_id="portal.portal_my_home" priority="30" customize_show="True">
+        <xpath expr="//div[@id='oe_structure_portal_my_home_1']" position="before">
+            <div class="d-flex flex-wrap gap-3 align-items-center mt-3" id="acs_portal_button">
+                <a t-att-href="'/acs/my/referral/create'" class="btn btn-primary d-flex align-items-center">
+                    <img t-att-src="'/acs_hms_referral/static/description/icon.svg'" alt="Icon" 
+                        style="width: 20px; height: 20px; margin-right: 5px;"/> Create Referral
+                </a>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_referral" name="Referral - Portal My Home" inherit_id="portal.portal_my_home" priority="30" customize_show="True">
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/acs_hms_referral/static/description/icon.svg'"/>
+                <t t-set="title">Referral</t>
+                <t t-set="url" t-value="'/my/referrals'"/>
+                <t t-set="text">Review all your medical referrals</t>
+                <t t-set="placeholder_count" t-value="'referral_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="my_referrals" name="My Referrals">
+        <t t-call="portal.portal_layout">
+
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Referrals"</t>
+            </t>
+            <t t-if="not referrals">
+                <p>There are currently no Referrals for your account.</p>
+            </t>
+
+            <div t-if="referrals" class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-hover bg-white status_table o_portal_my_doc_table">
+                        <thead>
+                            <tr class="active">
+                                <th>Name</th>
+                                <th>Patient</th>
+                                <th>Referral Type</th>
+                                <th>Referring physician</th>
+                                <th>Referral Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <t t-foreach="referrals" t-as="referral">
+                            <tr>
+                                <td>
+                                    <a t-att-href="referral.get_portal_url()"><t t-esc="referral.name"/></a>
+                                </td>
+                                <td>
+                                    <span t-field="referral.patient_name" />
+                                </td>
+                                <td>
+                                    <span t-field="referral.referral_type" />
+                                </td>
+                                <td>
+                                    <span t-field="referral.sudo().referring_partner_id.name" />
+                                </td>
+                                <td>
+                                    <span t-field="referral.referred_date" />
+                                </td>
+                                <td class="tx_status text-start">
+                                    <t t-if="referral.state == 'active'">
+                                        <span class="badge rounded-pill text-bg-warning">
+                                            <span class="d-none d-md-inline"> Active </span>
+                                        </span>
+                                    </t>
+                                    <t t-if="referral.state == 'closed'">
+                                        <span class="badge rounded-pill text-bg-success">
+                                            <span class="d-none d-md-inline"> Closed </span>
+                                        </span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+            <div t-if="pager" class="o_portal_pager text-center">
+                <t t-call="portal.pager"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="referral_fields" name="Referral Fields">
+        <div class="mt16 mb32" style="text-align: center;">
+            <h2 style="font-size: 2em;">REFERRAL</h2>
+        </div>
+
+        <div class="row mt16">
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Patient Name</strong><br/>
+                <input type="text" class="form-control s_website_form_input" name="patient_name" id="patient_name" required="True"/>
+            </div>
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Patient Mobile</strong><br/>
+                <input type="text" class="form-control s_website_form_input" name="phone" id="phone" required="True" pattern="[0-9]+" title="Please enter digits only"/>
+            </div>
+        </div>
+
+        <div class="row mt16">
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Patient DOB</strong><br/>
+                <input type="date" name="patient_dob" class="form-control s_website_form_input acs_no_border"/>
+            </div>
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Patient Gender</strong><br/>
+                <select class="form-control acs_no_border form-select css_attribute_select" name="gender" required="True">
+                    <option value="">-- Select Gender --</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt16">
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Referral Type</strong><br/>
+                <select class="form-control acs_no_border form-select css_attribute_select" name="referral_type" required="True">
+                    <option value="">-- Select Referral Type --</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="hospitalization">Hospitalization</option>
+                    <option value="laboratory">Laboratory</option>
+                    <option value="radiology">Radiology</option>
+                    <option value="pharmacy">Pharmacy</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-6 col-xs-12">
+                <strong>Referred Physician</strong><br/>
+                <select class="form-control s_website_form_input" name="referred_physician_id" id="referred_physician_id" required="True">
+                    <option value="">-- Select Referred Physician --</option>
+                    <t t-foreach="referred_physicians" t-as="physician">
+                        <option t-att-value="physician.id"><t t-esc="physician.name"/></option>
+                    </t>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3 mt16">
+            <div class="mb-1">
+                <strong>Description</strong><br/>
+            </div>
+            <div>
+                <textarea class="form-control s_website_form_input" name="description" id="description" rows="3" required="True"/>
+            </div>
+        </div>
+
+        <div class="row mb-3 mt16">
+            <div class="mb-1">
+                <strong>Attach File</strong><br/>
+            </div>
+            <div>
+                <input type="file" class="form-control" id="attachments" name="attachments" multiple="multiple"/>
+            </div>
+        </div>
+
+    </template>
+
+    <template id="portal_referral_form" name="Create Referral">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Create Referral</t>
+            </t>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card p-3">
+                            <form action="/my/referral/submit" id="form_create_referral" method="post" enctype="multipart/form-data">
+                                
+                                <t t-call="acs_hms_referral.referral_fields">
+                                </t>
+
+                                <div class="form-group row text-center">
+                                    <div class="col-12">
+                                         <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_referral_thank_you" name="Referral: Thank You">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="py-5">
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                    <i class="fa fa-check-circle" style="font-size: 80px; color: #28a745;"></i>
+                                </div>
+                                <h1 class="display-4 text-success">Thank You!</h1>
+                                <p class="lead mt-3 mb-4">
+                                    Your referral has been submitted successfully.<br/>
+                                </p>`
+                                <a href="/my" class="btn btn-primary btn-lg">
+                                    Go to My Account
+                                </a>
+                                <a href="/" class="btn btn-secondary btn-lg ms-2">
+                                    Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="my_referral_form" name="Referral Form" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row">
+                <div class="card pb-5">
+                    <div class="o_portal_html_view shadow p-3" style="background-color: white;">
+                        <t t-call="acs_hms_referral.report_acs_referral_detail_document">
+                            <t t-set="doc" t-value="record.sudo()"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

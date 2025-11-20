@@ -1,0 +1,56 @@
+<odoo>
+    <template id="acs_report_patient_history_laboratry" inherit_id="acs_hms.acs_report_patient_history_template">
+        <xpath expr="//div/t[@t-if='line.notes']" position="before">
+            <div class="mb-2">
+                <t t-if="line.lab_request_ids.line_ids">
+                    <span class="fw-bold mb-1">Tests Ordered:</span>
+                    <t t-foreach="line.lab_request_ids.line_ids" t-as="test">
+                        <span t-field="test.test_id"/>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[@t-if=&quot;doc.patient_id.evaluation_ids and data['appointments']&quot;]" position="before">
+            <t t-set="laboratory" t-value="doc.acs_patient_history_report().get('laboratory')"/>
+            <t t-if="doc.patient_id.test_ids.request_id and (doc.patient_id.evaluation_ids and doc.acs_patient_history_report().get('appointments'))">
+                <h4 class="mb-2"><b>Vitals &amp; Lab Trends</b></h4>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[@name='vitals_key_lab_trend']" position="after">
+            <t t-set="laboratory" t-value="doc.acs_patient_history_report().get('laboratory')"/>
+            <t t-if="laboratory and doc.patient_id.test_ids.critearea_ids and any([c.result_type != 'normal' for c in doc.patient_id.test_ids.critearea_ids])">
+                <div class="mt-3">
+                    <h5 class="text-dark mb-2"><b>Key Lab Trends</b></h5>
+                    <table class="table table-bordered table-sm align-middle text-center" style="page-break-inside: avoid; table-layout: fixed;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Test</th>
+                                <th>Result</th>
+                                <th>Normal Range</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-start">
+                            <t t-foreach="doc.patient_id.test_ids" t-as="line">
+                                <t t-if="line.request_id in laboratory">
+                                    <t t-foreach="line.critearea_ids" t-as="lines">
+                                        <t t-if="lines.result_type != 'normal'">
+                                            <tr>
+                                                <td><span t-esc="line.date_analysis.strftime('%d-%m-%Y') if line.date_analysis else ''"/></td>
+                                                <td><span t-field="lines.name"/></td>
+                                                <td><span t-field="lines.result"/></td>
+                                                <td><span t-field="lines.normal_range"/> <span t-field="lines.lab_uom_id"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

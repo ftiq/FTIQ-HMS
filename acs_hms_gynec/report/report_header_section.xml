@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <!-- pregnancy -->
+        <xpath expr="//tr[@name='patient_name_tr']" position="attributes">
+            <attribute name="t-if">not pregnancy</attribute>
+        </xpath>
+        <xpath expr="//tr[@name='patient_name_tr']" position="after">
+            <tr name="patient_name_tr_pregnancy" t-if="pregnancy">
+                <td class="col-6" name="patient_name">
+                    <strong class="text-center ms-2">Patient:</strong>
+                    <span t-field="patient.name"/> (<span t-field="patient.code"/>)
+                </td>
+                <td class="col-6" name="patient_age">
+                    <strong>Age/Gender:</strong>
+                    <span t-field="pregnancy.age"/>/<span t-field="patient.gender"/>
+                </td>
+            </tr>
+
+            <tr name="pregnancy_physician_lmp" t-if="pregnancy">
+                <td name="pregnancy_physician">
+                    <strong class="text-center ms-2">Doctor:</strong> <span t-field="pregnancy.physician_id"/>
+                </td>
+                <td name="pregnancy_lmp">
+                    <strong class="text-center">LMP:</strong> <span t-field="pregnancy.lmp"/>
+                </td>
+            </tr>
+            <tr name="pregnancy_fetus_pdd" t-if="pregnancy">
+                <td name="pregnancy_fetus">
+                    <strong class="text-center ms-2">Fetus:</strong> <span t-field="pregnancy.fetus"/>
+                </td>
+                <td name="pregnancy_pdd">
+                    <strong class="text-center">Pregnancy Due Date:</strong> <span t-field="pregnancy.pdd"/>
+                </td>
+            </tr>
+            <tr name="pregnancy_ped_result" t-if="pregnancy">
+                <td name="pregnancy_pe_date">
+                    <strong class="text-center ms-2">End of Pregnancy:</strong> <span t-field="pregnancy.pregnancy_end_date"/>
+                </td>
+                <td name="pregnancy_result">
+                    <strong class="text-center">Result:</strong> <span t-field="pregnancy.pregnancy_end_result"/>
+                </td>
+            </tr>
+
+            <!-- follical -->
+            <tr name="sono_follical_name_lmp" t-if="sono_follical">
+                <td name="sono_follical_name">
+                    <strong class="text-center ms-2">Name:</strong> <span t-field="sono_follical.name"/>
+                </td>
+                <td name="sono_follical_lmp">
+                    <strong class="text-center">LMP:</strong> <span t-field="sono_follical.lmp"/>
+                </td>
+            </tr>
+            <tr name="sono_follical_date_null" t-if="sono_follical">
+                <td name="sono_follical_date">
+                    <strong class="text-center ms-2">Date:</strong> <span t-field="sono_follical.date"/>
+                </td>
+                <td name="sono_follical_null">
+                </td>
+            </tr>
+
+            <!-- obstetric -->
+            <tr name="sono_obstetric_name_lmp" t-if="sono_obstetric">
+                <td name="sono_obstetric_name">
+                    <strong class="text-center ms-2">Name:</strong> <span t-field="sono_obstetric.name"/>
+                </td>
+                <td name="sono_obstetric_lmp">
+                    <strong class="text-center">LMP:</strong> <span t-field="sono_obstetric.lmp"/>
+                </td>
+            </tr>
+            <tr name="sono_obstetric_date_null" t-if="sono_obstetric">
+                <td name="sono_obstetric_date">
+                    <strong class="text-center ms-2">Date:</strong> <span t-field="sono_obstetric.date"/>
+                </td>
+                <td name="sono_obstetric_null">
+                </td>
+            </tr>
+
+            <!-- pelvis -->
+            <tr name="sono_pelvis_name_lmp" t-if="sono_pelvis">
+                <td name="sono_pelvis_name">
+                    <strong class="text-center ms-2">Name:</strong> <span t-field="sono_pelvis.name"/>
+                </td>
+                <td name="sono_pelvis_lmp">
+                    <strong class="text-center">LMP:</strong> <span t-field="sono_pelvis.lmp"/>
+                </td>
+            </tr>
+            <tr name="sono_pelvis_date_null" t-if="sono_pelvis">
+                <td name="sono_pelvis_date">
+                    <strong class="text-center ms-2">Date:</strong> <span t-field="sono_pelvis.date"/>
+                </td>
+                <td name="sono_pelvis_null">
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>

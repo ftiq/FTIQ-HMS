@@ -1,0 +1,131 @@
+
+img {
+    height:90px !important;
+    width:90px;
+    margin-left:22px;
+}
+.main-box {
+    min-height:100px;
+    border-bottom:1px solid #ccc;
+    padding-bottom:10px;
+}
+.box {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+    border-radius: 20px;border-style:double;
+    border: 2px solid white;
+    background-color:#867584;
+    text-align: center;
+    padding:15px;
+    font-size: 55px;
+    font-weight:bold;
+    margin-left:10px;
+    height:90px !important;
+    width:90px !important;
+    font-size: 33px;
+    padding-top: 27px;
+}
+.line {
+    line-height:30px;
+    font-size:25px;
+}
+.big-font {
+    font-size:40px;
+}
+.normal-font {
+    font-size:40px;
+}
+.cabin-data {
+    position: relative;
+    font-size:25px;
+}
+.acs_header_row {
+    margin-top:30px;
+}
+.acs_row {
+    margin-top:20px;
+}
+.img-rounded{
+    margin-top: 0px;
+}
+.acs_footerbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    background-color:rgb(218, 218, 220);
+}
+.acs_datebox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30vw;
+    height: 50vh;
+    font-size: 4em;
+}
+.acs_finaldate{
+    font-weight: bold;
+    color: #34495e;
+    background: #ffffff;
+    padding: 20px 40px;
+    border-radius: 15px;
+    border: 2px solid #7f8c8d;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+.acs_firstcontainer{
+    width: 60%;
+}
+.acs_youtubevideo{
+    width: 30vw;
+    height: 35vh;
+}
+.acs_mainsection{
+    display: flex;
+    height: 100vh;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+.acs_popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(174, 172, 172, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.acs_popup {
+    background-color: #fff;
+    padding: 20px 50px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    max-width: 400px;
+}
+.acs_popup h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+.acs_popup p {
+    color: #555;
+}
+.acs_popup button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}

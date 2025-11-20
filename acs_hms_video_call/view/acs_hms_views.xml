@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    
+    <!-- Appointment View -->
+    <record id="view_hms_appointment_form" model="ir.ui.view">
+        <field name="name">hms.appointment.form</field>
+        <field name="model">hms.appointment</field>
+        <field name="inherit_id" ref="acs_hms.view_hms_appointment_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='info']/group/group/field[@name='is_video_call']" position="replace">
+                <label for="is_video_call"/>
+                <div>
+                    <field name="is_video_call"/>
+                    <button name="create_video_call_link" string="Create Video Call" type="object" icon="fa-video-camera" invisible="state not in ['confirm','waiting','in_consultation','pause'] or video_call_link"/>
+                    <button name="action_send_invitaion" string="Send Invitation" type="object" icon="fa-envelope" invisible="state not in ['confirm', 'waiting', 'in_consultation', 'pause'] or not video_call_link"/>
+                </div>
+            </xpath>
+            <xpath expr="//notebook/page[@name='info']/group/group/div" position="after">
+                <field name="video_call_link" readonly="1" widget="CopyClipboardChar" invisible="not video_call_link"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

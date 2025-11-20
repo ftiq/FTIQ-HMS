@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xml:space="preserve">
+    <t t-name="acs_hms_dental_chart.AcsHmsDentalChart">
+        <div class="acs_hms_dental_panel">
+            <!-- Patient Header -->
+            <div class="acs-patient-card row align-items-center p-3">
+                <div class="acs-patient-header col-md-4 d-flex align-items-center">
+                    <div class="acs-patient-drawer-wrapper">
+                        <button class="acs-quick-toggle"
+                                t-on-click="acsGoBackToPatient"
+                                role="button"
+                                aria-label="Open patient panel"
+                                tabindex="0">
+                            <i class="fa fa-arrow-left" aria-hidden="true"
+                                t-att-style="'color: ' + state.dentalChartColor + ';'"></i>
+                        </button>
+                    </div>
+
+                    <div class="me-3">
+                        <t t-if="state.patient.image_1920">
+                            <img t-att-src="'data:image/jpeg;base64,' + state.patient.image_1920"
+                                class="img-fluid rounded-circle patient-avatar"
+                                alt="Patient Image"
+                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'"/>
+                        </t>
+                        <t t-else="">
+                            <img t-att-src="'/acs_hms_dental_chart/static/src/img/avatar_grey.png'"
+                                class="img-fluid rounded-circle patient-avatar"
+                                alt="Patient Image"
+                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'"/>
+                        </t>
+                    </div>
+                    <div>
+                        <div class="acs-patient-code mb-2" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                            Code: 
+                            <span>
+                                <t t-if="state.patient.code">
+                                    <t t-esc="state.patient.code"/>
+                                </t>
+                                <t t-else="">
+                                    N/A
+                                </t>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <h4 class="fw-bold mb-0 patient-name">
+                                <span>
+                                    <t t-if="state.patient.name">
+                                        <t t-esc="state.patient.name"/>
+                                    </t>
+                                </span>
+                            </h4>
+                            <span class="icon-circle clickable" 
+                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                <t t-if="state.patient.phone">
+                                    <a t-if="state.patient.phone" title="Call Patient"
+                                        t-att-href="'tel:' + state.patient.phone">
+                                        <i class="fa fa-phone"></i>
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a title="Call Patient" t-att-href="'#'">
+                                        <i class="fa fa-phone"></i>
+                                    </a>
+                                </t>
+                            </span>
+                            <span class="icon-circle clickable" 
+                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                <t t-if="state.patient.email">
+                                    <a t-if="state.patient.email" title="Send Email"
+                                        t-att-href="'tel:' + state.patient.email">
+                                        <i class="fa fa-envelope"></i>
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a title="Send Email" t-att-href="'#'">
+                                        <i class="fa fa-envelope"></i>
+                                    </a>
+                                </t>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Basic Information -->
+                <div class="acs-patient-details col-md-8 mt-3 mt-md-0">
+                    <div class="row g-3">
+                        <div class="col-6 col-lg-3">
+                            <div class="detail-card">
+                                <div class="detail-icon" t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                    <i class="fa fa-id-card"></i>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="text-muted small">Date of Birthday</div>
+                                    <div class="fw-bold text-wrap">
+                                        <span>
+                                            <t t-if="state.patient.birthday and state.patient.age">
+                                                <t t-esc="state.patient.birthday"/> | <t t-esc="state.patient.age"/>
+                                            </t>
+                                            <t t-else="">N/A</t>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="detail-card">
+                                <div class="detail-icon" t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="text-muted small">Blood Group</div>
+                                    <div class="fw-bold text-truncate">
+                                        <span>
+                                            <t t-if="state.patient.blood_group">
+                                                <t t-esc="state.patient.blood_group"/>
+                                            </t>
+                                            <t t-else="">
+                                                N/A
+                                            </t>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="detail-card">
+                                <div class="detail-icon" t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                    <i class="fa fa-venus"></i>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="text-muted small">Gender</div>
+                                    <div class="fw-bold text-truncate">
+                                        <span>
+                                            <t t-if="state.patient.gender">
+                                                <t t-esc="state.patient.gender.charAt(0).toUpperCase() + state.patient.gender.slice(1)"/>
+                                            </t>
+                                            <t t-else="">
+                                                Other
+                                            </t>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="detail-card">
+                                <div class="detail-icon" t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                    <i class="fa fa-user-md"></i>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="text-muted small">Primary Physician</div>
+                                    <div class="fw-bold text-truncate">
+                                        <span>
+                                            <t t-if="state.patient.physician_name">
+                                                <t t-esc="state.patient.physician_name"/>
+                                            </t>
+                                            <t t-else="">Unknown</t>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acs-hms-dental p-3">
+                <div class="d-flex flex-wrap justify-content-start align-items-center gap-2 mb-3 filter-button" role="group">
+                    <button t-on-click="() => UpdateSelectedQuadrant('all')"
+                            t-att-class="state.selectedQuadrant==='all' ? 'btn btn-filter active' : 'btn btn-filter'"
+                            t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">All</button>
+
+                    <button t-on-click="() => UpdateSelectedQuadrant('upper_right')"
+                            t-att-class="state.selectedQuadrant==='upper_right' ? 'btn btn-filter active' : 'btn btn-filter'"
+                            t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">Upper Right</button>
+
+                    <button t-on-click="() => UpdateSelectedQuadrant('upper_left')"
+                            t-att-class="state.selectedQuadrant==='upper_left' ? 'btn btn-filter active' : 'btn btn-filter'"
+                            t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">Upper Left</button>
+
+                    <button t-on-click="() => UpdateSelectedQuadrant('lower_right')"
+                            t-att-class="state.selectedQuadrant==='lower_right' ? 'btn btn-filter active' : 'btn btn-filter'"
+                            t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">Lower Right</button>
+
+                    <button t-on-click="() => UpdateSelectedQuadrant('lower_left')"
+                            t-att-class="state.selectedQuadrant==='lower_left' ? 'btn btn-filter active' : 'btn btn-filter'"
+                            t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">Lower Left</button>
+
+                    <div class="flex-grow-0 flex-shrink-0 w-auto mt-2 mt-md-0">
+                        <select id="ageGroupSelect"
+                                t-on-change="updateSelectedGroup"
+                                class="form-select form-select-sm shadow-sm rounded-3"
+                                t-model="state.selectedGroup"
+                                style="min-width: 180px; max-width: 220px;">
+                            <option value="" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                Select Age Group
+                            </option>
+                            <t t-foreach="state.groupSelections" t-as="group" t-key="group.key">
+                                <option t-att-value="group.key" t-esc="group.value"/>
+                            </t>    
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-auto d-flex flex-wrap justify-content-start justify-content-md-end align-items-center gap-3 mt-2 mt-md-0 ms-md-auto">
+                        <div class="toggle-wrapper d-flex align-items-center gap-2">
+                            <span class="toggle-label">Cleaning</span>
+                            <label class="toggle-switch cleaning mb-0">
+                                <input type="checkbox" t-model="state.isCleaningMode" t-att-disabled="state.isRemoveTooth"/>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-wrapper d-flex align-items-center gap-2">
+                            <span class="toggle-label">Remove Tooth</span>
+                            <label class="toggle-switch removed mb-0">
+                                <input type="checkbox" t-model="state.isRemoveTooth" t-att-disabled="state.isCleaningMode"/>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <t t-if="state.toothData">
+                        <t t-if="state.selectedQuadrant === 'all'">
+                            <!-- Upper Tooth -->
+                            <div class="col-12 mb-4">
+                                <div class="divide" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                    <span>Upper Tooth</span>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-center">
+                                    <t t-foreach="['upper_right','upper_left']" t-as="quad" t-key="quad">
+                                        <t t-foreach="state.toothData[quad] || []" t-as="tooth" t-key="tooth.id">
+                                            <div t-on-click="() => handleToothClick(tooth)"
+                                                t-att-class="tooth.selected ? 'tooth-card active' : 'tooth-card'"
+                                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                                <t t-if="(tooth.selected_surfaces || []).length">
+                                                    <span class="surface-count">
+                                                        <t t-esc="(tooth.selected_surfaces || []).length"/>
+                                                    </span>
+                                                </t>
+
+                                                <t t-set="pdata" t-value="state.patientTeethData[tooth.id]"/>
+                                                <t t-if="pdata and pdata.procedure_schedule">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_schedule.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_running">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_running.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_done">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_done.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_cancel">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_cancel.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_remove and pdata.procedure_done">
+                                                    <div class="tooth-removed-full">X</div>
+                                                </t>
+
+                                                <t t-if="pdata and (pdata.show_procedure_image and pdata.procedure_done)">
+                                                    <img t-att-src="'data:image/png;base64,' + pdata.show_procedure_image"
+                                                        alt="Procedure Product"
+                                                        class="img img-fluid show-procedure-img"/>
+                                                </t>
+
+                                                <t t-else="">
+                                                    <img t-att-src="'data:image/png;base64,' + tooth.image"
+                                                        alt="Tooth"
+                                                        t-att-class="'img img-fluid tooth-img ' + (pdata and pdata.procedure_remove and pdata.procedure_done ? 'tooth-disabled' : '')" />
+                                                </t>
+                                                <div class="tooth-code"><t t-esc="tooth.fdi_code"/></div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <!-- Lower Tooth -->
+                            <div class="col-12 mb-4">
+                                <div class="divide" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                    <span>Lower Tooth</span>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-center">
+                                    <t t-foreach="['lower_right','lower_left']" t-as="quad" t-key="quad">
+                                        <t t-foreach="state.toothData[quad] || []" t-as="tooth" t-key="tooth.unique_key">
+                                            <div t-on-click="() => handleToothClick(tooth)"
+                                                t-att-class="tooth.selected ? 'tooth-card active' : 'tooth-card'"
+                                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                                <t t-if="(tooth.selected_surfaces || []).length">
+                                                    <span class="surface-count">
+                                                        <t t-esc="(tooth.selected_surfaces || []).length"/>
+                                                    </span>
+                                                </t>
+
+                                                <t t-set="pdata" t-value="state.patientTeethData[tooth.id]"/>
+                                                <t t-if="pdata and pdata.procedure_schedule">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_schedule.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_running">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_running.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_done">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_done.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_cancel">
+                                                    <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                        <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_cancel.png'" class="tooth-status-img"/>
+                                                    </div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.procedure_remove and pdata.procedure_done">
+                                                    <div class="tooth-removed-full">X</div>
+                                                </t>
+
+                                                <t t-if="pdata and pdata.show_procedure_image">
+                                                    <img t-att-src="'data:image/png;base64,' + pdata.show_procedure_image"
+                                                        alt="Procedure Product"
+                                                        class="img img-fluid show-procedure-img" />
+                                                </t>
+
+                                                <t t-else="">
+                                                    <img t-att-src="'data:image/png;base64,' + tooth.image"
+                                                        alt="Tooth"
+                                                        t-att-class="'img img-fluid tooth-img ' + (pdata and pdata.procedure_remove and pdata.procedure_done ? 'tooth-disabled' : '')" />
+                                                </t>
+                                                <div class="tooth-code"><t t-esc="tooth.fdi_code"/></div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                        <!-- Single Quadrant Case -->
+                        <t t-else="">
+                            <t t-foreach="Object.keys(state.toothData)" t-as="quad" t-key="quad">
+                                <t t-if="state.selectedQuadrant === quad">
+                                    <div class="col-12 mb-4">
+                                        <div class="d-flex flex-wrap justify-content-center">
+                                            <t t-foreach="state.toothData[quad] || []" t-as="tooth" t-key="tooth.unique_key">
+                                                <div t-on-click="() => handleToothClick(tooth)"
+                                                    t-att-class="tooth.selected ? 'tooth-card active' : 'tooth-card'"
+                                                    t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                                    <t t-if="(tooth.selected_surfaces || []).length">
+                                                        <span class="surface-count">
+                                                            <t t-esc="(tooth.selected_surfaces || []).length"/>
+                                                        </span>
+                                                    </t>
+
+                                                    <!-- Status Dot -->
+                                                    <t t-set="pdata" t-value="state.patientTeethData[tooth.id]"/>
+                                                    <t t-if="pdata and pdata.procedure_schedule">
+                                                        <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                            <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_schedule.png'" class="tooth-status-img"/>
+                                                        </div>
+                                                    </t>
+
+                                                    <t t-if="pdata and pdata.procedure_running">
+                                                        <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                            <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_running.png'" class="tooth-status-img"/>
+                                                        </div>
+                                                    </t>
+
+                                                    <t t-if="pdata and pdata.procedure_done">
+                                                        <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                            <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_done.png'" class="tooth-status-img"/>
+                                                        </div>
+                                                    </t>
+
+                                                    <t t-if="pdata and pdata.procedure_cancel">
+                                                        <div class="tooth-img-top-left" t-att-title="pdata.procedure_details">
+                                                            <img t-att-src="'/acs_hms_dental_chart/static/src/dental/acs_cancel.png'" class="tooth-status-img"/>
+                                                        </div>
+                                                    </t>
+                                                    
+                                                    <t t-if="pdata and pdata.procedure_remove and pdata.procedure_done">
+                                                        <div class="tooth-removed-full">X</div>
+                                                    </t>
+
+                                                    <t t-if="pdata and pdata.show_procedure_image">
+                                                        <img t-att-src="'data:image/png;base64,' + pdata.show_procedure_image"
+                                                            alt="Procedure Product"
+                                                            class="img img-fluid show-procedure-img" />
+                                                    </t>
+
+                                                    <t t-else="">
+                                                        <img t-att-src="'data:image/png;base64,' + tooth.image"
+                                                            alt="Tooth"
+                                                            t-att-class="'img img-fluid tooth-img ' + (pdata and pdata.procedure_remove and pdata.procedure_done ? 'tooth-disabled' : '')" />
+                                                    </t>
+                                                    <div class="tooth-code"><t t-esc="tooth.fdi_code"/></div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+            <div class="acs-hms-dental p-3">
+                <div class="divide" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                    <span>
+                        <i class="fa fa-stethoscope"></i> Select Procedures <i class="fa fa-arrow-circle-o-down"></i>
+                    </span>
+                </div>
+                <div class="row text-center d-flex align-items-center justify-content-center mb-3">
+                    <div class="text-center col-6">
+                        <input type="text" t-model="state.searchText" id="AcsProcedureRecordSearch"
+                            placeholder="Search for Procedure.." class="form-control text-center"/>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center" 
+                    style="max-height:150px; overflow-y:auto; margin-bottom: 25px;">
+                    <t t-foreach="state.procedureData" t-as="procedure" t-key="procedure.id">
+                        <t t-if="procedure and procedure.name and procedure.name.toUpperCase().includes(state.searchText.toUpperCase())">
+                            <div t-on-click="() => dentalProcedure.acsSelectProcedure(procedure)"
+                                t-att-class="procedure.selected ? 'procedure-label active' : 'procedure-label'"
+                                t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                <t t-if="procedure.image_1920">
+                                    <span>
+                                        <img t-att-src="'data:image/jpeg;base64,' + procedure.image_1920" class="dental-procedure-img"/>
+                                        <t t-esc="procedure.name"/> [<t t-esc="procedure.currency"/> <t t-esc="procedure.list_price"/>]
+                                    </span>
+                                </t>
+                                <t t-else="">
+                                    <img t-att-src="'/acs_hms_dental_chart/static/src/img/product_image.png'" class="dental-procedure-img"/>
+                                    <t t-esc="procedure.name"/> [<t t-esc="procedure.currency"/> <t t-esc="procedure.list_price"/>]
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <div class="btn-add-procedure" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + '; cursor:pointer;'" 
+                    t-on-click="addNewProcedure">
+                    <span>
+                        <i class="fa fa-plus-circle"></i> Add New Procedure
+                        <i class="fa fa-arrow-circle-o-right float-end"></i>
+                    </span>
+                </div>
+                <div class="text-center mt-2 mb-3 text-muted small">
+                    Click above to quickly add a procedure for the selected tooth.
+                </div>
+            </div>
+
+            <!-- Active Dental Procedures -->
+            <section class="acs-dental-table">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="acs-dental-header">
+                            <div class="acs-dental-table-header" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                <h3>Active Dental Procedures</h3>
+                                <span class="acs-dental-icon-info">
+                                    <i class="fa fa-info-circle" title="This will show max 10 records only."></i>
+                                </span>
+                            </div>
+                            <div class="procedure-table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Tooth</th>
+                                            <th>Surface</th>
+                                            <th>Procedure</th>
+                                            <th>Price</th>
+                                            <th>Physician</th>
+                                            <th>Date &amp; Time</th>
+                                            <th>Notes</th>
+                                            <th>State</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="state.proceduresTable.new_procedures" t-as="new_procedure" t-key="new_procedure.id">
+                                            <tr>
+                                                <td><t t-esc="state.proceduresTable.new_procedures.indexOf(new_procedure) + 1" /></td>
+                                                <td t-att-style="'color: ' + state.dentalChartColor + '; cursor: pointer;'"
+                                                    t-on-click="() => dentalProcedure.acsOpenProcedure(new_procedure.id)">
+                                                    <t t-esc="new_procedure.name"/>
+                                                </td>
+                                                <td>
+                                                    <div style="text-align: center;">
+                                                        <t t-foreach="new_procedure.tooths.split(', ')" t-as="tooth" t-key="tooth">
+                                                            <t t-esc="tooth"/>
+                                                            <br/>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="text-align: center;">
+                                                        <t t-foreach="new_procedure.tooth_surfaces.split(', ')" t-as="surface" t-key="surface">
+                                                            <t t-esc="surface"/>
+                                                            <br/>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="new_procedure.procedure"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="new_procedure.currency"></t> <t t-esc="new_procedure.price_unit"/>
+                                                </td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <div class="d-flex justify-content-center align-items-center gap-2" style="line-height: 1;">
+                                                        <t t-if="new_procedure.physician_image">
+                                                            <img t-att-src="'data:image/jpeg;base64,' + new_procedure.physician_image"
+                                                                style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-if="new_procedure.physician">
+                                                                <img t-att-src="'/acs_hms_dental_chart/static/src/img/avatar_grey.png'"
+                                                                    style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                            </t>
+                                                        </t>
+                                                        <span><t t-esc="new_procedure.physician"/></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-if="new_procedure.date">
+                                                        <t t-set="datetime" t-value="new_procedure.date.split(' ')"/>
+                                                        <t t-esc="datetime[0]"/><br/>
+                                                        <t t-esc="datetime[1]"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span>-</span>
+                                                    </t>
+                                                </td>
+                                                <td style="white-space: normal; word-wrap: break-word; max-width: 220px;">
+                                                    <div class="d-flex align-items-start justify-content-between gap-2">
+                                                        <span class="text-truncate" style="white-space: normal; overflow-wrap: break-word;">
+                                                            <t t-esc="new_procedure.notes"/>
+                                                        </span>
+                                                        <i class="fa fa-sticky-note text-primary cursor-pointer"
+                                                            style="font-size: 16px;"
+                                                            title="Add/Edit Note"
+                                                            t-on-click="dentalCommon.acsOpenNoteModal.bind(this, new_procedure.id, new_procedure.notes)">
+                                                        </i>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-if="new_procedure.state == 'Scheduled'">
+                                                        <span class="acs-dental badge-info">Scheduled</span>
+                                                    </t>
+                                                    <t t-if="new_procedure.state == 'Running'">
+                                                        <span class="acs-dental badge-warning">Running</span>
+                                                    </t>
+                                                    <t t-if="new_procedure.state == 'Done'">
+                                                        <span class="acs-dental badge-success">Done</span>
+                                                    </t>
+                                                    <t t-if="new_procedure.state == 'Canceled'">
+                                                        <span class="acs-dental badge-danger">Canceled</span>
+                                                    </t>
+                                                </td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <div class="d-flex justify-content-center gap-3">
+                                                        <t t-if="new_procedure.attachments and new_procedure.attachments > 0">
+                                                            <a t-att-href="new_procedure.document_preview_url" target="_blank"
+                                                                title="View Attachments">
+                                                                <i class="fa fa-image text-primary cursor-pointer" style="font-size:16px;"></i>
+                                                            </a>
+                                                        </t>
+
+                                                        <t t-if="new_procedure.state === 'Scheduled'">
+                                                            <i class="fa fa-play text-success cursor-pointer"
+                                                                title="Start Procedure"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'running')">
+                                                            </i>
+                                                            <i class="fa fa-times text-danger cursor-pointer"
+                                                                title="Cancel Procedure"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'cancelled')">
+                                                            </i>
+                                                            <i class="fa fa-trash text-danger cursor-pointer"
+                                                                title="Delete Procedure"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'delete')">
+                                                            </i>
+                                                        </t>
+                                                        <t t-if="!new_procedure.invoice">
+                                                            <i class="fa fa-usd text-info cursor-pointer"
+                                                                title="Create Invoice"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'invoice')">
+                                                            </i>
+                                                        </t>
+                                                        <t t-if="new_procedure.state === 'Running'">
+                                                            <i class="fa fa-check text-success cursor-pointer"
+                                                                title="Mark as Done"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'done')">
+                                                            </i>
+                                                            <i class="fa fa-times text-danger cursor-pointer"
+                                                                title="Cancel Procedure"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(new_procedure.id, 'cancelled')">
+                                                            </i>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Completed Procedures -->
+            <section class="acs-dental-table" style="margin-top: -10px;">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="acs-dental-header">
+                            <div class="acs-dental-table-header" t-att-style="'--dental-chart-color: ' + state.dentalChartColor + ';'">
+                                <h3>Completed Procedures</h3>
+                                <span class="acs-dental-icon-info">
+                                    <i class="fa fa-info-circle" title="This will show max 20 records only."></i>
+                                </span>
+                            </div>
+                            <div class="procedure-table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead t-att-style="'background-color: ' + state.dentalChartColor + ';'">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Tooth</th>
+                                            <th>Surface</th>
+                                            <th>Procedure</th>
+                                            <th>Price</th>
+                                            <th>Physician</th>
+                                            <th>Date &amp; Time</th>
+                                            <th>Notes</th>
+                                            <th>State</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="state.proceduresDoneTable.procedures_done" t-as="procedure" t-key="procedure.id">
+                                            <tr>
+                                                <td><t t-esc="state.proceduresDoneTable.procedures_done.indexOf(procedure) + 1" /></td>
+                                                <td t-att-style="'color: ' + state.dentalChartColor + '; cursor: pointer;'"
+                                                    t-on-click="() => dentalProcedure.acsOpenProcedure(procedure.id)">
+                                                    <t t-esc="procedure.name"/>
+                                                </td>
+                                                <td>
+                                                    <div style="text-align: center;">
+                                                        <t t-foreach="procedure.tooths.split(', ')" t-as="tooth" t-key="tooth">
+                                                            <t t-esc="tooth"/>
+                                                            <br/>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="text-align: center;">
+                                                        <t t-foreach="procedure.tooth_surfaces.split(', ')" t-as="surface" t-key="surface">
+                                                            <t t-esc="surface"/>
+                                                            <br/>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="procedure.procedure"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="procedure.currency"></t> <t t-esc="procedure.price_unit"/>
+                                                </td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <div class="d-flex justify-content-center align-items-center gap-2" style="line-height: 1;">
+                                                        <t t-if="procedure.physician_image">
+                                                            <img t-att-src="'data:image/jpeg;base64,' + procedure.physician_image"
+                                                                style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-if="procedure.physician">
+                                                                <img t-att-src="'/acs_hms_dental_chart/static/src/img/avatar_grey.png'"
+                                                                    style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                            </t>
+                                                        </t>
+                                                        <span><t t-esc="procedure.physician"/></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-if="procedure.date">
+                                                        <t t-set="datetime" t-value="procedure.date.split(' ')"/>
+                                                        <t t-esc="datetime[0]"/><br/>
+                                                        <t t-esc="datetime[1]"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span>-</span>
+                                                    </t>
+                                                </td>
+                                                <td style="white-space: normal; word-wrap: break-word; max-width: 220px;">
+                                                    <div class="d-flex align-items-start justify-content-between gap-2">
+                                                        <span class="text-truncate" style="white-space: normal; overflow-wrap: break-word;">
+                                                            <t t-esc="procedure.notes"/>
+                                                        </span>
+                                                        <i class="fa fa-sticky-note text-primary cursor-pointer"
+                                                            style="font-size: 16px;"
+                                                            title="Add/Edit Note"
+                                                            t-on-click="dentalCommon.acsOpenNoteModal.bind(this, procedure.id, procedure.notes)">
+                                                        </i>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <t t-if="procedure.state == 'Scheduled'">
+                                                        <span class="acs-dental badge-info">Scheduled</span>
+                                                    </t>
+                                                    <t t-if="procedure.state == 'Running'">
+                                                        <span class="acs-dental badge-warning">Running</span>
+                                                    </t>
+                                                    <t t-if="procedure.state == 'Done'">
+                                                        <span class="acs-dental badge-success px-2 py-1">Done</span>
+
+                                                        <t t-if="!procedure.invoice">
+                                                            <i class="fa fa-usd text-info cursor-pointer ms-2"
+                                                                title="Create Invoice"
+                                                                style="font-size: 16px;"
+                                                                t-on-click="() => dentalProcedure.acsUpdateProcedureStatus(procedure.id, 'invoice')">
+                                                            </i>
+                                                        </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MKA: Popup & Message when get the error during creation of procedure -->
+            <t t-if="state.popup.show">
+                <div class="popup-overlay">
+                    <div class="popup-content" t-att-class="'popup-' + state.popup.type">
+                        <span t-esc="state.popup.message"/>
+                        <button type="button" class="popup-close" t-on-click="dentalCommon.acsClosePopup">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </div>
+
+        <AcsHmsDentalNoteModal 
+            show="state.showNoteModal" 
+            note="state.currentNote" 
+            onNoteChange="(value) => state.currentNote = value"
+            onClose="closeNoteModal" 
+            onSave="saveProcedureNote"
+        />
+
+        <AcsHmsToothSurfaceModal
+            show="state.showSurfaceModal"
+            tooth="state.currentTooth"
+            surfaceData="state.surfaceData"
+            onToggleSurface="toggleSurface"
+            dentalChartColor="state.dentalChartColor"
+            onSave="saveSurface"
+            onClose="closeSurface"
+        />
+    </t>
+
+    <!-- Save note to created procedure -->
+    <t t-name="acs_hms_dental_chart.AcsHmsDentalNoteModal">
+        <div t-if="props.show" class="modal fade show d-block" tabindex="-1" role="dialog"
+            style="background: rgba(0,0,0,0.5); transition: all 0.3s ease;">
+            <div class="modal-dialog modal-dialog-centered acs-note-modal-sm" role="document">
+                <div class="modal-content shadow-lg rounded-4 border-0 overflow-hidden">
+                    <div class="modal-header bg-gradient-primary text-white d-flex align-items-center justify-content-between">
+                        <h5 class="modal-title d-flex align-items-center gap-2">
+                            <i class="fa fa-sticky-note fa-lg"></i> Add / Edit Note
+                        </h5>
+                        <button type="button" class="btn-close btn-close-black" aria-label="Close"
+                                t-on-click="props.onClose">
+                        </button>
+                    </div>
+                    <div class="modal-body pb-0">
+                        <textarea t-model="props.note" t-on-input="(ev) => props.onNoteChange(ev.target.value)"
+                            class="form-control rounded-3 shadow-sm" rows="6"
+                            placeholder="Write your note here..."
+                            style="resize: vertical; transition: all 0.2s ease;"></textarea>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-start gap-2 p-3 border-0">
+                        <button type="button" class="btn btn-primary shadow-sm" t-on-click="props.onSave">
+                            Save Note
+                        </button>
+                        <button type="button" class="btn btn-secondary shadow-sm" t-on-click="props.onClose">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Tooth Surface Selection Modal -->
+    <t t-name="acs_hms_dental_chart.AcsHmsToothSurfaceModal">
+        <div t-if="props.show" class="modal fade show d-block" tabindex="-1" role="dialog"
+            style="background: rgba(0,0,0,0.5); transition: all 0.3s ease;">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 rounded shadow">
+                    <div class="modal-header text-white">
+                        <h5 class="modal-title" t-att-style="'color: ' + props.dentalChartColor + '; cursor: pointer;'">
+                            Select Surfaces for Tooth <t t-esc="props.tooth.fdi_code || props.tooth.number"/></h5>
+                        <button type="button" class="btn-close btn-close-white" t-on-click="props.onClose"
+                            t-att-style="'background-color: ' + props.dentalChartColor + '; cursor: pointer;'"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <img src="/acs_hms_dental_chart/static/src/img/surface_info.png"
+                                class="img-fluid"
+                                alt="Tooth Surfaces"
+                                style="max-width: 270px;" />
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center" t-att-style="'--dental-chart-color: ' + props.dentalChartColor + ';'">
+                            <t t-foreach="props.surfaceData" t-as="srf" t-key="srf.id">
+                                <div t-on-click="() => props.onToggleSurface(props.tooth, srf.id)"
+                                    t-att-class="props.tooth.selected_surfaces.includes(srf.id) ? 'surface-label active' : 'surface-label'">
+                                    <span><t t-esc="srf.name"/></span>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-start gap-2 p-3 border-1">
+                        <button type="button" class="btn btn-primary shadow-sm" t-on-click="props.onSave">
+                            Save
+                        </button>
+                        <button type="button" class="btn btn-secondary shadow-sm" t-on-click="props.onClose">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>

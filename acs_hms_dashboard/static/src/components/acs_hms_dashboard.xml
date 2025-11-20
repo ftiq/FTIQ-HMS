@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xml:space="preserve">
+    <t t-name="acs_hms_dashboard.AcsHmsDashboard">
+        <div class="acs_hms_control_panel">
+            <!-- Header Filters -->
+            <t t-call="acs_dashboard.acs_dash_header"/>
+
+            <div class="hms-dash-content">
+                <div class="hms-dash-main-content">
+                    <section class="hms-dash-section">
+                        <div class="row">
+                            <!-- Total Patients -->
+                            <t t-if="state.isHmsReceptionistGrp and !state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'Patients'"/>
+                                <t t-set="record_value" t-value="state.totalPatients"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa-wheelchair'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenPatients"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+
+                            <!-- Total Physicians -->
+                            <t t-if="state.isHmsManagerGrp">
+                                <t t-set="record_label" t-value="'Physicians'" />
+                                <t t-set="field_value_1" t-value="state.totalPhysicians" />
+                                <t t-set="label_1" t-value="'Total Phy.'" />
+                                <t t-set="field_value_2" t-value="state.totalReferringPhysicians" />
+                                <t t-set="label_2" t-value="'Ref. Phy.'" />
+                                <t t-set="acs_record_icon" t-value="'fa-user-md'"/>
+                                <t t-set="on_click_fun1" t-value="acsOpenPhysicians"/>
+                                <t t-set="on_click_fun2" t-value="acsOpenReferringPhysicians"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block2"/>
+                            </t>
+                            
+                            <!-- Total My Appointments -->
+                            <t t-if="state.isHmsJrDoctorGrp and state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'My Appointment'"/>
+                                <t t-set="record_value" t-value="state.totalMyAppointments"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa-user-md'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenMyAppointments"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+
+                            <!-- Total Appointments -->
+                            <t t-if="state.isHmsReceptionistGrp and !state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'Appointments'"/>
+                                <t t-set="record_value" t-value="state.totalAppointments"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa-stethoscope'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenAppointments"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+
+                            <!-- Total My Treatments -->
+                            <t t-if="state.isHmsJrDoctorGrp and state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'My Treatments'" />
+                                <t t-set="field_value_1" t-value="state.totalMyRunningTreatments" />
+                                <t t-set="label_1" t-value="'Running'" />
+                                <t t-set="field_value_2" t-value="state.totalMyTreatments"/>
+                                <t t-set="label_2" t-value="'Total'" />
+                                <t t-set="acs_record_icon" t-value="'fa-user-md'"/>
+                                <t t-set="on_click_fun1" t-value="acsOpenMyRunningTreatments"/>
+                                <t t-set="on_click_fun2" t-value="acsOpenMyTreatments"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block2"/>
+                            </t>
+
+                            <!-- Total My Patients -->
+                            <t t-if="state.isHmsJrDoctorGrp and state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'My Total Patients'"/>
+                                <t t-set="record_value" t-value="state.totalMyPatients"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa-wheelchair'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenMyPatients"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+                           
+                            <!-- Total Treatments -->
+                            <t t-if="state.isHmsReceptionistGrp and !state.isPhysicianUser.acs_is_physician">
+                                <t t-set="record_label" t-value="'Treatments'" />
+                                <t t-set="field_value_1" t-value="state.totalRunningTreatments" />
+                                <t t-set="label_1" t-value="'Running'" />
+                                <t t-set="field_value_2" t-value="state.totalTreatments" />
+                                <t t-set="label_2" t-value="'Total'" />
+                                <t t-set="acs_record_icon" t-value="'fa-user-md'"/>
+                                <t t-set="on_click_fun1" t-value="acsOpenRunningTreatments"/>
+                                <t t-set="on_click_fun2" t-value="acsOpenTreatments"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block2"/>
+                            </t>
+
+                            <!-- Evaluations -->
+                            <t t-if="state.isHmsNurseGrp">
+                                <t t-set="record_label" t-value="'Evaluations'"/>
+                                <t t-set="record_value" t-value="state.totalEvaluations"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa fa-tasks'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenEvaluations"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+
+                            <!-- Procedures -->
+                            <t t-if="state.isHmsNurseGrp">
+                                <t t-set="record_label" t-value="'Procedures'"/>
+                                <t t-set="record_value" t-value="state.totalProcedures"/>
+                                <t t-set="action_label" t-value="'View Details'"/>
+                                <t t-set="acs_record_icon" t-value="'fa fa-heartbeat'"/>
+                                <t t-set="on_click_fun" t-value="acsOpenProcedures"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block1"/>
+                            </t>
+
+                            <!-- Total Invoices -->
+                            <t t-if="state.isAccountInvoiceGrp">
+                                <t t-set="record_label" t-value="'Total Invoices'" />
+                                <t t-set="field_value_1" t-value="state.totalacsOpenInvoice" />
+                                <t t-set="label_1" t-value="'Total'" />
+                                <t t-set="field_value_2" t-value="state.totalacsOpenInvoiceAmount"/>
+                                <t t-set="label_2" t-value="'Amount'" />
+                                <t t-set="acs_record_icon" t-value="'fa-list'"/>
+                                <t t-set="on_click_fun1" t-value="acsOpenInvoice"/>
+                                <t t-set="on_click_fun2" t-value="acsOpenInvoice"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block2"/>
+                            </t>
+
+                            <!-- Total Todays Birthday -->
+                            <t t-if="state.isHmsReceptionistGrp">
+                                <t t-set="record_label" t-value="&quot;Today's Birthday&quot;" />
+                                <t t-set="field_value_2" t-value="state.countPatientBirthdays" />
+                                <t t-set="label_1" t-value="'Employees'" />
+                                <t t-set="field_value_1" t-value="state.countEmployeeBirthdays" />
+                                <t t-set="label_2" t-value="'Patients'" />
+                                <t t-set="acs_record_icon" t-value="'fa-birthday-cake'"/>
+                                <t t-set="on_click_fun1" t-value="acsOpenEmployeeBirthdays"/>
+                                <t t-set="on_click_fun2" t-value="acsOpenPatientBirthdays"/>
+                                <t t-call="acs_dashboard.acs_dash_kpi_block2"/>
+                            </t>
+                        </div>
+                    </section>
+
+                    <div class="hms-dash-section">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row clearfix">
+                                    <t t-if="state.isHmsReceptionistGrp">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="hms-dash-card">
+                                                <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                    <h4>Patient Appointments</h4>
+                                                    <span class="hms-icon-info">
+                                                        <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="This will show the last month, current month, and advance appointments."></i>
+                                                    </span>
+                                                </div>
+                                                <div class="hms-chart-body">
+                                                    <div t-ref="appointmentBarChartContainer" id="barChartFill" style="width: 100%; height: 350px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+
+                                    <t t-if="state.isHmsReceptionistGrp">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="hms-dash-card">
+                                                <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                    <h4>New Patients</h4>
+                                                    <span class="hms-icon-info">
+                                                        <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="This will show from the last 365 days to the current."></i>
+                                                    </span>
+                                                </div>
+                                                <div class="hms-chart-body">
+                                                    <div t-ref="patientLineChartContainer" id="barChartFill" style="width: 100%; height: 350px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="row">
+                                        <t t-if="state.isHmsReceptionistGrp">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                                                <div class="hms-dash-card">
+                                                    <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                        <h4>Patients Age Distribution</h4>
+                                                        <span class="hms-icon-info">
+                                                            <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="This Chat for patient distribution by age."></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="hms-chart-body">
+                                                        <div t-ref="patientAgeGaugeChartContainer" id="patientAgeGaugeChartContainer" style="width: 100%; height: 350px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+
+                                        <t t-if="state.isHmsReceptionistGrp">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                                                <div class="hms-dash-card">
+                                                    <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                        <h4>Patients Gender Distribution</h4>
+                                                        <span class="hms-icon-info">
+                                                            <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="This Chat for patient distribution by gender."></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="hms-chart-body">
+                                                        <div t-ref="patientGenderPieChartContainer" id="patientGenderPieChartContainer" style="width: 100%; height: 350px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+
+                                        <t t-if="state.isHmsReceptionistGrp">
+                                            <div class="col-12 mb-3">
+                                                <div class="hms-dash-card">
+                                                    <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                        <h4>Department wise Appointments</h4>
+                                                        <span class="hms-icon-info">
+                                                            <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="Shows patient appointments wise department."></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="hms-chart-body">
+                                                        <div t-ref="departmentDonutChartContainer" id="departmentDonutChartContainer" style="width: 100%; height: 325px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                                
+                                <t t-if="state.isHmsReceptionistGrp">
+
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="hms-dash-card">
+                                            <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                <h4>Patient Breakdown Across Countries and States</h4>
+                                                <span class="hms-icon-info">
+                                                    <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="Patient Breakdown Across Countries and States."></i>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 mb-2">
+                                                    <div class="hms-chart-body">
+                                                        <div t-ref="patientCountryPieContainer" style="width: 100%; height: 270px;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="hms-chart-body">
+                                                        <div t-ref="patientStateBarChartContainer" style="width: 100%; height: 495px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row clearfix" style="margin-top: -15px;">
+                                <t t-if="state.isHmsReceptionistGrp">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                                        <div class="hms-dash-card">
+                                            <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                <h4>Medical Services</h4>
+                                                <span class="hms-icon-info">
+                                                    <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="Chart showing services provided based on invoiced products."></i>
+                                                </span>
+                                            </div>
+                                            <div class="hms-chart-body">
+                                                <div t-ref="medicalServicesBarLineContainer" id="medicalServicesBarLineContainer" style="width: 100%; height: 400px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                                        <div class="hms-dash-card">
+                                            <div class="hms-dash-chart-header" t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                <h4>Patient Appointment Disease Statistics</h4>
+                                                <span class="hms-icon-info">
+                                                    <i class="fa fa-info-circle" style="color: white; font-size: 17px;" title="Chart showing disease counts."></i>
+                                                </span>
+                                            </div>
+                                            <div class="hms-chart-body">
+                                                <div t-ref="patientDiseaseBarChartContainer" id="patientDiseaseBarChartContainer" style="width: 100%; height: 400px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <t t-if="state.isHmsReceptionistGrp">
+                        <section class="hms-dash-section" style="margin-top: -20px;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="hms-dash-card">
+                                        <div class="hms-dash-table-header">
+                                            <h2 t-att-style="'color: ' + state.dashboardColor">Appointments</h2> 
+                                            <span class="hms-icon-info">
+                                                <i class="fa fa-info-circle" t-att-style="'color: ' + state.dashboardColor + '; font-size: 18px;'" title="This will show max 20 records only."></i>
+                                            </span>
+                                        </div>
+                                        <div class="hms-dash-card-body">
+                                            <div class="hms-dash-table">
+                                                <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                                                    <thead t-att-style="'background-color: ' + state.dashboardColor + '; opacity: 0.9;'">
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Appointment</th>
+                                                            <th>Patient </th>
+                                                            <th>Date</th>
+                                                            <th>Duration</th>
+                                                            <th>Physician</th>
+                                                            <th>Purpose</th>
+                                                            <th>Wait Time</th>
+                                                            <th>Consultation Time</th>
+                                                            <th>State</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <t t-foreach="state.appointmentsTable.appointment_data" t-as="appointment" t-key="appointment.id">
+                                                            <tr>
+                                                                <td><t t-esc="state.appointmentsTable.appointment_data.indexOf(appointment) + 1" /></td>
+                                                                <td t-att-style="'color: ' + state.dashboardColor + '; cursor: pointer;'"
+                                                                    t-on-click="() => this.dashTable.openAppointment(appointment.id)">
+                                                                    <t t-esc="appointment.name"/>
+                                                                </td>
+                                                                <td class="text-start">
+                                                                    <div class="d-flex align-items-center gap-2" style="line-height: 1;">
+                                                                        <t t-if="appointment.image">
+                                                                            <img t-att-src="'data:image/jpeg;base64,' + appointment.image"
+                                                                                style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <img t-att-src="'/acs_hms_dashboard/static/src/images/avatar_grey.png'"
+                                                                                style="height: 28px; width: 28px; object-fit: cover; border-radius: 50%;" />
+                                                                        </t>
+                                                                        <span><t t-esc="appointment.patient" /></span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td><t t-esc="appointment.date"/></td>
+                                                                <td><t t-esc="appointment.planned_duration"/></td>
+                                                                <td class="text-start"><t t-esc="appointment.physician"/></td>
+                                                                <td><t t-esc="appointment.purpose"/></td>
+                                                                <td><t t-esc="appointment.appointment_duration"/></td>
+                                                                <td><t t-esc="appointment.waiting_duration"/></td>
+                                                                <td>
+                                                                    <t t-if="appointment.state == 'Draft'">
+                                                                        <span class="hms-badge badge-info">Draft</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'Confirm'">
+                                                                        <span class="hms-badge badge-it">Confirm</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'Waiting'">
+                                                                        <span class="hms-badge badge-warning">Waiting</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'In consultation'">
+                                                                        <span class="hms-badge badge-primary">In Consultation</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'Pause'">
+                                                                        <span class="hms-badge badge-secondary" style="color: black;">Pause</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'To Invoice'">
+                                                                        <span class="hms-badge badge-invoice">To Invoice</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'Done'">
+                                                                        <span class="hms-badge badge-success">Done</span>
+                                                                    </t>
+                                                                    <t t-if="appointment.state == 'Cancelled'">
+                                                                        <span class="hms-badge badge-danger">Cancelled</span>
+                                                                    </t>
+                                                                </td>
+                                                            </tr>
+                                                        </t>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>

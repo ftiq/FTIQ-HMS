@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- Booking -->
+    <menuitem id="menu_acs_booking" name="Booking" sequence="40" web_icon="acs_website_booking,static/description/calendar.png" groups="acs_website_booking.group_booking_user"/>
+
+    <menuitem id="menu_acs_schedules" name="Schedules" parent="menu_acs_booking" action="action_acs_schedules" sequence="10"/>
+    <menuitem id="menu_acs_schedule_slot_lines" name="Slots" parent="menu_acs_booking" sequence="20" action="action_acs_schedule_slot_lines"/>
+    <menuitem id="menu_acs_schedule_slot" name="Slot Dates" sequence="30" parent="menu_acs_booking" action="action_acs_schedule_slot" groups="acs_website_booking.group_booking_manager"/>
+    <menuitem id="acs_menu_scheduler_wizard_slot" name="Create Slots" sequence="50" parent="menu_acs_booking" action="acs_scheduler_wizard_action"/>
+    <menuitem id="menu_acs_block_slots" name="Block Slots" sequence="60" parent="menu_acs_booking" action="acs_block_slots_action"/>
+
+</odoo>

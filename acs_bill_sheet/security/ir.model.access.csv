@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_bill_sheet.access_bill_sheet_user,access_bill_sheet_user,acs_bill_sheet.model_acs_bill_sheet,acs_bill_sheet.group_acs_bill_sheet_user,1,1,1,0
+acs_bill_sheet.access_bill_sheet_manager,access_bill_sheet_manager,acs_bill_sheet.model_acs_bill_sheet,acs_bill_sheet.group_acs_bill_sheet_manager,1,1,1,1

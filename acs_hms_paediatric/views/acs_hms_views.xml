@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Patient View -->
+    <record id="view_hms_patient_form_pediatric" model="ir.ui.view">
+        <field name="name">hms.patient.view.inherit.pediatric</field>
+        <field name="model">hms.patient</field>
+        <field name="inherit_id" ref="acs_hms.view_patient_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[1]" position="before">
+                <button class="oe_inline oe_stat_button"
+                        type="object"
+                        name="acs_show_growth_chart"
+                        title="Show Growth Chart"
+                        icon="fa-arrow-right fs-3"
+                        invisible="not is_child"
+                        string="Show Growth Chart"
+                        widget="statinfo"/>
+            </xpath>
+
+            <xpath expr="//page[@name='clinical_ass']//label[@for='temp']" position="before">
+                <label for="head_circum"/>
+                <div class="o_row">
+                    <field name="head_circum"/>
+                    <field name="acs_head_circum_name"/>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='death_details']" position="after">
+                <group >
+                    <field name="is_child"/>
+                    <field name="birth_weight" invisible="not is_child"/>
+                </group>
+                <group>
+                    <field name="birth_height" invisible="not is_child"/>
+                    <field name="birth_head_circum" invisible="not is_child"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="hms_action_child_patient" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="path">almightyhms-paediatric-patient</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain" eval="[('is_child','=',True)]"/>
+        <field name="context">{'default_is_child': True}</field>
+    </record>
+
+    <!-- Appointment View-->
+    <record id="view_hms_appointment_form" model="ir.ui.view">
+        <field name="name">hms.appointment.view.inherit</field>
+        <field name="model">hms.appointment</field>
+        <field name="inherit_id" ref="acs_hms.view_hms_appointment_form" />
+        <field name="arch" type="xml">
+            <field name="weight" position="after">
+                <field name="is_child" invisible="1"/>
+            </field>
+            <xpath expr="//page[@name='clinical_ass']//label[@for='temp']" position="before">
+                <label for="head_circum"/>
+                <div class="o_row">
+                    <field name="head_circum"/>
+                    <field name="acs_head_circum_name"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="acs_action_appointment" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">hms.appointment</field>
+        <field name="view_mode">list,form,kanban,calendar,pivot</field>
+        <field name="domain" eval="[('department_id.department_type','=','paediatric')]"/>
+        <field name="context">{'search_default_today': 1,'search_default_done': 1,'acs_department_type': 'paediatric'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Record Found
+            </p>
+            <p>
+                Click to add an Paediatric Appointment.
+            </p>
+        </field>
+    </record>
+
+    <!-- Treatment -->
+    <record id="acs_action_treatment" model="ir.actions.act_window">
+        <field name="name">Treatment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.treatment</field>
+        <field name="view_mode">list,form,calendar,pivot</field>
+        <field name="domain" eval="[('department_id.department_type','=','paediatric')]"/>
+        <field name="context">{'acs_department_type': 'paediatric'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Record Found
+            </p>
+            <p>
+                Click to add a Paediatric Treatment.
+            </p>
+        </field>
+    </record>
+
+    <!-- Patient Procedures -->
+    <record id="acs_action_procedure" model="ir.actions.act_window">
+        <field name="name">Paediatric Procedure</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_id" ref="product.product_template_kanban_view"/>
+        <field name="domain">[('hospital_product_type','=','paediatric_procedure')]</field>
+        <field name="context">{'default_hospital_product_type': 'paediatric_procedure', 'default_type': 'service'}</field>
+    </record>
+
+    <record id="acs_action_paediatric_procedure" model="ir.actions.act_window">
+        <field name="name">Patient Procedures</field>
+        <field name="res_model">acs.patient.procedure</field>
+        <field name="view_mode">list,form,calendar,pivot</field>
+        <field name="context">{'acs_department_type': 'paediatric', 'search_default_not_done': 1}</field>
+        <field name="domain" eval="[('department_id.department_type','=','paediatric')]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a Patient Paediatric Procedure.
+            </p>
+        </field>
+    </record>
+
+</odoo>

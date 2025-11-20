@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <xpath expr="//tr[@name='patient_gov_phone_tr']" position="after">
+            <!-- death report -->
+            <t t-if="death_data">
+                <tr name="patient_fat_mot_tr">
+                    <td name="patient_fat">
+                        <strong class="ms-2">Father Name:</strong> <span t-field="death_data.father_name"/>
+                    </td>
+                    <td name="patient_mot">
+                        <strong>Mother Name:</strong> <span t-field="death_data.mother_name"/>
+                    </td>
+                </tr>
+                <tr name="patient_plc_dat_tr">
+                    <td name="patient_place">
+                        <strong class="ms-2">Date of Death:</strong> <span t-field="death_data.date_of_death"/>
+                    </td>
+                    <td name="patient_date">
+                        <strong>Place of Death:</strong> <span t-field="death_data.place_of_death"/>
+                    </td>
+                </tr>
+                <tr name="patient_mrg_phy_tr">
+                    <td name="patient_mrg">
+                        <strong class="ms-2">Marital Status:</strong> <span t-field="death_data.marital_status"/>
+                    </td>
+                    <td name="patient_phy">
+                        <strong>Doctor Name:</strong> <span t-field="death_data.physician_id"/>
+                    </td>
+                </tr>
+            </t>
+
+            <!-- discharge report -->
+            <tr name="hospitalized_name_physician" t-if="hospitalized">
+                <td name="hospitalized_name">
+                    <strong class="text-center ms-2">Hospitalization No:</strong> <span t-field="hospitalized.name"/>
+                </td>
+                <td name="hospitalized_physician">
+                    <strong class="text-center">Primary Physician:</strong> <span t-field="hospitalized.physician_id"/>
+                </td>
+            </tr>
+            <tr name="hospitalized_admission_ward_room" t-if="hospitalized">
+                <td name="hospitalized_admission">
+                    <strong class="text-center ms-2">Admission Date:</strong> <span t-field="hospitalized.hospitalization_date"/>
+                </td>
+                <td name="hospitalized_ward_room">
+                    <strong class="text-center">Ward/Room:</strong> <span t-field="doc.ward_id.name"/> - <span t-field="doc.bed_id.name"/>
+                </td>
+            </tr>
+            <tr name="hospitalized_discharge_surgery" t-if="hospitalized">
+                <td name="hospitalized_discharge">
+                    <strong class="text-center ms-2">Discharge Date:</strong> <span t-field="hospitalized.discharge_date"/>
+                </td>
+                <td name="hospitalized_surgery">
+                    <strong class="text-center">Surgery:</strong> <span t-esc="', '.join(map(lambda x: x.name, doc.surgery_ids))"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>

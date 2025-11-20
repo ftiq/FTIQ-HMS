@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# Part of AlmightyCS. See LICENSE file for full copyright and licensing details.
+
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError, ValidationError
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    manufacturer_pname = fields.Char('Product Name')
+    manufacturer_pref = fields.Char('Product Code')
+    manufacturer_purl = fields.Char('Product URL')
+    acs_medicine_reminder = fields.Boolean(string='Send Medicine Reminder')
+
+
+class ProductCategory(models.Model):
+    _inherit = 'product.category'
+
+    lot_default_locked = fields.Boolean(string='Block new Serial Numbers/lots',
+        help='If checked, future Serial Numbers/lots will be created blocked by default')
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

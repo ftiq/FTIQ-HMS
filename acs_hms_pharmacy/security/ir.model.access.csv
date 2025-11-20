@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hms_prescription_line_pharmacy_user,Prescription Line,acs_hms.model_prescription_line,acs_pharmacy.group_hms_pharmacy_user,1,1,1,0
+access_hms_patient_pharmacy_user,Patient (Pharmacy),acs_hms_base.model_hms_patient,acs_pharmacy.group_hms_pharmacy_user,1,1,1,0

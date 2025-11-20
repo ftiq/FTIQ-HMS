@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//th[@name='th_priceunit']" position="after">
+            <th t-if="o.insurance_id.insurance_amount_in_invoice and o.patient_invoice_id" class="text-end">
+                Patient Amount
+            </th>
+            <th t-if="o.insurance_id.insurance_amount_in_invoice and o.insurance_invoice_id" class="text-end">
+                Ins. Amount
+            </th>
+        </xpath>
+        
+        <xpath expr="//td[@name='td_price_unit']" position="after">
+            <td t-if="o.insurance_id.insurance_amount_in_invoice and o.patient_invoice_id" class="text-end">
+                <span t-if="not hide_prices" class="text-nowrap" t-field="line.acs_patient_amount">9.00</span>
+            </td>
+            <td t-if="o.insurance_id.insurance_amount_in_invoice and o.insurance_invoice_id" class="text-end">
+                <span t-if="not hide_prices" class="text-nowrap" t-field="line.acs_insurance_amount">9.00</span>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

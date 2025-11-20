@@ -1,0 +1,291 @@
+<odoo>
+
+    <!-- Portal View -->
+    <template id="portal_my_home_menu_hms" name="Portal layout : HMS Data" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'aestheticwish' or aestheticwish" t-attf-class="breadcrumb-item #{'active ' if not aestheticwish else ''}">
+                <a t-if="aestheticwish" t-attf-href="/my/aestheticwish?{{ keep_query() }}">Aesthetic Wish</a>
+                <t t-else="">Aesthetic Wish</t>
+            </li>
+            <li t-if="aestheticwish" class="breadcrumb-item active">
+                <t t-esc="aestheticwish.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_create_buttons" name="Evaluations - Portal My Home" inherit_id="acs_hms_portal.acs_portal_buttons" priority="30" customize_show="True">
+        <xpath expr="//div[@id='acs_portal_button']" position="inside">
+            <a t-if="patient_id" t-att-href="'/my/aestheticwish/create'" class="btn btn-primary d-flex align-items-center">
+                <img t-att-src="'/acs_hms_aesthetic/static/description/aesthetic.png'" alt="Icon" 
+                    style="width: 20px; height: 20px; margin-right: 5px;"/> Create Aesthetic Wish
+            </a>
+
+            <a t-if="patient_id.ach_has_to_be_signed" t-att-href="'/my/aesthetic/history'" class="btn btn-primary d-flex align-items-center">
+                <img t-att-src="'/acs_hms_aesthetic/static/description/aesthetic.png'" alt="Icon" 
+                    style="width: 20px; height: 20px; margin-right: 5px;"/> Edit Aesthetic History
+            </a>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Aesthetic Wish - Portal My Home" inherit_id="portal.portal_my_home" priority="30" customize_show="True">
+        <div id="portal_client_category" position="after">
+            <div class="o_portal_category row g-2 mt-3" id="portal_acs_aesthetic_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/acs_hms_aesthetic/static/description/aesthetic.png'"/>
+                    <t t-set="title">Aesthetic Wish</t>
+                    <t t-set="url" t-value="'/my/aestheticwish'"/>
+                    <t t-set="text">Review all your Aesthetic Wish</t>
+                    <t t-set="placeholder_count" t-value="'aestheticwish_count'"/>
+                </t>
+
+                <t t-if="not patient_id.ach_has_to_be_signed and patient_id" t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/acs_hms_aesthetic/static/description/aesthetic.png'"/>
+                    <t t-set="title">Aesthetic History</t>
+                    <t t-set="url" t-value="'/my/aesthetic/history/sign'"/>
+                    <t t-set="text">View Aesthetic History</t>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+
+                <t t-if="not patient_id.filled_by_patient and patient_id" t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/acs_hms_aesthetic/static/description/aesthetic.png'"/>
+                    <t t-set="title">Edit Aesthetic Phototype</t>
+                    <t t-set="url" t-value="'/my/aesthetic/phototype'"/>
+                    <t t-set="text">Edit Aesthetic Phototype</t>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+
+                <t t-if="patient_id.filled_by_patient" t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/acs_hms_aesthetic/static/description/aesthetic.png'"/>
+                    <t t-set="title">Aesthetic Phototype</t>
+                    <t t-set="url" t-value="'/my/aesthetic/phototype'"/>
+                    <t t-set="text">View Aesthetic Phototype</t>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+
+            </div>
+        </div>
+    </template>
+
+    <template id="my_aestheticwishes" name="My Aesthetic Wish">
+        <t t-call="portal.portal_layout">
+
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Aesthetic Wish</t>
+                <xpath expr="//div[hasclass('navbar-toggler')]" position="before">
+                    <a href="/my/aestheticwish/create" class="btn btn-default">
+                        <span class="fa fa-plus"> New Aesthetic Wish</span>
+                    </a>
+                </xpath>
+            </t>
+            <t t-if="not aestheticwishs">
+                <p>There are currently no Aesthetic Wish for your account.</p>
+            </t>
+
+            <div t-if="aestheticwishs" class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-hover bg-white status_table o_portal_my_doc_table">
+                        <thead>
+                            <tr class="active">
+                                <th>Reg. No #</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+
+                        <t t-foreach="aestheticwishs" t-as="aestheticwish">
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/aestheticwish/#{aestheticwish.id}?{{ keep_query() }}"><t t-esc="aestheticwish.name" /></a>
+                                </td>
+                                <td>
+                                    <span t-field="aestheticwish.date" t-options="{'widget': 'date'}"/>
+                                </td>
+                                <td>
+                                    <span t-field="aestheticwish.state" />
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" target="_blank" title="Prescription Report" t-att-href="'/report/pdf/acs_hms_aesthetic.report_acs_aestheticwish/'+str(aestheticwish.id)">Print</a>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </div>
+            <div t-if="pager" class="o_portal_pager text-center">
+                <t t-call="portal.pager"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="my_aestheticwish" name="My Appointment">
+        <t t-call="portal.portal_layout"> 
+            <div id="wrap">
+                <div class="container">
+                    <div id="aestheticwish_content" class="col-md-12 col-lg mt32">
+                        <div class="o_portal_html_view shadow p-3" style="background-color: white;">
+                            <t t-call="acs_hms_aesthetic.report_acs_aestheticwish_document" t-lang="aestheticwish.patient_id.partner_id.lang">
+                                <t t-set="doc" t-value="aestheticwish.sudo()"/>
+                                <t t-set="readonly" t-value="True"/>
+                            </t>
+                        </div>
+                        <!-- chatter -->
+                        <div id="certificate_communication" class="mt-4">
+                            <h2>History</h2>
+                            <t t-call="portal.message_thread">
+                                <t t-set="object" t-value="aestheticwish"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
+    <template id="aestheticwish_fields" name="Aesthetic Wish Fields">
+        <div class="mt64 mb32" style="text-align: center;">
+            <h2 style="font-size: 1.5em;">BODY TREATMENT PLAN</h2>
+        </div>
+
+        <div class="row mt32 mb16">
+            <div class="col-md-12 ">
+                <h4>I want to improve</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="cellulitis" id="cellulitis" t-att-checked="record and record.cellulitis"/> Cellulitis</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="stretch_marks" id="stretch_marks" t-att-checked="record and record.stretch_marks"/> Stretch Marks</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="body_circumference_reduction" id="body_circumference_reduction" t-att-checked="record and record.body_circumference_reduction"/> Body Circumference Reduction</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="adiposity" id="adiposity" t-att-checked="record and record.adiposity"/> Adiposity (Rabbits, Chubby, Llanticas)</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="hair_removal" id="hair_removal" t-att-checked="record and record.hair_removal"/> Hair Removal</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="definitive_hair_removal" id="definitive_hair_removal" t-att-checked="record and record.definitive_hair_removal"/> Definitive Hair Removal</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="dehydrated_skin" id="dehydrated_skin" t-att-checked="record and record.dehydrated_skin"/> Dehydrated Skin</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="overweight" id="overweight" t-att-checked="record and record.overweight"/> Overweight</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="skin_faccidity" id="skin_faccidity" t-att-checked="record and record.skin_faccidity"/> Skin Flaccidity</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="prepost_operative" id="prepost_operative" t-att-checked="record and record.prepost_operative"/> Pre-post Operative</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="postpartum_treatments" id="postpartum_treatments" t-att-checked="record and record.postpartum_treatments"/> Postpartum treatments</label>
+            <label class="col-md-12 col-xs-12">Others <input type="text" class="form-control s_website_form_input" name="body_description" id="body_description" t-att-value="record and record.body_description"/></label>
+        </div>
+
+        <div class="row mt16">
+            <div class="col-4 col-md-4 col-xs-12" t-if="body_treatment_product_ids">
+                <strong><p>Treatments</p></strong>
+                <t t-foreach="body_treatment_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="body_treatment_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.body_treatment_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+            <div class="col-4 col-md-4 col-xs-12" t-if="body_nutrition_product_ids">
+                <strong><p>Nutrition</p></strong>
+                <t t-foreach="body_nutrition_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="body_nutrition_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.body_nutrition_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+            <div class="col-4  col-md-4 col-xs-12" t-if="body_upkeep_product_ids">
+                <strong><p>Upkeep</p></strong>
+                <t t-foreach="body_upkeep_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="body_upkeep_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.body_upkeep_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+        </div>
+
+        <div class="mt64 mb32" style="text-align: center;">
+            <h2 style="font-size: 1.5em;">FACIAL TREATMENT PLAN</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mt32 mb32">
+                <h4>I want to improve</h4>
+            </div>
+        </div>
+    
+        <div class="row">
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="scars" id="scars" t-att-checked="record and record.scars"/> Acne/Scars</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="pigmentation" id="pigmentation" t-att-checked="record and record.pigmentation"/> Pigmentation</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="expression_lines" id="expression_lines" t-att-checked="record and record.expression_lines"/> Expression lines</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="wrinkles" id="wrinkles" t-att-checked="record and record.wrinkles"/> Wrinkles</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="spots" id="spots" t-att-checked="record and record.spots"/> Spots</label>
+            <label class="col-md-4 col-xs-12"><input type="checkbox" class="form-check-input" name="flaccidity" id="flaccidity" t-att-checked="record and record.flaccidity"/> Flaccidity</label><br/>
+            <label class="col-md-12">Others <input type="text" class="form-control s_website_form_input" name="facial_description" id="facial_description" t-att-value="record and record.facial_description"/></label>
+        </div>
+        
+        <div class="row mt16">
+            <div class="col-4 col-md-4 col-xs-12" t-if="facial_nutrition_product_ids">
+                <strong><p>Treatments</p></strong>
+                <t t-foreach="facial_treatment_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="facial_treatment_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.facial_treatment_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+            <div class="col-4 col-md-4 col-xs-12" t-if="facial_nutrition_product_ids">
+                <strong><p>Nutrition</p></strong>
+                <t t-foreach="facial_nutrition_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="facial_nutrition_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.facial_nutrition_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+            <div class="col-4 col-md-4 col-xs-12" t-if="facial_upkeep_product_ids">
+                <strong><p>Upkeep</p></strong>
+                <t t-foreach="facial_upkeep_product_ids" t-as="product">
+                    <p>
+                        <input type="checkbox" class="form-check-input" name="facial_upkeep_product_ids" multiple="multiple" t-att-value="product.id" t-att-checked="True if record and (product.id in record.facial_upkeep_product_ids.ids) else False"/> <t t-esc="product.name"/>
+                    </p>
+                </t>
+            </div>
+        </div>
+
+        <div class="form-row ml32" t-if="show_attachment">
+            <div class="form-group form-field s_website_form_field mb-3 col-12 s_website_form_custom">
+                <div class="col-12">
+                    <strong><p>Attach photos of your body/face and areas that you want to improve.</p></strong>
+                    <input type="file" name="attachment_ids" class="form-control s_website_form_input" id="attachment_ids" data-max-files-number="1" data-max-file-size="1" data-fill-with="undefined"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="my_aestheticwish_create" name="Create Aesthetic Wish">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Create Aesthetic Wish</t>
+            </t>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card p-3 s_website_form">
+                            <form action="/website/form/" id="form_create_aestheticwish" method="post" data-model_name="acs.aesthetic.patient.wish" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-success-mode="redirect" data-success-page="/my">
+                                <input type="hidden" name="patient_id" t-att-value="patient_id.id"/>
+
+                                <t t-call="acs_hms_aesthetic.aestheticwish_fields">
+                                    <t t-set="show_attachment" t-value="True"/>
+                                </t>
+
+                                <div class="form-group row text-center">
+                                    <div class="col-12">
+                                        <a href="#"  role="button" class="btn btn-primary btn-lg s_website_form_send">Confirm</a>
+                                        <span id="s_website_form_result"></span>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

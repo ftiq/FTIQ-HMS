@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="acs_hms_insurance_hospitalization_report_extension" inherit_id="acs_hms_insurance.report_acs_insurance_preapproved_document" name="Hospitalization Details Extension">
+            <xpath expr="//div[@id='treating_doctor_and_hospital']" position="after">
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                    <tr>
+                        <td class="acs-label">Name of the treating Doctor:</td>
+                        <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.physician_id.name"/></td>
+                    </tr>
+                    <tr>
+                        <td class="acs-label">Contact number:</td>
+                        <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.physician_id.phone"/></td>
+                    </tr>
+                </table>
+            </xpath>
+
+            <xpath expr="//span[@t-field='o.acs_drug_administration_route']/ancestor::tr" position="after">
+                <tr>
+                    <td class="acs-label">Name of Surgery:</td>
+                    <td class="acs-value"><span t-field="o.acs_surgery_id"/></td>
+                </tr>
+            </xpath>
+
+            <xpath expr="//table[@name='in_case_of_maternity']" position="before">
+                <t t-if="o.acs_how_injury_occurred">
+                    <div style='font-size: 13px; font-weight: bold; margin-top: 10px; margin-bottom: 5px;'>In case of accident:</div>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Is it RTA:</td>
+                            <td class="acs-value">
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_is_rta == 'yes' else ''}"/> Yes
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_is_rta == 'no' else ''}"/> No
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Date of Injury:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.acs_injury_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Report to Police:</td>
+                            <td class="acs-value">
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.reported_to_police == 'yes' else ''}"/> Yes
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.reported_to_police == 'no' else ''}"/> No
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">FIR NO:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.fir_no"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Injury/Disease caused due to substance abuse/Alcohol consumption:</td>
+                            <td class="acs-value">
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_substance_abuse_alcohol == 'yes' else ''}"/> Yes
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_substance_abuse_alcohol == 'no' else ''}"/> No
+                            </td>
+                        </tr>
+                        <t t-if="o.acs_substance_abuse_alcohol == 'yes'">
+                            <tr>
+                                <td class="acs-label">Test conducted to establish this (if yes, attach report):</td>
+                                <td class="acs-value">
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_test_conducted_substance_abuse == 'yes' else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.acs_test_conducted_substance_abuse == 'no' else ''}"/> No
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </t>
+            </xpath>
+
+            <xpath expr="//table[@name='in_case_of_maternity']" position="after">
+                <div style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">IV. DETAILS OF PATIENT ADMITTED:</div>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                    <tr>
+                        <td class="acs-label">Date/Time of admission:</td>
+                        <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.hospitalization_date" t-options='{"widget": "date"}'/></td>
+                    </tr>
+                    <tr>
+                        <td class="acs-label">Is this an emergency/planned hospitalization event:</td>
+                        <td class="acs-value">
+                            <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.admission_type == 'emergency' else ''}"/> Emergency
+                            <span t-attf-class="checkbox-square #{'checked-box' if o.acs_insurance_claim_id.hospitalization_id.admission_type == 'planned' else ''}"/> Planned
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="acs-label">Room Type:</td>
+                        <td class="acs-value"><span t-field="o.acs_insurance_claim_id.hospitalization_id.ward_id.name"/></td>
+                    </tr>
+                </table>
+            </xpath>
+        </template>
+    </data>
+</odoo>

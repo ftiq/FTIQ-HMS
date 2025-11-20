@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="acs_website_booking.AcsCalendarCommonPopover.footer" t-inherit="web.CalendarCommonPopover.footer" t-inherit-mode="primary" owl="1">
+        <xpath expr="//t" position="inside">
+            <button t-attf-class="btn btn-secondary"
+                t-if="['available'].includes(state)"
+                name="acs_book_appointment" t-on-click="onClickButton" data-hotkey="g">Book Appointment</button>
+        </xpath>
+    </t>
+</templates>

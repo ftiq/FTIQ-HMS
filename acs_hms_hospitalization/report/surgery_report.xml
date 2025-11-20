@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="acs_surgery_document_report_inherit" inherit_id="acs_hms_surgery.patient_information_template">
+        <xpath expr="//tr[@name='surgery_physician_surgery_name']" position="after">
+            <tr name="surgery_physician_surgery_name" t-if="surgery">
+                <td name="surgery_physician">
+                    <strong class="text-center ms-2">Hospitalization No:</strong> <span t-field="surgery.hospitalization_id.name"/>
+                </td>
+                <td name="surgery_surgery_name">
+                    <strong class="text-center">Ward/Room:</strong> <span t-field="doc.hospitalization_id.ward_id.name"/> - <span t-field="doc.hospitalization_id.bed_id.name"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

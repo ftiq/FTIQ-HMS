@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Insurance Plan -->
+    <record id="view_acs_insurance_plan_list" model="ir.ui.view">
+        <field name="name">acs.insurance.plan.list</field>
+        <field name="model">acs.insurance.plan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="insurance_company_id"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_acs_insurance_plan_form" model="ir.ui.view">
+        <field name="name">acs.insurance.plan.form</field>
+        <field name="model">acs.insurance.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="insurance_company_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="pricelist_id" groups="product.group_product_pricelist" options="{'no_open':True,'no_create': True}"/>
+                            <field name="create_claim"/>
+                        </group>
+
+                        <notebook>
+                            <page name="policy_rule" string="Policy Rules">
+                                <field name="policy_rule_ids"/>
+                            </page>
+                            <page name="excluded_products" string="Excluded Products/Services">
+                                <field name="excluded_product_ids" placeholder="Excluded products" widget="many2many_tags"/>
+                            </page>
+                        </notebook>
+                    </group>
+                    <field name="note" placeholder="Notes"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_acs_insurance_plan" model="ir.actions.act_window">
+        <field name="name">Insurance Plan</field>
+        <field name="path">almightyhms-insurance-plan</field>
+        <field name="res_model">acs.insurance.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a new Insurance Plan.
+            </p>
+        </field>
+    </record>
+
+    <!-- Insurance Company -->
+    <record id="view_insurance_company_list" model="ir.ui.view">
+        <field name="name">hms.insurance.company.list</field>
+        <field name="model">hms.insurance.company</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_insurance_company_form" model="ir.ui.view">
+        <field name="name">hms.insurance.company.form</field>
+        <field name="model">hms.insurance.company</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id" readonly="1" required="0"/>
+                        <field name="property_product_pricelist" groups="product.group_product_pricelist" options="{'no_open': True, 'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+
+                    <separator name="policy_rule" string="Patient Share Rules"/>
+                    <field name="policy_rule_ids"/>
+                    <separator name="excluded_products" string="Excluded Products/Services"/>
+                    <field name="excluded_product_ids" placeholder="Excluded products" widget="many2many_tags"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_insurance_company" model="ir.actions.act_window">
+        <field name="name">Insurance Company</field>
+        <field name="path">almightyhms-insurance-company</field>
+        <field name="res_model">hms.insurance.company</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a new Insurance Company.
+            </p>
+        </field>
+    </record>
+
+    <!-- Insurance Checklist -->
+    <record id="view_checklist_list" model="ir.ui.view">
+        <field name="name">insurance.checklist.template.list</field>
+        <field name="model">hms.insurance.checklist.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_checklist_form" model="ir.ui.view">
+        <field name="name">hms.insurance.checklist.template.form</field>
+        <field name="model">hms.insurance.checklist.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_checklist_list" model="ir.actions.act_window">
+        <field name="name">Checklist</field>
+        <field name="path">almightyhms-insurance-checklist</field>
+        <field name="res_model">hms.insurance.checklist.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a new Insurance Claim Checklist.
+            </p>
+        </field>
+    </record>
+
+    <!-- Required Doc -->
+    <record id="view_mediclaim_doc_list" model="ir.ui.view">
+        <field name="name">insurance.req.doc.list</field>
+        <field name="model">hms.insurance.req.doc</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mediclaim_doc_type_form" model="ir.ui.view">
+        <field name="name">hms.insurance.req.doc.form</field>
+        <field name="model">hms.insurance.req.doc</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mediclaim_doc_type" model="ir.actions.act_window">
+        <field name="name">Req Documents</field>
+        <field name="path">almightyhms-req-documents</field>
+        <field name="res_model">hms.insurance.req.doc</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to add a new Insurance Claim Req Documents.
+            </p>
+        </field>
+    </record>
+
+    <!-- Policy Rules -->
+    <record id="view_acs_insurance_policy_rule_list" model="ir.ui.view">
+        <field name="name">acs.insurance.policy.rule.list</field>
+        <field name="model">acs.insurance.policy.rule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="rule_domain" widget="domain"
+                    options="{'model': 'product.product', 'foldable': True}"/>
+                <field name="rule_type"/>
+                <field name="percentage" invisible="rule_type!='percentage'" required="rule_type=='percentage'" readonly="full_cover" force_save="1"/>
+                <field name="amount" invisible="rule_type!='amount'" required="rule_type=='amount'"/>
+                <!-- <field name="full_cover" readonly="rule_type!='percentage'"/> -->
+                <field name="copay"/>
+                <field name="limit"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_acs_insurance_policy_rule_form" model="ir.ui.view">
+        <field name="name">acs.insurance.policy.rule.form</field>
+        <field name="model">acs.insurance.policy.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="rule_type"/>
+                        <field name="percentage" invisible="rule_type!='percentage'" required="rule_type=='percentage'" readonly="full_cover" force_save="1"/>
+                        <field name="amount" invisible="rule_type!='amount'" required="rule_type=='amount'"/>
+                        <field name="full_cover" readonly="rule_type!='percentage'"/>
+                        <field name="rule_domain" widget="domain"
+                            options="{'model': 'product.product', 'foldable': True}"/>
+                        <field name="sequence"/>
+                        <field name="copay"/>
+                        <field name="limit"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

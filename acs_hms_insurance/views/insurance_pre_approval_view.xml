@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="acs_view_insurance_preapproval_list" model="ir.ui.view">
+        <field name="name">acs.insurance.pre.approval.list</field>
+        <field name="model">acs.insurance.pre.approval</field>
+        <field name="arch" type="xml">
+            <list string="Insurance Pre-Approvals">
+                <field name="name"/>
+                <field name="acs_patient_id"/>
+                <field name="acs_sum_total_expected_cost"/>
+                <field name="acs_approved_amount"/>
+                <field name="state" widget="badge" decoration-success="state == 'approved'"
+                        decoration-info="state == 'submitted'" decoration-danger="state == 'denied'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="acs_view_insurance_preapproval_form" model="ir.ui.view">
+        <field name="name">acs.insurance.pre.approval.form</field>
+        <field name="model">acs.insurance.pre.approval</field>
+        <field name="arch" type="xml">
+            <form string="Insurance Pre-Approval Request">
+                <header>
+                    <button name="action_submit" type="object" string="Submit" class="oe_highlight"
+                            invisible="state != 'draft'" help="Submit the pre-approval request for review"/>
+                    <button name="action_approve" type="object" string="Approve" class="oe_highlight"
+                            invisible="state != 'submitted'" help="Approve this pre-approval request"/>
+                    <button name="action_deny" type="object" string="Deny"
+                            invisible="state != 'submitted'" help="Deny this pre-approval request"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state == 'draft'" help="Reset the request to draft state"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,denied"/>
+                </header>
+                <sheet>
+                    
+                    <div class="oe_title">
+                        <h1><field name="name" nolabel="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Pre-Approval Summary">
+                            <field name="acs_insurance_claim_id"/>
+                            <field name="acs_requested_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                            <field name="acs_approved_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}" invisible="state not in ['approved']"/>
+                            <field name="acs_approval_date" invisible="state not in ['approved']"/>
+                            <field name="acs_approver_user_id" invisible="state not in ['approved']"/>
+                            <field name="acs_denial_reason" invisible="state not in ['denied']"/>
+                            <field name="acs_comments"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Patient Details">
+                            <group>
+                                <group>
+                                    <field name="acs_patient_id"/>
+                                    <field name="acs_patient_age"/>
+                                    <field name="acs_relative_contact_number"/>
+                                </group>
+                                <group>
+                                    <field name="acs_insured_card_number"/>
+                                    <field name="acs_policy_number"/>
+                                    <field name="acs_employee_id"/>
+                                    <field name="acs_other_mediclaim"/>
+                                    <field name="acs_other_mediclaim_company_name" invisible="acs_other_mediclaim != 'yes'"/>
+                                    <field name="acs_other_mediclaim_details" invisible="acs_other_mediclaim != 'yes'"/>
+                                </group>
+                            </group>
+                            <group string="Treating Doctor/Hospital Details">
+                                <group>
+                                    <field name="acs_illness_nature"/>
+                                    <field name="acs_critical_findings"/>
+                                </group>
+                                <group>
+                                    <field name="acs_ailment_duration_days"/>
+                                    <field name="acs_first_consultation_date"/>
+                                    <field name="acs_past_ailment_history"/>
+                                    <field name="acs_provisional_diagnosis"/>
+                                    <field name="acs_icd10_code"/>
+                                </group>
+                            </group>
+                            <group string="Proposed Line of Treatment">
+                                <group>
+                                    <field name="acs_proposed_treatment_medical"/>
+                                    <field name="acs_proposed_treatment_surgical"/>
+                                    <field name="acs_proposed_treatment_intensive_care"/>
+                                    <field name="acs_proposed_treatment_investigation"/>
+                                    <field name="acs_proposed_treatment_non_allopathic"/>
+                                </group>
+                                <group>
+                                    <field name="acs_investigation_medical_details"/>
+                                    <field name="acs_drug_administration_route"/>
+                                    <field name="acs_icd10_pcs_code"/>
+                                    <field name="acs_other_treatment_details"/>
+                                    <field name="acs_how_injury_occurred"/>
+                                </group>
+                            </group>
+                            <group string="Maternity Details">
+                                <group>
+                                    <field name="acs_maternity_g"/>
+                                    <field name="acs_maternity_p"/>
+                                </group>
+                                <group>
+                                    <field name="acs_maternity_l"/>
+                                    <field name="acs_maternity_a"/>
+                                    <field name="acs_expected_delivery_date"/>
+                                </group>
+                            </group>
+                            <group string="DETAILS OF PATIENT ADMITTED">
+                                <group>
+                                    <field name="acs_hospitalization_event_type"/>
+                                </group>
+                                <group>
+                                    <field name="acs_expected_stay_days"/>
+                                    <field name="acs_icu_days"/>
+                                    <field name="acs_room_type"/>
+                                </group>
+                            </group>
+                            <group string="Chronic Illness History">
+                                <group>
+                                    <field name="acs_has_chronic_diabetes"/>
+                                    <field name="acs_chronic_diabetes" invisible="acs_has_chronic_diabetes == False"/>
+
+                                    <field name="acs_has_chronic_heart_disease"/>
+                                    <field name="acs_chronic_heart_disease" invisible="acs_has_chronic_heart_disease == False"/>
+
+                                    <field name="acs_has_chronic_hypertension"/>
+                                    <field name="acs_chronic_hypertension" invisible="acs_has_chronic_hypertension == False"/>
+
+                                    <field name="acs_has_chronic_hyperlipidemias"/>
+                                    <field name="acs_chronic_hyperlipidemias" invisible="acs_has_chronic_hyperlipidemias == False"/>
+
+                                    <field name="acs_has_chronic_osteoarthritis"/>
+                                    <field name="acs_chronic_osteoarthritis" invisible="acs_has_chronic_osteoarthritis == False"/>
+                                </group>
+                                <group>
+                                    <field name="acs_has_chronic_asthma_copd_bronchitis"/>
+                                    <field name="acs_chronic_asthma_copd_bronchitis" invisible="acs_has_chronic_asthma_copd_bronchitis == False"/>
+
+                                    <field name="acs_has_chronic_cancer"/>
+                                    <field name="acs_chronic_cancer" invisible="acs_has_chronic_cancer == False"/>
+
+                                    <field name="acs_has_chronic_alcohol_drug_abuse"/>
+                                    <field name="acs_chronic_alcohol_drug_abuse" invisible="acs_has_chronic_alcohol_drug_abuse == False"/>
+
+                                    <field name="acs_has_chronic_hiv_std"/>
+                                    <field name="acs_chronic_hiv_std" invisible="acs_has_chronic_hiv_std == False"/>
+
+                                    <field name="acs_has_chronic_other_ailment"/>
+                                    <field name="acs_chronic_other_ailment_details" invisible="acs_has_chronic_other_ailment == False"/>
+                                </group>
+                            </group>
+                            <group string="Expected Costs">
+                                <group>
+                                    <field name="acs_per_day_room_rent"/>
+                                    <field name="acs_expected_investigation_cost"/>
+                                    <field name="acs_icu_charges"/>
+                                    <field name="acs_ot_charges"/>
+                                </group>
+                                <group>
+                                    <field name="acs_professional_fees"/>
+                                    <field name="acs_medicines_consumables_implants"/>
+                                    <field name="acs_other_hospital_expenses"/>
+                                    <field name="acs_all_inclusive_package_charges"/>
+                                    <field name="acs_sum_total_expected_cost" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </group>
+                            <separator string="DECLARATION"/>
+                            <group string="We confirm having read understood and agreed to the Declarations of this form">
+                                <field name="acs_declaration_doctor_registration"/>
+                            </group>
+                            <group string="Patient/Representative Declaration">
+                                <group>
+                                    <field name="acs_patient_declaration_date"/>
+                                    <field name="acs_patient_declaration_time" widget="timesheet_uom_no_toggle"/>
+                                </group>
+                                <group>
+                                    <field name="acs_doctor_signature" widget="signature"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="acs_action_insurance_preapproval" model="ir.actions.act_window">
+        <field name="name">Insurance Pre-Approvals</field>
+        <field name="res_model">acs.insurance.pre.approval</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

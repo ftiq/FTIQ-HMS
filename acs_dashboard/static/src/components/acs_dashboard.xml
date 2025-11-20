@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xml:space="preserve">
+    <!-- Header with filters -->
+    <t t-name="acs_dashboard.acs_dash_header">
+        <div class="hms-dash-header">
+            <div class="row">
+                <div class="ms-2 btn-group filter-button col-12 d-flex flex-wrap flex-md-nowrap" role="group" aria-label="Filters">
+                    <t t-set="periods" t-value="['Today', 'Week', 'Month', 'Year', 'Till_Now']"/>
+                    <t t-foreach="periods" t-as="period" t-key="period">
+                        <button t-att-class="state.period === period ? 'filter-btn active' : 'filter-btn'"
+                                t-on-click="() => { this.state.period = period; this.onChangePeriod(); }"
+                                t-att-style="'background-color: ' + state.dashboardColor + ';'">
+                            <span t-esc="period.replace('_', ' ')"/>
+                        </button>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+
+    <!-- KPI Block First-->
+    <t t-name="acs_dashboard.acs_dash_kpi_block1">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12" t-on-click="on_click_fun" id="acs_dash_kpi_one">
+            <div class="hms-dash-card">
+                <div class="hms-dash-card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                        <div class="row">
+                            <div class="col-3 pl-16 hms-dash-card-icon" id="acs_kpi_icon">
+                                <i t-attf-class="fa #{acs_record_icon}" 
+                                t-att-style="'color: ' + state.dashboardColor" 
+                                aria-label="Info" 
+                                title="Info" 
+                                class="icon-style"/>
+                            </div>
+                            <div class="col-9 pr-0 pt-3" id="acs_kpi_data">
+                                <div class="hms-dash-card-content">
+                                    <h5 class="font-15 title text-center">
+                                        <t t-esc="record_label"/>
+                                    </h5>
+                                    <h2 class="font-18 value text-center" style="margin-bottom: 5px !important;">
+                                        <t t-esc="record_value"/>
+                                    </h2>
+                                    <p class="view-details text-center">
+                                        <span class="col-green" t-on-click="on_click_fun"
+                                            t-att-style="'color: ' + state.dashboardColor + '; cursor: pointer;'">
+                                            <t t-esc="action_label"/>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- KPI Block Second-->
+    <t t-name="acs_dashboard.acs_dash_kpi_block2">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12" id="acs_dash_kpi_second">
+            <div class="hms-dash-card" style="height: 106px;">
+                <div class="hms-dash-card-statistic-4">
+                    <div class="align-items-center justify-content-between">
+                        <div class="row">
+                            <div class="col-3 pl-16 hms-dash-card-icon" id="acs_dash_kpi_icon">
+                                <i t-attf-class="fa #{acs_record_icon}" t-att-style="'color:' + state.dashboardColor" aria-label="Info" title="Info" class="icon-style"></i>
+                            </div>
+                            <div class="col-9 pr-0 pt-3 text-center" id="acs_kpi_data">
+                                <div class="hms-dash-card-content">
+                                    <h5 class="font-15 text-center">
+                                        <t t-esc="record_label" />
+                                    </h5>
+                                    <div class="text-center" style="margin-top: 5px;" id="acs_kpi_inside">
+                                        <div class="row">
+                                            <div class="col-5" t-on-click="on_click_fun1" id="acs_kpi_click1">
+                                                <h2 class="font-18 value text-center" style="margin-bottom: 5px !important;">
+                                                    <t t-if="field_value_1">
+                                                        <t t-esc="field_value_1" />
+                                                    </t>
+                                                    <t t-else="">0</t>
+                                                </h2>
+                                                <p class="title text-center" style="font-size: 16px; margin: 0;">
+                                                    <t t-esc="label_1" />
+                                                </p>
+                                            </div>
+                                            <div class="col-7" t-on-click="on_click_fun2" id="acs_kpi_click2">
+                                                <h2 class="font-18 value text-center" style="margin-bottom: 5px !important;">
+                                                    <t t-if="field_value_2">
+                                                        <t t-esc="field_value_2" />
+                                                    </t>
+                                                    <t t-else="">0</t>
+                                                </h2>
+                                                <p class="title text-center" style="font-size: 16px; margin: 0;">
+                                                    <t t-esc="label_2" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>

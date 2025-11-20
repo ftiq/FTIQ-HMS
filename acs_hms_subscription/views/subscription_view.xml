@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Subscription -->
+    <record id="acs_subscription_form_view" model="ir.ui.view">
+        <field name="name">acs.subscription.hms.inherit</field>
+        <field name="model">acs.subscription</field>
+        <field name="inherit_id" ref="acs_subscription.acs_subscription_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="patient_id" readonly="state!='draft'"/>
+            </xpath>
+            <xpath expr="//field[@name='remaining_service']" position="after">
+                <field name="subscription_product_id" invisible="not subscription_product_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Contract -->
+    <record id="acs_contract_form_view" model="ir.ui.view">
+        <field name="name">acs.contract.hms.inherit</field>
+        <field name="model">acs.contract</field>
+        <field name="inherit_id" ref="acs_subscription.acs_contract_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='no_service']" position="after">
+                <field name="subscription_product_id" 
+                    invisible="res_model_name != 'acs.patient.procedure'" 
+                    required="res_model_name == 'acs.patient.procedure'" 
+                    readonly="state!='draft'" 
+                    context="{'default_type': 'service', 'default_hospital_product_type': 'procedure'}" 
+                    domain="[('hospital_product_type','like','procedure')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

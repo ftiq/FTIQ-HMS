@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_acs_nurse_ward_round,nurse ward round,model_acs_nurse_ward_round,base.group_user,1,0,0,0
+access_acs_patient_medication,patient medication,model_acs_patient_medication,base.group_user,1,0,0,0
+access_acs_medication_time,Medication Time,model_acs_medication_time,base.group_user,1,0,0,0
+
+access_acs_nurse_ward_round_nurse,nurse ward round nurse,model_acs_nurse_ward_round,acs_hms.group_hms_nurse,1,1,1,1
+access_acs_patient_medication_nurse,patient medication nurse,model_acs_patient_medication,acs_hms.group_hms_nurse,1,1,1,1
+
+access_acs_nurse_ward_round_hospitalization_user,nurse ward round ipd user,model_acs_nurse_ward_round,acs_hms_hospitalization.group_acs_hms_hospitalization_user,1,1,1,0
+access_acs_patient_medication_hospitalization_user,patient medication ipd user,model_acs_patient_medication,acs_hms_hospitalization.group_acs_hms_hospitalization_user,1,1,1,0
+
+access_acs_nurse_ward_round_hospitalization_manager,nurse ward round ipd manager,model_acs_nurse_ward_round,acs_hms_hospitalization.group_acs_hms_hospitalization_manager,1,1,1,1
+access_acs_patient_medication_hospitalization_manager,patient medication ipd manager,model_acs_patient_medication,acs_hms_hospitalization.group_acs_hms_hospitalization_manager,1,1,1,1
+
+access_acs_nurse_ward_round_manager,nurse ward round manager,model_acs_nurse_ward_round,acs_hms_base.group_hms_manager,1,1,1,1
+access_acs_patient_medication_manager,patient medication manager,model_acs_patient_medication,acs_hms_base.group_hms_manager,1,1,1,1
+access_acs_medication_time_manager,Medication Time Manager,model_acs_medication_time,acs_hms_base.group_hms_manager,1,1,1,1
+
+access_acs_medication_plan_line,access_acs_medication_plan_line,model_acs_medication_plan_line,acs_hms.group_hms_jr_doctor,1,1,1,1
+access_acs_medication_plan_wiz,access_acs_medication_plan_wiz,model_acs_medication_plan_wiz,acs_hms.group_hms_jr_doctor,1,1,1,1
+access_acs_medication_report_wiz,access_acs_medication_report_wiz,model_acs_medication_report_wiz,acs_hms.group_hms_nurse,1,1,1,1

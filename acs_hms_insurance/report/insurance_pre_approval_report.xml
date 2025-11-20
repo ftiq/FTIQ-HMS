@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_acs_insurance_preapproved_document">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div  id="section_tpa_details" style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">I. DETAILS OF THE THIRD PARTY ADMINISTRATOR/INSURER/HOSPITAL:</div>
+                    <table id="table_tpa_details" style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Name of TPA/Insurance Company:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.insurance_company_id.partner_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Toll free phone number:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.insurance_company_id.partner_id.phone"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="acs-label">Name of Hospital:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.company_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Address:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.company_id.street"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">E-mail ID:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.company_id.email"/></td>
+                        </tr>
+                    </table>
+
+                    <div id="section_patient_details" style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">II. TO BE FILLED BY INSURED/PATIENT:</div>
+                    <table id="table_patient_details" style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Name of the Patient:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Gender:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.gender"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Age:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_age"/></td> </tr>
+                        <tr>
+                            <td class="acs-label">Date of Birth:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.birthday" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Contact number:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.phone"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Contact number of attending Relative:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Insured Card ID number:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.insurance_id.insured_card_number"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Policy number/Name of Corporate:</td>
+                            <td class="acs-value"><span t-field="o.acs_insurance_claim_id.insurance_id.policy_number"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Employee ID:</td>
+                            <td class="acs-value"><span t-field="o.acs_employee_id"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Currently do you have any other mediclaim / health insurance:</td>
+                            <td class="acs-value">
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_other_mediclaim == 'yes' else ''}"/> Yes
+                                <span t-attf-class="checkbox-square #{'' if o.acs_other_mediclaim == 'no' else ''}"/> No
+                            </td>
+                        </tr>
+                        <t t-if="o.acs_other_mediclaim == 'yes'">
+                            <tr>
+                                <td class="acs-label">Company Name:</td>
+                                <td class="acs-value"><span t-field="o.acs_other_mediclaim_company_name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="acs-label">Details:</td>
+                                <td class="acs-value"><span t-field="o.acs_other_mediclaim_details"/></td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td class="acs-label">Do you have a family Physician:</td>
+                            <td class="acs-value">
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_family_physician == 'yes' else ''}"/> Yes
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_family_physician == 'no' else ''}"/> No
+                            </td>
+                        </tr>
+                        <t t-if="o.acs_family_physician == 'yes'">
+                            <tr>
+                                <td class="acs-label">Name of the Family Physician:</td>
+                                <td class="acs-value"><span t-field="o.acs_patient_id.primary_physician_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td class="acs-label">Contact number, if any:</td>
+                                <td class="acs-value"><span t-field="o.acs_patient_id.primary_physician_id.phone"/></td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td class="acs-label">Current Address of Insured Patient:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.street"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Occupation of Insured Patient:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.occupation"/></td>
+                        </tr>
+                    </table>
+
+                    <div id='treating_doctor_and_hospital' style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">III. TO BE FILLED BY TREATING DOCTOR/HOSPITAL:</div>
+                    <table id='illness_disease' style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Nature of Illness/Disease with presenting complaint:</td>
+                            <td class="acs-value"><span t-field="o.acs_illness_nature"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Relevant Critical Findings:</td>
+                            <td class="acs-value"><span t-field="o.acs_critical_findings"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Duration of the present ailment:</td>
+                            <td class="acs-value"><span t-field="o.acs_ailment_duration_days"/> Days</td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Date of First consultation:</td>
+                            <td class="acs-value"><span t-field="o.acs_first_consultation_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Past history of present ailment, if any:</td>
+                            <td class="acs-value"><span t-field="o.acs_past_ailment_history"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Provisional diagnosis:</td>
+                            <td class="acs-value"><span t-field="o.acs_provisional_diagnosis"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">ICD 10 code:</td>
+                            <td class="acs-value"><span t-field="o.acs_icd10_code"/></td>
+                        </tr>
+                    </table>
+
+                    <div style='font-size: 13px; font-weight: bold; margin-top: 10px; margin-bottom: 5px;'>Proposed line of treatment:</div>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td>
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_proposed_treatment_medical else ''}"/> Medical Management
+                            </td>
+                            <td>
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_proposed_treatment_surgical else ''}"/> Surgical Management
+                            </td>
+                            <td>
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_proposed_treatment_intensive_care else ''}"/> Intensive care
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_proposed_treatment_investigation else ''}"/> Investigation
+                            </td>
+                            <td>
+                                <span t-attf-class="checkbox-square #{'checked-box' if o.acs_proposed_treatment_non_allopathic else ''}"/> Non-allopathic treatment
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">If investigation and/or Medical Management, provide details:</td>
+                            <td class="acs-value"><span t-field="o.acs_investigation_medical_details"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Route of Drug Administration:</td>
+                            <td class="acs-value"><span t-field="o.acs_drug_administration_route"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">ICD 10 PCS code:</td>
+                            <td class="acs-value"><span t-field="o.acs_icd10_pcs_code"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">If other treatment, provide details:</td>
+                            <td class="acs-value"><span t-field="o.acs_other_treatment_details"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">How did injury occur:</td>
+                            <td class="acs-value"><span t-field="o.acs_how_injury_occurred"/></td>
+                        </tr>
+                    </table>
+
+                    <div style='font-size: 13px; font-weight: bold; margin-top: 10px; margin-bottom: 5px;'>In case of Maternity:</div>
+                    <table name='in_case_of_maternity' style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">G: <span t-field="o.acs_maternity_g"/></td>
+                            <td class="acs-label">P: <span t-field="o.acs_maternity_p"/></td>
+                            <td class="acs-label">L: <span t-field="o.acs_maternity_l"/></td>
+                            <td class="acs-label">A: <span t-field="o.acs_maternity_a"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Expected date of Delivery:</td>
+                            <td class="acs-value" colspan="3"><span t-field="o.acs_expected_delivery_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                    </table>
+
+                    <div id="section_chronic_illness" style='font-size: 13px; font-weight: bold; margin-top: 10px; margin-bottom: 5px;'>Mandatory past History of any chronic illness:</div>
+                    <table id="table_chronic_illness" style="width: 100%; border-collapse: collapse; margin-bottom: 10px;" class="acs-table-border">
+                        <thead>
+                            <tr>
+                                <th>Illness</th>
+                                <th>Yes/No</th>
+                                <th>Since Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Diabetes</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_diabetes else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_diabetes else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_diabetes" t-field="o.acs_chronic_diabetes"/></td>
+                            </tr>
+                            <tr>
+                                <td>Heart Disease</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_heart_disease else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_heart_disease else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_heart_disease" t-field="o.acs_chronic_heart_disease"/></td>
+                            </tr>
+                            <tr>
+                                <td>Hypertension</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_hypertension else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_hypertension else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_hypertension" t-field="o.acs_chronic_hypertension"/></td>
+                            </tr>
+                            <tr>
+                                <td>Hyperlipidemias</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_hyperlipidemias else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_hyperlipidemias else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_hyperlipidemias" t-field="o.acs_chronic_hyperlipidemias"/></td>
+                            </tr>
+                            <tr>
+                                <td>Osteoarthritis</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_osteoarthritis else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_osteoarthritis else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_osteoarthritis" t-field="o.acs_chronic_osteoarthritis"/></td>
+                            </tr>
+                            <tr>
+                                <td>Asthma/COPD/Bronchitis</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_asthma_copd_bronchitis else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_asthma_copd_bronchitis else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_asthma_copd_bronchitis" t-field="o.acs_chronic_asthma_copd_bronchitis"/></td>
+                            </tr>
+                            <tr>
+                                <td>Cancer</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_cancer else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_cancer else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_cancer" t-field="o.acs_chronic_cancer"/></td>
+                            </tr>
+                            <tr>
+                                <td>Alcohol/Drug abuse</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_alcohol_drug_abuse else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_alcohol_drug_abuse else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_alcohol_drug_abuse" t-field="o.acs_chronic_alcohol_drug_abuse"/></td>
+                            </tr>
+                            <tr>
+                                <td>Any HIV/or STD related ailment</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_hiv_std else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_hiv_std else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_hiv_std" t-field="o.acs_chronic_hiv_std"/></td>
+                            </tr>
+                            <tr>
+                                <td>Any other ailment, give details</td>
+                                <td>
+                                    <span t-attf-class="checkbox-square #{'checked-box' if o.acs_has_chronic_other_ailment else ''}"/> Yes
+                                    <span t-attf-class="checkbox-square #{'' if o.acs_has_chronic_other_ailment else 'checked-box'}"/> No
+                                </td>
+                                <td><span t-if="o.acs_has_chronic_other_ailment" t-field="o.acs_chronic_other_ailment_details"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Expected number of Days/Stay in hospital:</td>
+                            <td class="acs-value"><span t-field="o.acs_expected_stay_days"/> Days</td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Days in ICU:</td>
+                            <td class="acs-value"><span t-field="o.acs_icu_days"/> Days</td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Per day room rent + nursing and service charges + patients diet:</td>
+                            <td class="acs-value"><span t-field="o.acs_per_day_room_rent" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Expected cost of investigation + diagnostic:</td>
+                            <td class="acs-value"><span t-field="o.acs_expected_investigation_cost" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">ICU charges:</td>
+                            <td class="acs-value"><span t-field="o.acs_icu_charges" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">OT charges:</td>
+                            <td class="acs-value"><span t-field="o.acs_ot_charges" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Professional fees Surgeon + Anesthetist Fees + consultation charges:</td>
+                            <td class="acs-value"><span t-field="o.acs_professional_fees" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Medicines + Consumables + Cost of Implants (if applicable please specify):</td>
+                            <td class="acs-value"><span t-field="o.acs_medicines_consumables_implants" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Other hospital expenses if any:</td>
+                            <td class="acs-value"><span t-field="o.acs_other_hospital_expenses" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">All-inclusive package charges if any applicable:</td>
+                            <td class="acs-value"><span t-field="o.acs_all_inclusive_package_charges" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Sum Total expected cost of hospitalization:</td>
+                            <td class="acs-value"><span t-field="o.acs_sum_total_expected_cost" t-options='{"widget": "monetary", "display_currency": o.env.company.currency_id}'/></td>
+                        </tr>
+                    </table>
+
+                    <div style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">V. DECLARATION (Please read very carefully)</div>
+                    <div style='font-size: 13px; font-weight: bold; margin-top: 10px; margin-bottom: 5px;'>We confirm having read understood and agreed to the Declarations of this form</div>
+                    <table id='table_treating_doctor' style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Name of the treating doctor:</td>
+                            <td class="acs-value"><span t-field="o.acs_treating_doctor"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Qualification:</td>
+                            <td class="acs-value">
+                                <t t-foreach="o.acs_treating_doctor.degree_ids" t-as="deg">
+                                    <span t-field="deg.name"/>,
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Registration number with state code:</td>
+                            <td class="acs-value"><span t-field="o.acs_declaration_doctor_registration"/></td>
+                        </tr>
+                        <tr id='doctor_sign_tr'>
+                            <td class="acs-label">Doctor's Signature:</td>
+                            <td class="acs-value">
+                                <div style="border: 1px solid #000; min-height: 80px; width: 150px; text-align: center; vertical-align: middle; line-height: 80px;">
+                                    <t t-if="o.acs_doctor_signature">
+                                        <img t-attf-src="data:image/png;base64,{{o.acs_doctor_signature}}" style="max-width: 100%; max-height: 80px; display: block; margin: auto;"/>
+                                    </t>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div id="section_patient_declaration" style="font-size: 14px; font-weight: bold; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 3px;">VI. DECLARATION BY THE PATIENT/REPRESENTATIVE</div>
+                    <p>
+                        I agree to allow the hospital to submit all original documents pertaining to hospitalization to the
+                        Insurer/TPA after the discharge. I agree to sign on the Final Bill &amp; the Discharge Summary, before my
+                        discharge.
+                    </p>
+                    <p>
+                        Payment to hospital is governed by the terms and conditions of the policy. In case the Insurer/TPA is not
+                        liable to settle the hospital bill, I undertake to settle the bill as per the terms and conditions of the policy.
+                    </p>
+                    <p>
+                        All non-medical expenses and expenses not relevant to current hospitalization and the amounts over &amp;
+                        above the limit authorized by the Insurer/TPA not governed by the terms and conditions of the policy will
+                        be paid by me.
+                    </p>
+                    <p>
+                        I hereby declare to abide by the terms and conditions of the policy and if at any time the facts disclosed by
+                        me are found to be false or incorrect I forfeit my claim and agree to indemnify the Insurer/TPA.
+                    </p>
+                    <p>
+                        I agree and understand that TPA is in no way warranting the service of the hospital &amp; that the Insurer/TPA
+                        is in no way guaranteeing that the services provided by the hospital will be of a particular quality or
+                        standard.
+                    </p>
+                    <p>
+                        I hereby warrant the truth of the forgoing particulars in every respect and I agree that if I have made or shall
+                        make any false or untrue statement, suppression or concealment with respect to the claim, my right to claim
+                        reimbursement of the said expenses shall be absolutely forfeited.
+                    </p>
+                    <p>
+                        I agree to indemnify the hospital against all expenses incurred on my behalf, which are not reimbursed by
+                        the Insurer/TPA.
+                    </p>
+                    <p>"I/We authorize Insurance Company/TPA to contact me/us through phone/email for any update on this claim".</p>
+                    <table id="table_patient_declaration" style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td class="acs-label">Patient's / Insured's Name:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Contact number:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.phone"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">E-mail Id (optional):</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_id.email"/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Date:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_declaration_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td class="acs-label">Time:</td>
+                            <td class="acs-value"><span t-field="o.acs_patient_declaration_time"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="acs_insurance_preapproved_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="acs_hms_insurance.report_acs_insurance_preapproved_document" t-lang="o.acs_patient_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="acs_insurance_preapproved_report" model="ir.actions.report">
+            <field name="name">Insurance pre-approved</field>
+            <field name="model">acs.insurance.pre.approval</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">acs_hms_insurance.acs_insurance_preapproved_document</field>
+            <field name="report_file">acs_hms_insurance.acs_insurance_preapproved_document</field>
+            <field name="binding_model_id" ref="acs_hms_insurance.model_acs_insurance_pre_approval"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

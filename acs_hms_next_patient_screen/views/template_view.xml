@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="next_patient_view" name="Next Patient view">
+        <head>
+            <title>Waiting Screen</title>
+            <link rel="icon" type="image/png" t-attf-href="{{ request.env['ir.config_parameter'].sudo().get_param('web.base.favicon') }}"/>
+            <script src="/web/static/lib/jquery/jquery.js" type="text/javascript"></script>
+            <script src="/acs_hms_next_patient_screen/static/src/js/main.js" type="text/javascript"></script>
+            <link rel="stylesheet" href="/acs_hms_next_patient_screen/static/src/css/hms_next_patient_screen.css" />
+            <link rel="stylesheet" href='/acs_hms_next_patient_screen/static/src/css/bootstrap.min.css' />
+        </head>
+        <div id="wrap">
+            <input type="hidden" id="screen_id" t-att-value="acs_ws.acs_access_token"/>
+            <input type="hidden" name="acs_refresh_time" id="acs_refresh_time" t-att-value="acs_ws.acs_refresh_time * 1000" />
+            <input type="hidden" id="show_patient_name_image" t-att-value="acs_ws.show_patient_name_image"/>
+            <input type="hidden" id="show_cabin" t-att-value="acs_ws.show_cabin"/>
+            <section class="acs_mainsection">
+                <div class="container acs_firstcontainer">
+                    <div class="col-xs-12 acs_header_row">
+                        <div class="pull-left col-xs-1 text-center big-font">
+                            <strong>#</strong>
+                        </div>
+                        <div class="text-center col-xs-5 big-font">
+                            <strong>Patient Name</strong>
+                        </div>
+                        <div class="text-center col-xs-4 big-font">
+                            <strong>Dr. Name <t t-if="acs_ws.show_cabin">(Cabin No)</t></strong>
+                        </div>
+                        <div class="pull-left col-xs-2 big-font">
+                            <strong>Number</strong>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="col-xs-12 acs_row"></div>
+                </div>
+                <t t-if="acs_ws.acs_show_date_time or (acs_ws.acs_show_video and acs_ws.acs_youtube_video_url)">
+                    <div id="video" class="acs_footerbox">
+                        <t t-if="acs_ws.acs_show_date_time">
+                            <div class="acs_datebox">
+                                <span id="currentDateTime" class="acs_finaldate"></span>
+                            </div>
+                        </t>
+                        <div>
+                            <t t-if="acs_ws.acs_show_video and acs_ws.acs_youtube_video_url">
+                                <t t-set="video_id" t-value="''"/>
+                                <t t-if="'youtu.be/' in acs_ws.acs_youtube_video_url">
+                                    <t t-set="video_id" t-value="acs_ws.acs_youtube_video_url.split('youtu.be/')[1].split('?')[0]"/>
+                                </t>
+                                <t t-elif="'v=' in acs_ws.acs_youtube_video_url">
+                                    <t t-set="video_id" t-value="acs_ws.acs_youtube_video_url.split('v=')[1].split('&amp;')[0]"/>
+                                </t>
+                                <iframe t-if="video_id" t-att-src="'https://www.youtube.com/embed/' + video_id + '?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=' + video_id" class="acs_youtubevideo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </section>
+        </div>
+        <div>
+            <audio id="notificationSound" preload="auto">
+                <source src="/acs_hms_next_patient_screen/static/src/audio/notify.mp3" type="audio/mpeg"/>
+            </audio>
+        </div>
+    </template>
+
+    <template id="template_waiting_screen_html" name="Waiting Screen Row HTML">
+        <input type="hidden" id="company_lang" t-att-value="company_lang" />
+        <t t-foreach="records" t-as="rec">
+            <div class="media main-box">
+                <h1 class="pull-left col-xs-1 img-rounded box">
+                    <span style="font-size:25px !important;"><t t-esc="rec['state']"/></span>
+                </h1>
+                <t t-if="rec['show_image'] and rec['image']">
+                    <div class="pull-left col-xs-2 img-circle">
+                        <img t-att-src="rec['image']" style="height:90px !important;width:100px !important;" />
+                    </div>
+                </t>
+                <t t-if="not rec['image'] or not rec['show_image']">
+                    <div class="pull-left col-xs-2 img-circle"></div>
+                </t>
+                <div t-att-class="'pull-left col-xs-4 line '" t-att-style="'color: ' + rec['text_color_class']">
+                    <span><t t-esc="rec['patient_name']"/></span>
+                </div>
+                <div t-att-class="'col-xs-3 text-wrap '" t-att-style="'color: ' + rec['text_color_class']">
+                    <div class="line text-wrap"><strong><t t-esc="rec['physician_name']"/></strong></div>
+                    <t t-if="rec['show_cabin'] and rec['cabin_name']">
+                        <div class="cabin-data"><strong>(<t t-esc="rec['cabin_name']"/>)</strong></div>
+                    </t>
+                </div>
+                <div t-att-class="'pull-left col-xs-1 line '" t-att-style="'color: ' + rec['text_color_class']">
+                    <strong><span><t t-esc="rec['appointment_number']"/></span></strong>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="template_warning_popup" name="Warning Pop-Up">
+        <head>
+            <link rel="stylesheet" href="/acs_hms_next_patient_screen/static/src/css/hms_next_patient_screen.css" />
+        </head>
+        <div class="acs_popup-overlay">
+            <div class="acs_popup">
+                <h3>Invalid Token</h3>
+                <p>The waiting screen could not be found.<br/>Please check the URL or contact the administrator.</p>
+            </div>
+        </div>
+    </template>
+
+</odoo>

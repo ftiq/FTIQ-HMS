@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="main_nursing_menu" name="Nursing" web_icon="acs_hms_nursing,static/description/icon.png" sequence="30" groups="acs_hms.group_hms_nurse"/>
+
+    <menuitem id="menu_nurse" action="hr_employee_public_action" name="Nurse" parent="main_nursing_menu" sequence="10"/>
+
+    <menuitem id="menu_acs_patient_nurse_procedure" action="acs_hms.action_acs_patient_procedure" parent="main_nursing_menu" sequence="15"/>
+
+    <menuitem id="menu_ward_round" action="hms_ward_round_action" parent="main_nursing_menu" sequence="20"/>
+
+    <menuitem id="menu_patient_medication" action="hms_acs_patient_medication_action" parent="main_nursing_menu" sequence="30"/>
+
+    <menuitem id="menu_acs_medication_time" action="action_acs_medication_time" parent="acs_hms_base.menu_medicine_cofig" sequence="100"/>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="acs_bill_sheet_form_view_inherit" model="ir.ui.view">
+        <field name="name">acs.bill.sheet.form.inherit</field>
+        <field name="model">acs.bill.sheet</field>
+        <field name="inherit_id" ref="acs_bill_sheet.acs_bill_sheet_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_laboratory_requests" class="oe_stat_button" icon="fa-th-list" type="object" title="laboratory Requests" groups="acs_laboratory.group_hms_lab_user" invisible="bill_type not in ['lab']">
+                    <field string="Laboratory Requests" name="laboratory_request_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//group[last()]" position="after">
+                <notebook>
+                    <page name="laboratory_requests" string="Laboratory Requests" invisible="bill_type not in ['lab']">
+                        <field name="laboratory_request_ids" readonly="state in ['done','cancel']">
+                            <list string="Bill Sheet" create="false" edit="false">
+                                <field name="name"/>
+                                <field name="patient_id"/>
+                                <field name="date"/>
+                                <field name="physician_id"/>
+                                <field name="state"/>
+                                <field name="total_price"/>                                    
+                            </list>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right mt32" colspan="2" name="bill_total">
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="amount_total" />
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="state in ['done','cancel']"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

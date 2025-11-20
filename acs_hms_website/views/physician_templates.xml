@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="acs_physician_page_template" name="Physicians Details">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row oe_structure">
+                    <h1 class="text-center mt16 mb16">Our Professionals</h1>
+                    <div class="col-2">
+                        <aside id="products_grid_before" class="d-none d-lg-block position-sticky clearfix">
+                            <div class="o_wsale_products_grid_before_rail vh-100 ms-n2 mt-n2 pt-2 pe-lg-2 pb-lg-5 ps-2 overflow-y-scroll">
+                                <div class="products_attributes_filters">
+                                    <div id="wsale_products_attributes_collapse" class="position-relative">
+                                        <form class="js_attributes position-relative mb-2" method="get">
+                                            <div class="filter-bar">
+                                                <form method="get" action="/physicians" id="filter-form" class="form-inline">
+                                                    <label class="col-form-label text-secondary" for="specialty_id"><b>Specialty</b></label>
+                                                    <t class="text-secondary" t-foreach="specialties" t-as="specialty">
+                                                        <li style="list-style-type:none;margin-top:5px;">
+                                                            <input type="checkbox" id="specialty_#{specialty.id}" name="specialty_id" t-att-value="specialty.id" t-att-checked="specialty.id in acs_selected_specialty_ids" class="form-check-input" onchange="this.form.submit()" />
+                                                            <label class="form-check-label fw-normal" for="specialty_#{specialty.id}">
+                                                                <t t-esc="specialty.name" />
+                                                            </label>
+                                                        </li>
+                                                    </t>
+                                                </form>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <div class="col-md-10 col-xs-12">
+                        <div class="col-12">
+                            <t t-call="website.website_search_box_input">
+                                <t t-set="search_type" t-value="'physicians'"/>
+                                <t t-set="action" t-value="'/physicians'"/>
+                                <t t-set="search" t-value="search or ''"/>
+                                <t t-set="placeholder">Search physicians</t>
+                                <t t-set="display_image" t-valuef="true"/>
+                                <t t-set="display_description" t-valuef="true"/>
+                                <t t-set="display_detail" t-valuef="true"/>
+                                <t t-set="default_style" t-value="true"/>
+                            </t>
+                        </div>
+                        
+                        <div class="container-fluid">
+                            <div class="row mt8">
+                                <t t-foreach="physicians" t-as="physician">
+                                    <div class="card acs-card border-light col-md-3 col-xs-12 d-flex flex-column justify-content-between mb-2">
+                                        <a t-att-href="'/physician/%s' % slug(physician)" class="text-decoration-none">
+                                            <div class="card-body acs-card-body text-center">
+                                                <img class="border-primary" t-attf-src="data:image/png;base64,{{physician.image_128}}" alt="Physician Image"/>
+                                                <h4 class="mt8"><t t-esc="physician['name']" /></h4>
+                                                <hr/>
+                                                <div>
+                                                    <t t-if="physician.degree_ids">
+                                                        <t t-foreach="physician.degree_ids" t-as="education">
+                                                            <span class="bg-primary text-light badge" t-esc="education.name"/>
+                                                        </t>
+                                                    </t>
+                                                </div>
+                                                <t t-if="physician.specialty_id.name">
+                                                    <t t-esc="physician.specialty_id.name"/>
+                                                </t>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="oe_structure"/>
+                        <div t-if="pager" class="products_pager d-flex justify-content-center pt-5 pb-3">
+                            <t t-call="website.pager"/>
+                        </div>
+                        <div class="oe_structure"/>
+                    </div> 
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="acs_physician_detail_template" name="Physician Detail">
+        <t t-call="website.layout">
+            <div class="container">
+                <nav class="d-flex flex-wrap justify-content-between align-items-center gap-2 flex-grow-1 mt16">
+                    <ul class="breadcrumb p-0 m-0">
+                        <li class="breadcrumb-item">
+                            <a href="/physicians" title="Back to All Physicians">All Physicians</a>
+                        </li>
+                        <t t-if="navbar_back_url">
+                            <li class="breadcrumb-item">
+                                <a t-attf-href="/physician/{{slug(physician)}}" t-attf-title="Back to {{physician.name}}" t-field="physician.name"/>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a t-att-href="navbar_back_url" t-att-title="navbar_back_title" t-out="navbar_back_text"/>
+                            </li>
+                        </t>
+                        <t t-else="">
+                            <li class="breadcrumb-item active" aria-current="page"><span class="pe-3" t-field="physician.name"/></li>
+                        </t>
+                    </ul>
+                </nav>
+                <div class="mt16">
+                    <div class="card bg-light">
+                        <div class="row mb16 mt16">
+                            <img class="col-12 col-md-5 border-primary ml16 physician-img" t-attf-src="data:image/png;base64,{{physician.image_128}}" alt="Physician Image"/>
+                            <div class="col-12 col-md-6 acs-profile-details mt16 ml32">
+                                <h2 class="text-secondary"><t t-esc="physician.name"/></h2>
+                                <div class="">
+                                    <t t-if="physician.specialty_id.name">
+                                        <div class="mb-2">
+                                            <strong>Specialty:</strong> <t t-esc="physician.specialty_id.name" />
+                                        </div>
+                                    </t>
+                                    <t t-if="physician.email">
+                                        <div class="mb-2"><strong>Email:</strong> <t t-esc="physician.email" /></div>
+                                    </t>
+                                    <t t-if="physician.acs_physician_experience">
+                                        <div class="mb-2"><strong>Experience:</strong> <t t-esc="physician.acs_physician_experience"/> Years</div>
+                                    </t>
+                                    <t t-if="physician.degree_ids">
+                                        <div class="mb-2"><strong>Education:</strong> 
+                                            <t t-foreach="physician.degree_ids" t-as="education">
+                                                <span class="bg-primary text-light badge" t-esc="education.name"/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-if="physician.acs_physician_availability">
+                                        <div class="mb-2"><strong>Physician availability:</strong> <t t-esc="physician.acs_physician_availability"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div t-field="physician.acs_website_description" class="oe_structure"
+                    placeholder="A detailed, formatted description to promote your physician on this page. Use '/' to discover more features."/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,599 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* acs_website_booking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240126\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-27 02:20+0000\n"
+"PO-Revision-Date: 2024-02-26 21:42-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_PA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_form
+msgid ""
+"<b>NOTE:</b> Make sure server timezone is UTC. Time in below table is also "
+"UTC Hours."
+msgstr ""
+"<b>NOTA:</b> Asegúrese de que la zona horaria del servidor sea UTC. El "
+"tiempo en la tabla siguiente también es en UTC Horas."
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__day_period__afternoon
+msgid "Afternoon"
+msgstr "Tarde"
+
+#. module: acs_website_booking
+#: model:ir.ui.menu,name:acs_website_booking.main_menu_all_acs_schedules
+#: model:ir.ui.menu,name:acs_website_booking.menu_all_acs_schedules
+msgid "All Schedules"
+msgstr "Todas las Agendas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_res_company__acs_allowed_booking_payment
+#: model:ir.model.fields,help:acs_website_booking.field_res_config_settings__acs_allowed_booking_payment
+msgid "Allow user to do online Payment"
+msgstr "Permitir al usuario hacer pagos en línea"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Allow users to pay online for their appointments."
+msgstr "Permitir a los usuarios pagar en línea por sus citas."
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Allowed Advance Booking Days"
+msgstr "Días de reserva anticipada permitidos"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__acs_allowed_booking_per_slot
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Allowed Booking per Slot"
+msgstr "Reservas horarias permitidas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__price
+msgid "Appointment Fees"
+msgstr "Tarifas de Citas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__user_id
+msgid "Assignee"
+msgstr "Asignado"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_search
+msgid "Assignees"
+msgstr "Asignados"
+
+#. module: acs_website_booking
+#: model:ir.ui.menu,name:acs_website_booking.menu_acs_schedule
+msgid "Booking"
+msgstr "Reserva"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Booking Product"
+msgstr "Servicio a Reservar"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.acs_scheduler_wizard_action
+msgid "Booking Scheduler"
+msgstr "Agenda de Reservas"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.action_acs_schedule_slot_lines
+#: model:ir.ui.menu,name:acs_website_booking.menu_acs_schedule_slot
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_slot_lines_tree
+msgid "Booking Slots"
+msgstr "Horarios para Reservas"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_acs_schedule
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__acs_schedule_id
+msgid "Booking schedule"
+msgstr "Agenda para Reservas"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_acs_schedule_lines
+msgid "Booking schedule Lines"
+msgstr "Líneas para programación de horario de agendas"
+
+#. module: acs_website_booking
+#: model:ir.model.constraint,message:acs_website_booking.constraint_acs_schedule_slot_slot_date_unique
+msgid "Booking slot must be unique!"
+msgstr "El horario de citas debe ser único!"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_scheduler_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Configure your slot length, 15 or 30 min"
+msgstr "Configure su disponibilidad horaria, 15 o 30 min"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_acs_scheduler_wizard__booking_slot_time
+#: model:ir.model.fields,help:acs_website_booking.field_res_company__acs_booking_slot_time
+#: model:ir.model.fields,help:acs_website_booking.field_res_config_settings__acs_booking_slot_time
+msgid "Configure your slot length, 15-30min."
+msgstr "Configure su disponibilidad horaria, 15-30min."
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_scheduler_wizard
+msgid "Create"
+msgstr "Crear"
+
+#. module: acs_website_booking
+#: model:ir.ui.menu,name:acs_website_booking.menu_create_my_acs_slots
+msgid "Create Own Slots"
+msgstr "Crear horarios propios"
+
+#. module: acs_website_booking
+#: model:ir.ui.menu,name:acs_website_booking.acs_menu_scheduler_wizard_slot
+msgid "Create Slots"
+msgstr "Crear horarios de agendas."
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__create_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__create_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__create_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__create_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__create_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__create_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__create_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__create_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__day_period
+msgid "Day Period"
+msgstr "Período de día"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__dayofweek
+msgid "Day of Week"
+msgstr "Día de la semana"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Define the product used for booking"
+msgstr "Definir el servicio a usar como agenda"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__display_name
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__display_name
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__display_name
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__display_name
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__end_date
+msgid "End Date"
+msgstr "Fecha final"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__to_slot
+msgid "End Slot"
+msgstr "Horario final"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__price
+msgid "Fees"
+msgstr "Tarifas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__4
+msgid "Friday"
+msgstr "Viernes"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_my_schedule_slot_lines_search
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_search
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_lines_form
+msgid "Hours"
+msgstr "Horas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__id
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__id
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__id
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__id
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__write_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__write_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__write_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__write_uid
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__write_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__write_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__write_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__write_date
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__limit
+msgid "Limit"
+msgstr "Límite"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__booking_slot_time
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Minutes in each slot"
+msgstr "Minutos en cada horario"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__0
+msgid "Monday"
+msgstr "Lunes"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__day_period__morning
+msgid "Morning"
+msgstr "Mañana"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_search
+msgid "My Schedule"
+msgstr "Mi agenda"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.action_my_schedules
+#: model:ir.ui.menu,name:acs_website_booking.main_menu_my_acs_schedules
+#: model:ir.ui.menu,name:acs_website_booking.menu_my_acs_schedules
+msgid "My Schedules"
+msgstr "Mis Agendas"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.action_my_acs_schedule_slot_lines
+#: model:ir.ui.menu,name:acs_website_booking.menu_my_schedules_slots
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_my_schedule_slot_lines_search
+msgid "My Slots"
+msgstr "Mis Horarios"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__name
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: acs_website_booking
+#: model_terms:ir.actions.act_window,help:acs_website_booking.action_acs_schedule_form
+#: model_terms:ir.actions.act_window,help:acs_website_booking.action_acs_schedule_slot
+#: model_terms:ir.actions.act_window,help:acs_website_booking.action_acs_schedule_slot_lines
+#: model_terms:ir.actions.act_window,help:acs_website_booking.action_my_acs_schedule_slot_lines
+#: model_terms:ir.actions.act_window,help:acs_website_booking.action_my_schedules
+msgid "No Records Found."
+msgstr "No se encontraron registros"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid ""
+"No of allowed booking per slot, Once slot is fully booked will not be shown "
+"to users."
+msgstr ""
+"No de reserva permitida por hora, Una vez que el horario está completamente "
+"reservado no se mostrará a los usuarios."
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_acs_scheduler_wizard__acs_allowed_booking_per_slot
+#: model:ir.model.fields,help:acs_website_booking.field_res_company__acs_allowed_booking_per_slot
+#: model:ir.model.fields,help:acs_website_booking.field_res_config_settings__acs_allowed_booking_per_slot
+msgid "No of allowed booking per slot."
+msgstr "Nº reservas permitidas por horario"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_res_company__acs_allowed_booking_online_days
+#: model:ir.model.fields,help:acs_website_booking.field_res_config_settings__acs_allowed_booking_online_days
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "No of days for which advance booking is allowed"
+msgstr "Nº de días para los que se permite la reserva anticipada."
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Online Payment"
+msgstr "Pago Online"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.acs_own_scheduler_wizard_action
+msgid "Own Booking Scheduler"
+msgstr "Reservas en agenda propia"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__acs_own_schedule
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__acs_own_schedule
+msgid "Own Schedule"
+msgstr "Agenda Propia"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__rem_limit
+msgid "Remaining Limit"
+msgstr "Límite restante"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__5
+msgid "Saturday"
+msgstr "Sábado"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__acs_schedule_id
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__schedule_id
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_form
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_search
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_tree
+msgid "Schedule"
+msgstr "Agenda"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__schedule_lines_ids
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_lines_form
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_lines_tree
+msgid "Schedule Lines"
+msgstr "Líneas de Agenda"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.action_acs_schedule_slot
+#: model:ir.model,name:acs_website_booking.model_acs_schedule_slot
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_slot_form
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_slot_tree
+msgid "Schedule Slot"
+msgstr "Espacio Horario"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__schedule_type
+msgid "Schedule Type"
+msgstr "Tipo de Horario"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_scheduler_wizard
+msgid "Scheduler Wizard"
+msgstr "Ayudante de Agendas"
+
+#. module: acs_website_booking
+#: model:ir.actions.act_window,name:acs_website_booking.action_acs_schedule_form
+msgid "Schedules"
+msgstr "Agendas"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_search
+msgid "Schedules related to user"
+msgstr "Agendas relacionadas al usuario"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule__schedule_type__service
+msgid "Service"
+msgstr "Servicio"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.res_config_settings_view_form
+msgid "Service Schedules Booking"
+msgstr "Búsqueda de Servicios Agendas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__show_fee_on_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__show_fee_on_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__show_fee_on_booking
+msgid "Show Fees"
+msgstr "Mostrar tarifas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__acs_slot_id
+msgid "Slot"
+msgstr "Espacio"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__slot_date
+msgid "Slot Date"
+msgstr "Día del espacio"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__slot_ids
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_slot_form
+msgid "Slot Lines"
+msgstr "Líneas horarias"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_schedule_slot_lines_calendar
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_schedule_slot_lines_form
+msgid "Slots"
+msgstr "Horarios"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_my_schedule_slot_lines_search
+msgid "Slots related to physician"
+msgstr "Horarios relacionados al médico"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__start_date
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_acs_schedule_lines__hour_from
+msgid "Start and End time of working."
+msgstr "Hora de inicio y fin de trabajo."
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__from_slot
+msgid "Starting Slot"
+msgstr "Espacio inicial"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__6
+msgid "Sunday"
+msgstr "Domingo"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__3
+msgid "Thursday"
+msgstr "Jueves"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__booking_tz
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot__booking_tz
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_acs_schedule_slot__booking_tz
+msgid "Timezone where booking take place"
+msgstr "Zona horaria donde se programa la agenda"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,help:acs_website_booking.field_acs_schedule__booking_tz
+msgid "Timezone where booking takes place"
+msgstr "Zona horaria donde se programan las agendas"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__1
+msgid "Tuesday"
+msgstr "Martes"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule__user_ids
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__user_ids
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_my_schedule_slot_lines_search
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_website
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_company__acs_allowed_booking_online_days
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_config_settings__acs_allowed_booking_online_days
+msgid "Website Allowed Advance Booking Days"
+msgstr "Días de reserva anticipada permitidos"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_company__acs_allowed_booking_payment
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_config_settings__acs_allowed_booking_payment
+msgid "Website Allowed Advance Booking Payment"
+msgstr "Pago de reserva anticipada permitido"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_company__acs_allowed_booking_per_slot
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_config_settings__acs_allowed_booking_per_slot
+msgid "Website Allowed Booking per Slot"
+msgstr "Horarios permitidos a búsqueda en el Website"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_config_settings__booking_product_id
+msgid "Website Booking Product"
+msgstr "Servicio para Agenda en Website"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_company__acs_booking_slot_time
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_config_settings__acs_booking_slot_time
+msgid "Website Minutes in each slot"
+msgstr "Minutos en cada horario en el Website"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_res_company__booking_product_id
+msgid "WebsiteBooking Product"
+msgstr "Servicio de Búsqueda en el Website"
+
+#. module: acs_website_booking
+#: model:ir.model.fields.selection,name:acs_website_booking.selection__acs_schedule_lines__dayofweek__2
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__hour_from
+msgid "Work from"
+msgstr "Trabaja desde"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_lines__hour_to
+msgid "Work to"
+msgstr "Trabaja hasta"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_acs_scheduler_wizard
+msgid "acs Scheduler Wiz"
+msgstr "Ayudante de Agendas"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.acs_my_schedule_slot_lines_search
+msgid "acs Slots"
+msgstr "Horarios"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_schedule_slot_lines__name
+msgid "name"
+msgstr "nombre"
+
+#. module: acs_website_booking
+#: model_terms:ir.ui.view,arch_db:acs_website_booking.view_acs_scheduler_wizard
+msgid "or"
+msgstr "O"
+
+#. module: acs_website_booking
+#: model:ir.model,name:acs_website_booking.model_acs_schedule_slot_lines
+msgid "schedule Slot Lines"
+msgstr "Líneas de programación de horarios"
+
+#. module: acs_website_booking
+#: model:ir.model.fields,field_description:acs_website_booking.field_acs_scheduler_wizard__schedule_ids
+msgid "schedules"
+msgstr "Agendas"

@@ -1,0 +1,940 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* acs_hms_online_appointment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240126\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-18 15:09+0000\n"
+"PO-Revision-Date: 2024-06-18 10:52-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_PA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"**COMPANY NAME** is permitted to revise these Terms at any time as it sees "
+"fit, and by using this Website you are expected to review these Terms on a "
+"regular basis."
+msgstr ""
+"**NOMBRE DE LA EMPRESA** se le permite revisar estos Términos en cualquier "
+"momento que lo considere oportuno, y al utilizar este sitio web se espera "
+"que revise estos Términos de forma regular."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_thank_you
+msgid ""
+", we will get back to you soon. Your reference number for this request is:"
+msgstr ""
+", nos pondremos en contacto con usted pronto. Su número de referencia para "
+"esta solicitud es:"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "<font style=\"font-size: 42px;\">Table of Content</font>"
+msgstr "<font style=\"font-size: 42px;\">Tabla de contenido</font>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.my_appointments_appointment
+msgid "<i class=\"fa fa-check\"> Pay </i>"
+msgstr "<i class=\"fa fa-check\"> Pagar </i>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "<span class=\"fa fa-long-arrow-left\"/> Back"
+msgstr "<span class=\"fa fa-long-arrow-left\"/> Atrás"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "<span>No slot is selected yet.</span>"
+msgstr "<span>Todavía no ha seleccionado un horario.</span>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "<span>No slots available for selected date.</span>"
+msgstr "<span>No hay espacios disponibles en la fecha seleccionada.</span>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid ""
+"<span>There are no slots available to book appointment please check later or "
+"contact with Management.</span>"
+msgstr ""
+"<span>No hay espacios disponibles para reservar una cita, consulte más tarde "
+"o comuníquese con el Administrador.</span>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.department_inside_data
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.physician_inside_data
+msgid "<strong>About:</strong>"
+msgstr "<strong>Acerca de:</strong>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.department_inside_data
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.physician_inside_data
+msgid "<strong>Fees:</strong>"
+msgstr "<strong>Tarifas:</strong>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.physician_inside_data
+msgid "<strong>Specialty:</strong>"
+msgstr "<strong>Especialidad:</strong>"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__acs_allow_home_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_users__acs_allow_home_appointment
+msgid "Acs Allowed Home Visit Booking"
+msgstr "Permitido Reserva de Visitas a Domicilio"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__acs_allowed_online_booking
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_users__acs_allowed_online_booking
+msgid "Acs Allowed Online Booking"
+msgstr "Permitido Reserva en línea"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__acs_basic_info
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_users__acs_basic_info
+msgid "Acs Basic Info"
+msgstr "Información básica"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__acs_show_fee_on_booking
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_users__acs_show_fee_on_booking
+msgid "Acs Show Fee On Booking"
+msgstr "Mostrar las tarifas para reserva en línea"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Allow Teleconsultation Booking"
+msgstr "Permitir la reserva de teleconsulta"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_company__hms_app_allowed_booking_payment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_booking_payment
+msgid "Allow user to do online Payment"
+msgstr "Permitir al usuario hacer pagos en línea"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid ""
+"Allow users to Select Teleconsultation option during booking. (This option "
+"will work only if Video Consultation/Call/Conference module is installed.)"
+msgstr ""
+"Permitir a los usuarios seleccionar la opción Teleconsulta durante la "
+"reserva. (Esta opción funcionará sólo si está instalado el módulo de "
+"Videoconsulta/Llamada/Conferencia)."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Allow users to pay online for their appointments."
+msgstr "Permitir a los usuarios pagar sus citas en linea"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__hms_app_allowed_advance_booking_days
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_advance_booking_days
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Allowed Advance Booking Days"
+msgstr "Días de reserva anticipada permitidos"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__hms_app_allowed_booking_payment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_booking_payment
+msgid "Allowed Advance Booking Payment"
+msgstr "Pago de reserva anticipada permitido"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__hms_app_allowed_booking_per_slot
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_booking_per_slot
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Allowed Booking per Slot"
+msgstr "Reservas permitidas por horario"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__allow_home_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hr_department__allow_home_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_users_form_simple_modif
+msgid "Allowed Home Visit Booking"
+msgstr "Permitir visitas a Domicilio"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__allowed_online_booking
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hr_department__allowed_online_booking
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_users_form_simple_modif
+msgid "Allowed Online Booking"
+msgstr "Reservas en línea permitidas"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__acs_hms_app_allowed_video_consultation
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__acs_hms_app_allowed_video_consultation
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_company__acs_hms_app_allowed_video_consultation
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_config_settings__acs_hms_app_allowed_video_consultation
+msgid "Allowed Online Consultation"
+msgstr "Consulta en línea permitida"
+
+#. module: acs_hms_online_appointment
+#: model:ir.actions.act_window,name:acs_hms_online_appointment.action_online_appointments
+#: model:ir.model,name:acs_hms_online_appointment.model_hms_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule_slot_lines__appointment_ids
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_payment_transaction__acs_appointment_id
+#: model:ir.model.fields.selection,name:acs_hms_online_appointment.selection__acs_schedule__schedule_type__appointment
+#: model:ir.model.fields.selection,name:acs_hms_online_appointment.selection__acs_schedule_slot_lines__schedule_type__appointment
+#: model:website.menu,name:acs_hms_online_appointment.menu_acs_appointment
+msgid "Appointment"
+msgstr "Citas"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Appointment Details"
+msgstr "Detalles de la cita"
+
+#. module: acs_hms_online_appointment
+#: model:ir.actions.act_window,name:acs_hms_online_appointment.action_appointment_schedule_slot_lines
+#: model:ir.ui.menu,name:acs_hms_online_appointment.menu_appointment_schedule_slot_lines
+msgid "Appointment Slots"
+msgstr "Horarios de Citas"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Appointment Terms & Conditions"
+msgstr "Términos y condiciones de la cita"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Appointment Terms and conditions link."
+msgstr "Link a Términos y Condiciones."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Assignment"
+msgstr "Asignado"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__basic_info
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hr_department__basic_info
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_users_form_simple_modif
+msgid "Basic Info"
+msgstr "Información básica"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_acs_schedule_slot_lines_form
+msgid "Book Appointment"
+msgstr "Reservar cita"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "Book your Appointment"
+msgstr "Reserve su Cita"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_appointment__booked_online
+msgid "Booked Online"
+msgstr "Reservado en línea"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_acs_schedule
+msgid "Booking schedule"
+msgstr "Agenda para Reservas"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"Certain areas of this Website are restricted from being access by you and "
+"**COMPANY NAME** may further restrict access by you to any areas of this "
+"Website, at any time, in absolute discretion. Any user ID and password you "
+"may have for this Website are confidential and you must maintain "
+"confidentiality as well."
+msgstr ""
+"Usted tiene restringido el acceso a ciertas áreas de este sitio web y "
+"**NOMBRE DE LA COMPAÑÍA** puede restringir aún más su acceso a cualquier "
+"área de este sitio web, en cualquier momento, a su entera discreción. "
+"Cualquier identificación de usuario y contraseña que pueda tener para este "
+"sitio web son confidenciales y usted también debe mantener la "
+"confidencialidad."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid ""
+"Chief Complain. \n"
+"\n"
+"Example: Vomiting"
+msgstr ""
+"Principal molestia. \n"
+"\n"
+"Ejemplo: Vómitos"
+
+#. module: acs_hms_online_appointment
+#: model:ir.actions.server,name:acs_hms_online_appointment.ir_cron_clear_appointment_ir_actions_server
+msgid "Clear Appointment"
+msgstr "Cita Verificada"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Click here go back to Appoitnment booking page."
+msgstr "Haga clic aquí para volver a la página de reservas de citas."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Click here to login."
+msgstr "Haga clic aquí para iniciar sesión."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Configure your slot length, 15 or 30 min"
+msgstr "Configure su disponibilidad horaria, 15 o 30 min"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_company__hms_app_booking_slot_time
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_config_settings__hms_app_booking_slot_time
+msgid "Configure your slot length, 15-30min."
+msgstr "Configure su disponibilidad horaria, 15-30min."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid ""
+"Confirm\n"
+"                                        <span class=\"fa fa-long-arrow-"
+"right\"/>"
+msgstr ""
+"Confirmar\n"
+"                                        <span class=\"fa fa-long-arrow-"
+"right\"/>"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_hr_department
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule_slot_lines__department_id
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_scheduler_wizard__department_id
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.department_inside_data
+msgid "Department"
+msgstr "Departamento"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "Department or"
+msgstr "Departamento o"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Fees:"
+msgstr "Tarifas:"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_payment_link_wizard
+msgid "Generate Sales Payment Link"
+msgstr "Generar enlace de pago"
+
+#. module: acs_hms_online_appointment
+#: model:ir.actions.act_window,name:acs_hms_online_appointment.action_payment_generate_link
+msgid "Generate a Payment Link"
+msgstr "Generar un enlace de pago"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid ""
+"Get Appointment Slots\n"
+"                                        <span class=\"fa fa-long-arrow-"
+"right\"/>"
+msgstr ""
+"Obtener agenda de citas\n"
+"                                        <span class=\"fa fa-long-arrow-"
+"right\"/>"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Governing Law &amp;amp; Jurisdiction"
+msgstr "Leyes Gubernamentales &amp;amp; Jurisdicción"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid ""
+"History of Present Illness \n"
+"\n"
+"Example: Vomiting Since last Night"
+msgstr ""
+"Historia de la enfermedad actual \n"
+"\n"
+"Ejemplo: Vómitos desde anoche"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid "I Accept"
+msgstr "Acepto"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"If any provision of these Terms is found to be invalid under any applicable "
+"law, such provisions shall be deleted without affecting the remaining "
+"provisions herein."
+msgstr ""
+"Si se determina que alguna disposición de estos Términos no es válida según "
+"la ley aplicable, dichas disposiciones se eliminarán sin afectar las "
+"disposiciones restantes del presente."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hr_department__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"In no event shall **COMPANY NAME**, nor any of its officers, directors and "
+"employees, shall be held liable for anything arising out of or in any way "
+"connected with your use of this Website whether such liability is under "
+"contract. **COMPANY NAME**, including its officers, directors and employees "
+"shall not be held liable for any indirect, consequential or special "
+"liability arising out of or in any way related to your use of this Website."
+msgstr ""
+"En ningún caso, **NOMBRE DE LA COMPAÑÍA**, ni ninguno de sus funcionarios, "
+"directores y empleados, serán responsables de nada que surja o esté "
+"relacionado de alguna manera con su uso de este sitio web, ya sea que dicha "
+"responsabilidad esté bajo contrato. **NOMBRE DE LA COMPAÑÍA**, incluidos sus "
+"funcionarios, directores y empleados, no serán responsables de ninguna "
+"responsabilidad indirecta, consecuente o especial que surja o esté "
+"relacionada de alguna manera con el uso que usted haga de este sitio web."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"In these Website Standard Terms and Conditions, “Your Content” shall mean "
+"any audio, video text, images or other material you choose to display on "
+"this Website. By displaying Your Content, you grant **COMPANY NAME** a non-"
+"exclusive, worldwide irrevocable, sub licensable license to use, reproduce, "
+"adapt, publish, translate and distribute it in any and all media. <br/>\n"
+"                                            Your Content must be your own "
+"and must not be invading any third-party's rights. **COMPANY NAME** reserves "
+"the right to remove any of Your Content from this Website at any time "
+"without notice."
+msgstr ""
+"En estos Términos y condiciones estándar del sitio web, “Su contenido” se "
+"refiere a cualquier texto de audio, video, imágenes u otro material que "
+"elija mostrar en este sitio web. Al mostrar Su contenido, otorga a **NOMBRE "
+"DE LA COMPAÑÍA** una licencia no exclusiva, irrevocable en todo el mundo y "
+"sublicenciable para usarlo, reproducirlo, adaptarlo, publicarlo, traducirlo "
+"y distribuirlo en todos y cada uno de los medios. <br/>\n"
+"                                             Su Contenido debe ser suyo y no "
+"debe invadir los derechos de ningún tercero. **NOMBRE DE LA COMPAÑÍA** se "
+"reserva el derecho de eliminar cualquiera de sus contenidos de este sitio "
+"web en cualquier momento sin previo aviso."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Indemnification"
+msgstr "Indemnización"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Intellectual Property Rights"
+msgstr "Derechos de propiedad intelectual"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Introduction"
+msgstr "Introducción"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Limitation of liability"
+msgstr "Limitación de responsabilidad"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Login to book an Appointment"
+msgstr "Inicie sesión para reservar una cita"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid "Mention your location by Google map url."
+msgstr "Agregue su ubicación pegando la URL desde el mapa de Google."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__hms_app_booking_slot_time
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__hms_app_booking_slot_time
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Minutes in each slot"
+msgstr "Minutos en cada horario"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid ""
+"No Departments to book appointment, please do booking by selecting physician."
+msgstr ""
+"No hay departamentos para reservar cita, por favor haga la reserva "
+"seleccionando al profesional."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid ""
+"No Physicians to book appointment, please do booking by selecting Department."
+msgstr ""
+"No hay profesional para reservar cita, por favor haga la reserva "
+"seleccionando Departamento."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.actions.act_window,help:acs_hms_online_appointment.action_appointment_schedule_slot_lines
+msgid "No Records Found."
+msgstr "No se encontraron registros."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid ""
+"No of allowed booking per slot, Once slot is fully booked will not be shown "
+"to users."
+msgstr ""
+"Número de reservas permitidas por hora. Una vez que el horario está "
+"completamente reservado no se mostrará a los usuarios."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_company__hms_app_allowed_booking_per_slot
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_booking_per_slot
+msgid "No of allowed booking per slot."
+msgstr "Nº reservas permitidas por horario."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_company__hms_app_allowed_advance_booking_days
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_config_settings__hms_app_allowed_advance_booking_days
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "No of days for which advance booking is allowed"
+msgstr "Nº de días para los que se permite la reserva anticipada"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.actions.act_window,help:acs_hms_online_appointment.action_online_appointments
+msgid "No online Appointments."
+msgstr "No hay citas en línea."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "No warranties"
+msgstr "Sin garantías"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Online Appointment Booking"
+msgstr "Reserva de citas en línea"
+
+#. module: acs_hms_online_appointment
+#: model:res.groups,name:acs_hms_online_appointment.group_hms_online_appointment_manager
+msgid "Online Appointment Manager(Depricated)"
+msgstr "Administrador de citas en línea"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid ""
+"Online Appointment booking option is not published by Specific Department/"
+"Physician yet. Get Appointment Slots may show slots available generic Slots, "
+"if any available. (Not specific to Doctor or Department.)"
+msgstr ""
+"La opción de reserva de cita en línea aún no está publicada por el "
+"Departamento/Profesional específico. De modo que los espacios de citas "
+"mostrados son espacios genéricos disponibles, si los hubiera. (No es "
+"específico del Profesional o Departamento.)"
+
+#. module: acs_hms_online_appointment
+#: model:ir.ui.menu,name:acs_hms_online_appointment.menu_action_online_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_hms_appointment_search
+msgid "Online Appointments"
+msgstr "Citas en linea"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_department_form
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_physician_form
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_users_form_simple_modif
+msgid "Online Appoitnment"
+msgstr "Cita en linea"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.res_config_settings_view_form
+msgid "Online Payment"
+msgstr "Pago Online"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"Other than the content you own, under these Terms, **COMPANY NAME** and/or "
+"its licensors own all the intellectual property rights and materials "
+"contained in this Website. <br/>\n"
+"                                            You are granted limited license "
+"only for purposes of viewing the material contained on this Website."
+msgstr ""
+"Además del contenido que usted posee, según estos Términos, **NOMBRE DE LA "
+"COMPAÑÍA** y/o sus licenciantes poseen todos los derechos de propiedad "
+"intelectual y los materiales contenidos en este sitio web. <br/>\n"
+"                                            se le concede una licencia "
+"limitada únicamente para fines de visualización del material contenido en "
+"este sitio web."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid ""
+"Past History \n"
+"\n"
+"Example: Samething happen three times in last two months"
+msgstr ""
+"Antecedentes \n"
+"\n"
+"Ejemplo: Un síntoma que sucede mas de tres veces en los últimos dos meses…"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_patient_card
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: acs_hms_online_appointment
+#: model:res.groups,name:acs_hms_online_appointment.group_hms_patient_appointment_manager
+msgid "Patient Appointment Manager"
+msgstr "Gerente de citas de pacientes"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transacción de pago"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_hms_physician
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule_slot_lines__physician_id
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_patient_card
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.physician_inside_data
+msgid "Physician"
+msgstr "Profesional"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid ""
+"Physician and Book Appointment.<br/>\n"
+"                                    If you do not select Department or "
+"Physician All available slots will be shown."
+msgstr ""
+"Agenda y Cita del Profesional.<br/>\n"
+"                                     Si no selecciona Departamento o "
+"Profesional, se mostrarán todos los espacios disponibles."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule__physician_ids
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_scheduler_wizard__physician_ids
+msgid "Physicians"
+msgstr "Profesionales"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hms_physician__acs_allowed_online_booking
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hms_physician__allowed_online_booking
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hr_department__allowed_online_booking
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_users__acs_allowed_online_booking
+msgid "Publish on website"
+msgstr "Publicar en el sitio web"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Restrictions"
+msgstr "Restricciones"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_appointment__schedule_date
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_hms_appointment_form
+msgid "Schedule Date"
+msgstr "Fecha Programada"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_acs_schedule_slot
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_appointment__schedule_slot_id
+msgid "Schedule Slot"
+msgstr "Espacio Horario"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule__schedule_type
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_acs_schedule_slot_lines__schedule_type
+msgid "Schedule Type"
+msgstr "Tipo de Horario"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "Search for Physician.."
+msgstr "Buscar por Profesional…"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "Select"
+msgstr "Seleccionar"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Severability"
+msgstr "Nivel de Urgencia"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.view_users_form_simple_modif
+msgid "Show Fee On Booking"
+msgstr "Mostrar tarifa en la reserva"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hms_physician__show_fee_on_booking
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_hr_department__show_fee_on_booking
+msgid "Show Fees"
+msgstr "Mostrar tarifas"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hms_physician__acs_basic_info
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hms_physician__basic_info
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_hr_department__basic_info
+#: model:ir.model.fields,help:acs_hms_online_appointment.field_res_users__acs_basic_info
+msgid "Show basic infomration on website"
+msgstr "Mostrar información básica en el sitio web"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"THIS IS A SAMPLE PAGE! <br/>Please, edit this page to be valid with your use "
+"case."
+msgstr ""
+"¡ESTA ES UNA PAGINA DE MUESTRA! <br/>Por favor, edite esta página para que "
+"sea válida con su caso de uso."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_company__acs_hms_app_tc
+#: model:ir.model.fields,field_description:acs_hms_online_appointment.field_res_config_settings__acs_hms_app_tc
+msgid "Terms & Conditions Page link"
+msgstr "Link a página de Términos & Condiciones."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid "Terms &amp; Conditions"
+msgstr "Términos &amp; Condiciones"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_thank_you
+msgid "Thank You!"
+msgstr "¡Gracias!"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"The **COMPANY NAME** is allowed to assign, transfer, and subcontract its "
+"rights and/or obligations under these Terms without any notification. "
+"However, you are not allowed to assign, transfer, or subcontract any of your "
+"rights and/or obligations under these Terms."
+msgstr ""
+"El **NOMBRE DE LA EMPRESA** puede ceder, transferir y subcontratar sus "
+"derechos y/u obligaciones en virtud de estos Términos sin notificación "
+"alguna. Sin embargo, no puede ceder, transferir ni subcontratar ninguno de "
+"sus derechos y/u obligaciones en virtud de estos Términos."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"These Terms will be governed by and interpreted in accordance with the laws "
+"of the State of **COUNTRY**, and you submit to the non-exclusive "
+"jurisdiction of the state and federal courts located in **COUNTRY** for the "
+"resolution of any disputes."
+msgstr ""
+"Estos Términos se regirán e interpretarán de acuerdo con las leyes del "
+"Estado de **PAÍS**, y usted se somete a la jurisdicción no exclusiva de los "
+"tribunales estatales y federales ubicados en **PAÍS** para la resolución de "
+"cualquier disputas"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"These Website Standard Terms and Conditions written on this webpage shall "
+"manage your use of our website, **WEBSITE NAME** accessible at **WEBSITE "
+"URL**. <br/>\n"
+"                                            These Terms will be applied "
+"fully and affect to your use of this Website. By using this Website, you "
+"agreed to accept all terms and conditions written in here. You must not use "
+"this Website if you disagree with any of these Website Standard Terms and "
+"Conditions. <br/>\n"
+"                                            Minors or people below 18 years "
+"old are not allowed to use this Website."
+msgstr ""
+"Estos Términos y condiciones estándar del sitio web escritos en esta página "
+"web administrarán su uso de nuestro sitio web, **NOMBRE DEL SITIO WEB** "
+"accesible en **URL DEL SITIO WEB**. <br/>\n"
+"                                             Estos Términos se aplicarán en "
+"su totalidad y afectarán a su uso de este sitio web. Al usar este sitio web, "
+"usted acordó aceptar todos los términos y condiciones escritos aquí. No debe "
+"usar este sitio web si no está de acuerdo con alguno de estos términos y "
+"condiciones estándar del sitio web. <br/>\n"
+"                                             No se permite el uso de este "
+"sitio web a menores de edad o menores de 18 años."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"This Website is provided “as is,” with all faults, and **COMPANY NAME** "
+"express no representations or warranties, of any kind related to this "
+"Website or the materials contained on this Website. Also, not anything "
+"contained on this Website shall be interpreted as advising you."
+msgstr ""
+"Este sitio web se proporciona \"tal cual\", con todas las fallas, y **NOMBRE "
+"DE LA EMPRESA** no expresan representaciones o garantías, de ningún tipo "
+"relacionadas con este sitio web o los materiales contenidos en este sitio "
+"web. Además, nada de lo contenido en este sitio web se interpretará como un "
+"aviso."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_slot_details
+msgid "Timezone: <strong><span id=\"appointment_tz\"/></strong>"
+msgstr "Zona horaria: <strong><span id=\"appointment_tz\"/></strong>"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_res_users
+msgid "User"
+msgstr "Usuario"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Variation of Terms"
+msgstr "Variación de Términos"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid "Want Todo Video Consultation"
+msgstr "¿Quieres una video consulta?"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_personal_details
+msgid "Want to have Home Visit?"
+msgstr "¿Quieres tener visita domiciliaria?"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "You are specifically restricted from all of the following:"
+msgstr "Usted está específicamente restringido de todo lo siguiente:"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"You hereby indemnify to the fullest extent **COMPANY NAME** from and against "
+"any and/or all liabilities, costs, demands, causes of action, damages and "
+"expenses arising in any way related to your breach of any of the provisions "
+"of these Terms."
+msgstr ""
+"Por la presente, indemniza en la mayor medida posible a **NOMBRE DE LA "
+"COMPAÑÍA** de y/o todas las responsabilidades, costos, demandas, causas de "
+"acción, daños y gastos que surjan de alguna manera relacionados con su "
+"incumplimiento de cualquiera de las disposiciones de estos Términos. ."
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_thank_you
+msgid "Your Appointment request has been successfully"
+msgstr "Su solicitud de cita ha sido realizada con éxito"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "Your Content"
+msgstr "Su comentario"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.my_appointments_appointment
+msgid "Your payment has been successfully processed."
+msgstr "Su pago se ha procesado con éxito."
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_acs_scheduler_wizard
+msgid "acs Scheduler Wiz"
+msgstr "Ayudante de Agendas"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_thank_you
+msgid "confirmed"
+msgstr "Confirmado"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "department"
+msgstr "Departamento"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"engaging in any data mining, data harvesting, data extracting or any other "
+"similar activity in relation to this Website;"
+msgstr ""
+"participar en cualquier minería de datos, recolección de datos, extracción "
+"de datos o cualquier otra actividad similar en relación con este sitio web;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_details
+msgid "physician"
+msgstr "Profesional"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "publicly performing and/or showing any Website material;"
+msgstr "realizar y/o mostrar públicamente cualquier material del sitio web;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "publishing any Website material in any other media;"
+msgstr "publicar cualquier material del sitio web en cualquier otro medio;"
+
+#. module: acs_hms_online_appointment
+#: model:ir.model,name:acs_hms_online_appointment.model_acs_schedule_slot_lines
+msgid "schedule Slot Lines"
+msgstr "Líneas de programación de horarios"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"selling, sublicensing and/or otherwise commercializing any Website material;"
+msgstr ""
+"vender, otorgar sublicencias y/o comercializar cualquier material del sitio "
+"web;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.appointment_thank_you
+msgid "submitted"
+msgstr "enviado"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"using this Website contrary to applicable laws and regulations, or in any "
+"way may cause harm to the Website, or to any person or business entity;"
+msgstr ""
+"Utilizar este sitio web en contra de las leyes y reglamentos aplicables, o "
+"de alguna manera puede causar daño al sitio web, o a cualquier persona o "
+"entidad comercial;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "using this Website in any way that impacts user access to this Website;"
+msgstr ""
+"Utilizar este sitio web de cualquier manera que afecte el acceso del usuario "
+"a este sitio web;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid ""
+"using this Website in any way that is or may be damaging to this Website;"
+msgstr ""
+"Utilizar este sitio web de cualquier manera que sea o pueda ser perjudicial "
+"para este sitio web;"
+
+#. module: acs_hms_online_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_online_appointment.acs_legal_page
+msgid "using this Website to engage in any advertising or marketing."
+msgstr ""
+"Utilizar este sitio web para participar en cualquier publicidad o marketing."

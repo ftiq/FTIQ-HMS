@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="privilege_acs_laboratory_website_booking" model="res.groups.privilege" >
+        <field name="name">Laboratory Appointment Manager</field>
+        <field name="sequence">10</field>
+        <field name="category_id" ref="acs_website_booking.website_booking_category"/>
+    </record>
+ 
+    <record id="group_laboratory_appointment_manager" model="res.groups">
+        <field name="name">Allow</field>
+        <field name="privilege_id" ref="privilege_acs_laboratory_website_booking"/>
+        <field name="implied_ids" eval="[Command.link(ref('acs_laboratory.group_hms_lab_user')),Command.link(ref('acs_website_booking.group_booking_user'))]"/>
+    </record>
+
+    <data noupdate="0">
+
+        <!-- For Manager -->        
+        <record id="acs_manager_laboratory_schedule_manager_rule" model="ir.rule">
+            <field name="name">Manager Laboratory Schedule</field>
+            <field name="model_id" ref="acs_website_booking.model_acs_schedule"/>
+            <field name="domain_force">[('schedule_type','=','laboratory')]</field>
+            <field name="groups" eval="[Command.link(ref('acs_laboratory_website_booking.group_laboratory_appointment_manager'))]"/>
+        </record>
+
+        <record id="acs_manager_laboratory_schedule_slot_manager_rule" model="ir.rule">
+            <field name="name">Manager Laboratory Schedule Slot</field>
+            <field name="model_id" ref="acs_website_booking.model_acs_schedule_slot"/>
+            <field name="domain_force">[('acs_schedule_id.schedule_type','=','laboratory')]</field>
+            <field name="groups" eval="[Command.link(ref('acs_laboratory_website_booking.group_laboratory_appointment_manager'))]"/>
+        </record>
+
+        <record id="acs_laboratory_request_rule" model="ir.rule">
+            <field name="name">Portal Patient's Own and Family Lab Request</field>
+            <field name="model_id" ref="acs_laboratory.model_acs_laboratory_request"/>
+            <field name="domain_force">['|',('patient_id.acs_family_partner_ids','in',[user.partner_id.id]),('patient_id.partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[Command.link(ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+
+        <record id="acs_laboratory_result_rule" model="ir.rule">
+            <field name="name">Portal Patient's Own and Family Lab results</field>
+            <field name="model_id" ref="acs_laboratory.model_patient_laboratory_test"/>
+            <field name="domain_force">['|',('patient_id.acs_family_partner_ids','in',[user.partner_id.id]),('patient_id.partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[Command.link(ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

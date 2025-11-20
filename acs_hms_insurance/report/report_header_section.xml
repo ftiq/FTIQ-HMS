@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <!-- invoice -->
+        <xpath expr="//tr[@name='patient_gov_phone_tr']" position="after">
+            <t t-if="inv_data and inv_data.insurance_id">
+                <tr name="patient_fat_mot_tr">
+                    <td name="patient_fat">
+                        <strong class="ms-2">Policy Number:</strong> <span t-field="inv_data.insurance_id.policy_number"/>
+                    </td>
+                    <td name="patient_mot">
+                        <strong>Insurance Company:</strong> <span t-field="inv_data.insurance_id.insurance_company_id"/>
+                    </td>
+                </tr>
+            </t>
+
+            <!-- claim -->
+            <tr name="patient_claim_number_date" t-if="claim">
+                <td name="claim_number">
+                    <strong class="text-center ms-2">
+                        <t t-if="claim.claim_for=='appointment'">
+                            Appointment No:
+                        </t>
+                        <t t-if="claim.claim_for=='hospitalization'">
+                            Hospitalization No:
+                        </t>
+                    </strong>
+                    <t t-if="claim.claim_for=='appointment'">
+                        <span t-field="claim.appointment_id"/>
+                    </t>
+                    <t t-if="claim.claim_for=='hospitalization'">
+                        <span t-field="claim.hospitalization_id"/>
+                    </t>
+                </td>
+                <td name="claim_date">
+                    <strong>Claim Date:</strong> <span t-field="claim.date"/>
+                </td>
+            </tr>
+            <tr name="claim_policy_company" t-if="claim">
+                <td name="claim_policy">
+                    <strong class="text-center ms-2">Insurance Policy :</strong> <span t-field="claim.insurance_id"/>
+                </td>
+                <td name="claim_company">
+                    <strong class="text-center">Insurance Company :</strong> <span t-field="claim.insurance_company_id"/>
+                </td>
+            </tr>
+            <tr name="claim_tpa_package" t-if="claim">
+                <td name="claim_tpa">
+                    <strong class="text-center ms-2">TPA :</strong> <span t-field="claim.tpa_id"/>
+                </td>
+                <td name="claim_tpa"></td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+# Part of AlmightyCS. See LICENSE file for full copyright and licensing details.
+from odoo import api, fields, models, _, Command
+from odoo.exceptions import UserError
+
+
+class ACSProduct(models.Model):
+    _inherit = 'product.template'
+
+    hospital_product_type = fields.Selection(selection_add=[('vaccination','Vaccination')])
+    age_for_vaccine = fields.Char("Age for Vaccine")
+    vaccine_dose_number = fields.Integer("Dose")
+
+
+class ACSPatient(models.Model):
+    _inherit = 'hms.patient'
+
+    def _rec_count(self):
+        rec = super(ACSPatient, self)._rec_count()
+        for rec in self:
+            rec.vaccination_count = len(rec.vaccination_ids)
+
+    vaccination_ids = fields.One2many('acs.vaccination', 'patient_id', 'Vaccination')
+    vaccination_count = fields.Integer(compute='_rec_count', string='# Vaccination')
+
+    def action_view_vaccinations(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("acs_hms_vaccination.action_vaccination_vac")
+        action['domain'] = [('id', 'in', self.vaccination_ids.ids)]
+        action['context'] = {'default_patient_id': self.id}
+        return action
+
+
+class Appointment(models.Model):
+    _inherit = 'hms.appointment'
+
+    def _vaccination_count(self):
+        for rec in self:
+            rec.vaccination_count = len(rec.vaccination_ids)
+
+    vaccination_ids = fields.One2many('acs.vaccination', 'appointment_id', 'Vaccination')
+    vaccination_count = fields.Integer(compute='_vaccination_count', string='# Vaccination')
+
+    def action_view_vaccinations(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("acs_hms_vaccination.action_vaccination_vac")
+        action['domain'] = [('id', 'in', self.vaccination_ids.ids)]
+        action['context'] = {'default_appointment_id': self.id, 'default_patient_id': self.patient_id.id}
+        return action
+
+    #Method to collect common invoice related records data
+    def acs_appointment_common_data(self, invoice_id):
+        data = super().acs_appointment_common_data(invoice_id)
+        vaccination_ids = self.mapped('vaccination_ids').filtered(lambda req: not req.invoice_id)
+        if vaccination_ids:
+            data += [{
+                'name': _("Vaccination Charges"),
+                'display_type': 'line_section',
+            }]
+            # Forward display_type so acs_create_invoice_line can render the invoice layout correctly
+            data += vaccination_ids.acs_common_invoice_vaccination_data(invoice_id)
+        return data
+
+    # MKA: If there are vaccination used as part of a service, they will be considered as a paid service and included in the invoice.
+    def get_acs_show_create_invoice(self):
+        super().get_acs_show_create_invoice()
+        for rec in self:
+            if rec.vaccination_ids:
+                uninvoiced_vaccination = rec.vaccination_ids.filtered(lambda v: not v.invoice_id)
+                if uninvoiced_vaccination:
+                    rec.acs_show_create_invoice = True
+                else:
+                    rec.acs_show_create_invoice = False
+
+class StockMove(models.Model):
+    _inherit = "stock.move"
+
+    vaccination_id = fields.Many2one('acs.vaccination', string="Vaccination", ondelete="restrict")
+
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+
+    vaccination_id = fields.Many2one('acs.vaccination', string='Vaccination')
+    hospital_invoice_type = fields.Selection(selection_add=[('vaccination', 'Vaccination')])
+
+    def acs_update_record_state(self):
+        super().acs_update_record_state()
+        records = self.env['acs.vaccination'].search([('invoice_id', 'in', self.ids),('state','=','to_invoice')])
+        if records:
+            records.state = 'done'
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    # ---------------------------- Please Do Not Touch and Remove These Fields ----------------------------
+    acs_hms_source_type = fields.Selection(selection_add=[('procedure',), ('vaccination','Vaccination')])
+    
+    acs_vaccination_ids = fields.Many2many("acs.vaccination", "rel_acs_vaccination_move_line", 
+                                           "move_line_id", "vaccination_id", string="Vaccination")
+    
+    # -----------------------------------------------------------------------------------------------------
+
+class ACSHmsMixin(models.AbstractModel):
+    _inherit = "acs.hms.mixin"
+
+    # MKA: Once the invoice is created from the vaccination, Record will be linked to its corresponding records invoice line.
+    def acs_prepare_invoice_line_data(self, data, inv_data={}, fiscal_position_id=False):
+        res = super().acs_prepare_invoice_line_data(data, inv_data, fiscal_position_id)
+        if data.get('acs_hms_source_type') == 'vaccination' and data.get('acs_vaccination_ids'):
+            res['acs_vaccination_ids'] = [Command.set(data.get('acs_vaccination_ids', [self.id]))]
+        return res

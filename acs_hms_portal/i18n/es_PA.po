@@ -1,0 +1,866 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* acs_hms_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20240126\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 20:51+0000\n"
+"PO-Revision-Date: 2024-02-29 16:10-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_PA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "&amp;times;"
+msgstr "&amp;times;"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.patient_side_content
+msgid "<i class=\"fa fa-pencil mx-1\"/>Edit"
+msgstr "<i class=\"fa fa-pencil mx-1\"/>Editar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.patient_side_content
+msgid "<i class=\"fa fa-plus mx-1\"/>Add New Family Member"
+msgstr ""
+"<i class=\"fa fa-plus mx-1\"/>Agregar un nuevo compañero o miembro familiar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluation
+msgid "<i class=\"fa fa-plus text-sucess\"/>Create Evaluation"
+msgstr "<i class=\"fa fa-plus text-sucess\"/>Crear Evaluación"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "<i class=\"fa fa-times\"/> Close"
+msgstr "<i class=\"fa fa-times\"/> Cerrar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "<i class=\"fa fa-times\"> Cancel Appointment </i>"
+msgstr "<i class=\"fa fa-times\"> Cancelar Cita </i>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "<option value=\"\">Country...</option>"
+msgstr "<option value=\"\">País…</option>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "<option value=\"\">select...</option>"
+msgstr "<option value=\"\">seleccionar</option>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-danger\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Cancel</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-danger\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Cancelar</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid ""
+"<span class=\"badge rounded-pill text-bg-danger\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Cancelled</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-danger\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Cancelado</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid ""
+"<span class=\"badge rounded-pill text-bg-info\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Draft</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-info\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Borrador</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-it\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Pause</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-it\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Pausa</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-primary\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> In Consultation</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-primary\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> En Consulta</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-success\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Done</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-success\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Realizado</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid ""
+"<span class=\"badge rounded-pill text-bg-success\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Prescribed</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-success\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Prescribido</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-warning\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> To Invoice</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-warning\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Para Facturar</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid ""
+"<span class=\"badge rounded-pill text-bg-warning\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Waiting</span>\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-bg-warning\">\n"
+"                                            <span class=\"d-none d-md-inline"
+"\"> Esperando</span>\n"
+"                                        </span>"
+
+#. module: acs_hms_portal
+#: model:mail.template,body_html:acs_hms_portal.set_password_email
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
+"16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; "
+"color: #454748; width: 100%; border-collapse:separate;\"><tr><td align="
+"\"center\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style="
+"\"padding: 16px; background-color: white; color: #454748; border-collapse:"
+"separate;\">\n"
+"<tbody>\n"
+"    <!-- HEADER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px "
+"0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\">\n"
+"                    <span style=\"font-size: 10px;\">Welcome to Patient "
+"Portal</span><br>\n"
+"                    <span style=\"font-size: 20px; font-weight: bold;\" t-"
+"out=\"object.name or ''\"></span>\n"
+"                </td><td valign=\"middle\" align=\"right\">\n"
+"                    <img t-attf-src=\"/logo.png?company={{ object.company_id."
+"id }}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-"
+"att-alt=\"object.company_id.name\">\n"
+"                </td></tr>\n"
+"                <tr><td colspan=\"2\" style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- CONTENT -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px "
+"0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                    <div>\n"
+"                        Dear <t t-out=\"object.name or ''\"></t>,<br> <br>\n"
+"                        Welcome to <t t-out=\"object.company_id.name"
+"\">YourCompany</t>'s Portal!<br><br>\n"
+"                        An account has been created for you with the "
+"following login: <t t-out=\"object.login\">demo</t><br><br>\n"
+"                        Click on the button below to pick a password and "
+"activate your account.\n"
+"                        <div style=\"margin: 16px 0px 16px 0px; text-align: "
+"center;\">\n"
+"                            <a t-att-href=\"object.signup_url\" style="
+"\"display: inline-block; padding: 10px; text-decoration: none; font-size: "
+"12px; background-color: #875A7B; color: #fff; border-radius: 5px;\">\n"
+"                                <strong>Activate Account</strong>\n"
+"                            </a>\n"
+"                            <a href=\"/web/login\" style=\"display: inline-"
+"block; padding: 10px; text-decoration: none; font-size: 12px;\">\n"
+"                                <strong>Log in</strong>\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        Welcome to our Hospital's portal.\n"
+"                    </div>\n"
+"                </td></tr>\n"
+"                <tr><td style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- FOOTER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; "
+"padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\" align=\"left\">\n"
+"                    <t t-out=\"object.company_id.name or ''\">YourCompany</"
+"t>\n"
+"                </td></tr>\n"
+"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: "
+"0.7;\">\n"
+"                    <t t-out=\"object.company_id.phone or ''\">+91 90335 "
+"84086</t>\n"
+"                    <t t-if=\"object.company_id.email\">\n"
+"                        | <a t-attf-href=\"'mailto:%s' % {{ object."
+"company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out="
+"\"object.company_id.email or ''\">info@almightycs.com</a>\n"
+"                    </t>\n"
+"                    <t t-if=\"object.company_id.website\">\n"
+"                        | <a t-attf-href=\"'%s' % {{ object.company_id."
+"website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object."
+"company_id.website or ''\">https://www.almightycs.com</a>\n"
+"                    </t>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"</tbody>\n"
+"</table>\n"
+"</td></tr>\n"
+"<!-- POWERED BY -->\n"
+"<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
+"padding: 8px; border-collapse:separate;\">\n"
+"      <tr><td style=\"text-align: center; font-size: 13px;\">\n"
+"        Powered by <a target=\"_blank\" href=\"https://www.almightycs.com\" "
+"style=\"color: #875A7B;\">AlmightyCS</a>\n"
+"      </td></tr>\n"
+"    </table>\n"
+"</td></tr>\n"
+"</table>\n"
+"            "
+msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
+"16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; "
+"color: #454748; width: 100%; border-collapse:separate;\"><tr><td align="
+"\"center\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style="
+"\"padding: 16px; background-color: white; color: #454748; border-collapse:"
+"separate;\">\n"
+"<tbody>\n"
+"    <!-- HEADER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px "
+"0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\">\n"
+"                    <span style=\"font-size: 10px;\">Bienvenido al Portal de "
+"Pacientes</span><br/>\n"
+"                    <span style=\"font-size: 20px; font-weight: bold;\" t-"
+"out=\"object.name or ''\"/>\n"
+"                </td><td valign=\"middle\" align=\"right\">\n"
+"                    <img t-attf-src=\"/logo.png?company={{ object.company_id."
+"id }}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-"
+"att-alt=\"object.company_id.name\"/>\n"
+"                </td></tr>\n"
+"                <tr><td colspan=\"2\" style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- CONTENT -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px "
+"0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                    <div>\n"
+"                        Estimad@ <t t-out=\"object.name or ''\"/>,<br/> <br/"
+">\n"
+"                        Bienvenido a <t t-out=\"object.company_id.name\">Su "
+"Empresa</t>Portal del Pacientes!<br/><br/>\n"
+"                        Una cuenta ha sido creada para usted con los "
+"siguientes detalles de acceso: <t t-out=\"object.login\">demo</t><br/><br/>\n"
+"                        Click on the button below to pick a password and "
+"activate your account.\n"
+"                        <div style=\"margin: 16px 0px 16px 0px; text-align: "
+"center;\">\n"
+"                            <a t-att-href=\"object.signup_url\" style="
+"\"display: inline-block; padding: 10px; text-decoration: none; font-size: "
+"12px; background-color: #875A7B; color: #fff; border-radius: 5px;\">\n"
+"                                <strong>Activar Cuenta</strong>\n"
+"                            </a>\n"
+"                            <a href=\"/web/login\" style=\"display: inline-"
+"block; padding: 10px; text-decoration: none; font-size: 12px;\">\n"
+"                                <strong>Ingresar</strong>\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        Bienvenido a nuestro Portal de Pacientes.\n"
+"                    </div>\n"
+"                </td></tr>\n"
+"                <tr><td style=\"text-align:center;\">\n"
+"                  <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"    <!-- FOOTER -->\n"
+"    <tr>\n"
+"        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; "
+"padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                <tr><td valign=\"middle\" align=\"left\">\n"
+"                    <t t-out=\"object.company_id.name or ''\">Tu Empresa</"
+"t>\n"
+"                </td></tr>\n"
+"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: "
+"0.7;\">\n"
+"                    <t t-out=\"object.company_id.phone or ''\">+507 "
+"6206-5986</t>\n"
+"                    <t t-if=\"object.company_id.email\">\n"
+"                        | <a t-attf-href=\"'mailto:%s' % {{ object."
+"company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out="
+"\"object.company_id.email or ''\">info@medic.site</a>\n"
+"                    </t>\n"
+"                    <t t-if=\"object.company_id.website\">\n"
+"                        | <a t-attf-href=\"'%s' % {{ object.company_id."
+"website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"object."
+"company_id.website or ''\">https://www.medicsite.red</a>\n"
+"                    </t>\n"
+"                </td></tr>\n"
+"            </table>\n"
+"        </td>\n"
+"    </tr>\n"
+"</tbody>\n"
+"</table>\n"
+"</td></tr>\n"
+"<!-- POWERED BY -->\n"
+"<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
+"padding: 8px; border-collapse:separate;\">\n"
+"      <tr><td style=\"text-align: center; font-size: 13px;\">\n"
+"        Powered by <a target=\"_blank\" href=\"https://www.almightycs.com\" "
+"style=\"color: #875A7B;\">MedicRed</a>\n"
+"      </td></tr>\n"
+"    </table>\n"
+"</td></tr>\n"
+"</table>\n"
+"            "
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_acs_patient_evaluation__access_warning
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_appointment__access_warning
+#: model:ir.model.fields,field_description:acs_hms_portal.field_prescription_order__access_warning
+msgid "Access warning"
+msgstr "Advertencia de acceso"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+msgid "Age"
+msgstr "Edad"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_hms_appointment
+msgid "Appointment"
+msgstr "Cita"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid "Appointment Date"
+msgstr "Fecha de la Cita"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_menu_hms
+msgid "Appointments"
+msgstr "Citas"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Birthday"
+msgstr "Fecha de Nacimiento "
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "Cancel Appointment"
+msgstr "Cancelar reserva"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_evaluation_charts
+msgid "Check your medical evaluation Charts"
+msgstr "Revise su Cuadro de Evaluaciones Médicas"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "City"
+msgstr "Ciudad"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_family_member
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.update_family_member
+msgid ""
+"Confirm\n"
+"                                    <span class=\"fa fa-long-arrow-right\"/>"
+msgstr ""
+"Confirmar                                        <span class=\"fa fa-long-"
+"arrow-right\"/>"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Country"
+msgstr "País"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_create_evaluation
+msgid "Create Evaluation"
+msgstr "Crear Evaluación"
+
+#. module: acs_hms_portal
+#: model:ir.actions.server,name:acs_hms_portal.action_create_portal_user
+msgid "Create Portal User"
+msgstr "Crear usuario de portal"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_res_company__create_auto_users
+#: model:ir.model.fields,field_description:acs_hms_portal.field_res_config_settings__create_auto_users
+msgid "Create Users For Patients"
+msgstr "Crear usuarios para pacientes"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.res_config_settings_view_form
+msgid ""
+"Create user for each patient when new patient is registered in system. "
+"(Please do not forget to set email when creating patient else it will not "
+"create related user.)"
+msgstr ""
+"Crear usuario para cada paciente cuando se registra un nuevo paciente en el "
+"sistema. (Por favor, no se olvide de establecer el correo electrónico al "
+"crear el paciente de lo contrario no creará el usuario relacionado.)"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_create_evaluation
+msgid "Create your medical evaluation"
+msgstr "Cree una evaluación médica"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,help:acs_hms_portal.field_acs_patient_evaluation__access_url
+#: model:ir.model.fields,help:acs_hms_portal.field_hms_appointment__access_url
+#: model:ir.model.fields,help:acs_hms_portal.field_prescription_order__access_url
+msgid "Customer Portal URL"
+msgstr "URL para cliente"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Diastolic BP"
+msgstr "PA Diastólica"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_evaluation
+msgid "Evaluation"
+msgstr "Evaluación"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluation_charts
+msgid "Evaluation Chart"
+msgstr "Diagrama de Signos Vitales"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_evaluation_charts
+msgid "Evaluation Charts"
+msgstr "Gráficos de Evaluación"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+msgid "Evaluation Date"
+msgstr "Fecha de evaluación"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_menu_hms
+msgid "Evaluations"
+msgstr "Evaluaciones"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_family_member
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.update_family_member
+msgid "Family Member"
+msgstr "Miembro de la familia"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.patient_side_content
+msgid "Family Members <i class=\"fa fa-group mx-1\"/>"
+msgstr "Familiares <i class=\"fa fa-group mx-1\"/>"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_patient__acs_family_partner_ids
+msgid "Family Partners"
+msgstr "Miembros de la Familia"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Family Relation"
+msgstr "Relación familiar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Female"
+msgstr "Mujer"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Gender"
+msgstr "Género"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Govt Code"
+msgstr "Cédula/pasaporte"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "HR"
+msgstr "FC"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Height"
+msgstr "Altura"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluation
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions_prescription
+msgid "History"
+msgstr "Historia"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Male"
+msgstr "Hombre"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Mobile"
+msgstr "Móvil"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Name"
+msgstr "Nombre"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+msgid "Name #"
+msgstr "Nombre #"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Other"
+msgstr "Otro"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_hms_patient
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_acs_patient_evaluation
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Patient Evaluation"
+msgstr "Evaluación de Paciente"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_patient__patient_portal_line_graph
+msgid "Patient Portal Line Graph"
+msgstr "Diagramas del Portal del Paciente"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.res_config_settings_view_form
+msgid "Portal"
+msgstr "Portal"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_acs_patient_evaluation__access_url
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_appointment__access_url
+#: model:ir.model.fields,field_description:acs_hms_portal.field_prescription_order__access_url
+msgid "Portal Access URL"
+msgstr "URL de acceso al portal"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.res_config_settings_view_form
+msgid "Portal User Creation"
+msgstr "Creación de usuarios de portal"
+
+#. module: acs_hms_portal
+#: model:mail.template,name:acs_hms_portal.set_password_email
+msgid "Portal: Patient Invite"
+msgstr "Portal: Invitar al Paciente"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Prescription Date"
+msgstr "Fecha de la receta"
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_prescription_order
+msgid "Prescription Order"
+msgstr "Orden de Receta"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Prescription Report"
+msgstr "Informe de prescripción"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_menu_hms
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_prescriptions
+msgid "Prescriptions"
+msgstr "Recetas"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.view_acs_patient_evaluation_form
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.view_hms_appointment_form
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.view_hms_prescription_order_form
+msgid "Preview"
+msgstr "Previsualizar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "RBS"
+msgstr "GLUCOSA"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "RR"
+msgstr "FR"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "Reason to cancel Appointment"
+msgstr "Motivo para cancelar la cita"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Reg. No #"
+msgstr "Reg. No #"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_patient__inverse_family_member_ids
+msgid "Related Family"
+msgstr "Familia relacionada"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Report"
+msgstr "Informe"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_appointments
+msgid "Review all your medical appointments"
+msgstr "Revise todas sus Citas Médicas"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_evaluation
+msgid "Review all your medical evaluation"
+msgstr "Revise todas sus Evaluaciones Médicas"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.portal_my_home_prescriptions
+msgid "Review all your medical prescriptions"
+msgstr "Revise todas sus Prescripciones"
+
+#. module: acs_hms_portal
+#: model:ir.model.fields,field_description:acs_hms_portal.field_acs_patient_evaluation__access_token
+#: model:ir.model.fields,field_description:acs_hms_portal.field_hms_appointment__access_token
+#: model:ir.model.fields,field_description:acs_hms_portal.field_prescription_order__access_token
+msgid "Security Token"
+msgstr "Token de seguridad"
+
+#. module: acs_hms_portal
+#: model:ir.actions.server,name:acs_hms_portal.action_send_invitaion_email
+msgid "Send Invitation Email"
+msgstr "Enviar correo electrónico de invitación"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid "Service"
+msgstr "Servicio"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Spo2"
+msgstr "SpO2"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "State / Province"
+msgstr "Provincia"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "Status"
+msgstr "Estado"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Street"
+msgstr "Dirección"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments_appointment
+msgid "Submit"
+msgstr "Enviar"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Systolic BP"
+msgstr "PA Sistólica "
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Temprature"
+msgstr "Temperatura"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_appointments
+msgid "There are currently no Appointments for your account."
+msgstr "Actualmente no hay cita en su cuenta."
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_evaluations
+msgid "There are currently no Evaluations for your account."
+msgstr "Actualmente no hay evaluaciones en su cuenta."
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.my_prescriptions
+msgid "There are currently no Prescriptions for your account."
+msgstr "Actualmente no hay recetas en su cuenta."
+
+#. module: acs_hms_portal
+#: model:ir.model,name:acs_hms_portal.model_res_users
+msgid "User"
+msgstr "Usuario"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.create_evaluation
+msgid "Weight"
+msgstr "Peso (Kg)"
+
+#. module: acs_hms_portal
+#: model:mail.template,subject:acs_hms_portal.set_password_email
+msgid "Your Patient account at {{ object.company_id.name }}"
+msgstr "Su cuenta de Paciente en {{ object.company_id.name }}"
+
+#. module: acs_hms_portal
+#: model_terms:ir.ui.view,arch_db:acs_hms_portal.acs_family_member_fields
+msgid "Zip / Postal Code"
+msgstr "Código postal"

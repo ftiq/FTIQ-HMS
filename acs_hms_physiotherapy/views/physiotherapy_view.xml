@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_physiotherapy_form" model="ir.ui.view">
+        <field name="name">acs.physiotherapy.form</field>
+        <field name="model">acs.physiotherapy</field>
+        <field name="arch" type="xml">
+            <form string="Physiotherapy">
+                <header> 
+                    <button name="action_accept" invisible="state!='draft'" string="Accept" type="object"/>
+                    <button name="action_in_progress" invisible="state!='accepted'" string="In Progress" class="oe_highlight" type="object"/>
+                    <button name="action_done" invisible="state!='in_progress'" string="Done" class="oe_highlight" type="object"/> 
+                    <button name="action_cancel" invisible="state!='draft'" string="Cancel" type="object"/>
+                    <button name="create_invoice" string="Create Invoice" groups="account.group_account_invoice" invisible="not acs_show_create_invoice" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,accepted,in_progress,done" statusbar_colors="{'canceled':'red'}"/>
+                    <field name="invoice_id" invisible="1"/>
+                    <field name="physiotherapy_invoice_policy" invisible="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="view_invoice" string="View Invoice" invisible="not invoice_id" type="object" class="oe_stat_button" icon="fa-pencil-square-o" groups="account.group_account_invoice"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <field name="image_128" widget="image" class="oe_avatar" nolabel="1"/>
+                    <group>
+                        <group>
+                            <field name="patient_id" readonly="state in ['cancel','done']"/>
+                            <field name="code" readonly="1"/>
+                            <field name="age" readonly="1" force_save="1"/>
+                            <field name="gender" readonly="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="acs_show_create_invoice" invisible="1"/>
+                            <field name="appointment_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="physiotherapist_id" readonly="state in ['cancel','done']"/>
+                            <label for="date"/>
+                            <div class="o_row">
+                                <field name="date" widget="daterange" nolabel="1" class="oe_inline" options="{'related_end_date': 'date_stop'}" readonly="state in ['cancel','done']"/>
+                                <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                <field name="date_stop" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'date'}" readonly="state in ['cancel','done']"/>
+                            </div>
+                            <field name="duration" widget="float_time" readonly="state in ['cancel','done']"/>
+                            <field name="visit_count" readonly="state in ['cancel','done']"/>
+                        </group>
+                    </group>
+
+                    <notebook name="physiotherapy_note">
+                        <page name="physiotherapy_info" string="Physiotherapy">
+                            <group>
+                                <field name="grp_exercise_ids" colspan="4" nolabel="1" readonly="state=='done'">
+                                    <list editable="bottom" string="Exercise Name">
+                                        <field name="group_id"/>
+                                        <field name="price"/>
+                                        <field name="exercise_ids" widget="many2many_tags"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+
+                        <!-- <page name="orientation_info" string="Orientation" groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group style="width:400px;height:150px;">
+                                <field name="date_orientation"/>
+                                <field name="by_orientation"/>
+                                <field name="interested" widget="radio"/>
+                                <field name="interested_side" widget="radio"/>
+                                <field name="joint_type"/>
+                                <field name="when_orientation"/>
+                                <field name="problem_areas"/>
+                                <field name="diagnosed_first" widget="radio"/>
+                            </group>
+                        </page> -->
+
+                        <page name="lowerlimb_info" string="Lower Limb" groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group>
+                                <field name="date_lower_limb" readonly="state in ['cancel','done']"/>
+                            </group>
+                            <field name="lower_data_ids" colspan="4" context="{'default_note_type': 'lower'}" readonly="state in ['cancel','done']">
+                                <list editable="bottom" string="Lower Limb Data">
+                                    <field name="name"/>
+                                    <field name="right_val"/>
+                                    <field name="left_val"/>
+                                    <field name="sensory_val"/>
+                                    <field name="note_type" column_invisible="1"/>
+                                </list>
+                            </field>
+                            <field name="lower_seldata_ids" colspan="4" context="{'default_selnote_type': 'lower'}" readonly="state in ['cancel','done']">
+                                <list editable="bottom" string="Lower Limb Selection Data">
+                                    <field name="name"/>
+                                    <field name="right_val"/>
+                                    <field name="left_val"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="upperlimb_info" string="Upper Limb" groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group>
+                                <field name="date_upper_limb" readonly="state in ['cancel','done']"/>
+                            </group>
+                            <field name="upper_data_ids" colspan="4" context="{'default_note_type': 'upper'}" readonly="state in ['cancel','done']">
+                                <list editable="bottom" string="Upper Limb Data">
+                                    <field name="name"/>
+                                    <field name="right_val"/>
+                                    <field name="left_val"/>
+                                    <field name="sensory_val"/>
+                                    <field name="note_type" column_invisible="1"/>
+                                </list>
+                            </field>
+                            <field name="upper_seldata_ids" colspan="4" readonly="state in ['cancel','done']">
+                                <list editable="bottom" string="Upper Limb Selection Data" context="{'default_selnote_type': 'upper'}">
+                                    <field name="name"/>
+                                    <field name="right_val"/>
+                                    <field name="left_val"/>
+                                </list>
+                            </field>   
+                        </page>
+                        <page name="hand_info" string="Hand" groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group>
+                                <field name="date_hand" string="Date &amp; Time" readonly="state in ['cancel','done']"/>
+                            </group>
+                            <field name="hand_data_ids" colspan="4" context="{'default_note_type': 'hand'}" readonly="state in ['cancel','done']">
+                                <list editable="bottom" string="Hand Data">
+                                    <field name="name"/>
+                                    <field name="right_val"/>
+                                    <field name="left_val"/>
+                                    <field name="sensory_val"/>
+                                    <field name="note_type" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="physiotherapy_history" string="Physiotherapy History" groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group string="">
+                                <field name="physiotherapy_history" readonly="1" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                        <page name="history" string="Prescription History"  groups="acs_hms_physiotherapy.group_hms_physiotherapy,acs_hms.group_hms_jr_doctor">
+                            <group>
+                                <field name="past_history" readonly="1" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                        <page name="other_info" string="Other Information">
+                            <group>
+                                <group>
+                                    <label for="invoice_exempt"/>
+                                    <div name='invoice_exemption'>
+                                        <field name='invoice_exempt' class="oe_inline" nolabel="1" readonly="1" force_save="1"/>
+                                        <button name="acs_apply_invoice_exemption" string="Apply/Remove" type="object" class="oe_inline fa fa-arrow-right oe_link" invisible="invoice_id" groups="acs_hms_base.group_acs_invoice_exemption"/>
+                                    </div>
+                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" readonly="state in ['cancel','done']"/>
+                                </group>
+                                <group>
+                                    <field name="pricelist_id" groups="product.group_product_pricelist" options="{'no_open':True,'no_create': True}" readonly="state in ['cancel','done']"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    <field name="notes" placeholder="Notes"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="hms_physiotherapy_list_view" model="ir.ui.view">
+        <field name="name">Physiotherapy List</field>
+        <field name="model">acs.physiotherapy</field>
+        <field name="arch" type="xml">
+            <list string="Physiotherapy">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="patient_id"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hms_physiotherapy_search" model="ir.ui.view">
+        <field name="name">Physiotherapy Search</field>
+        <field name="model">acs.physiotherapy</field>
+        <field name="arch" type="xml">
+            <search string="Physiotherapy Today">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="patient_id"/>
+                <filter name="today" string="Today" domain="[('date', '&gt;=', 'today'), ('date', '&lt;', 'today +1d')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_acs_hms_physiotherapy_calendar" model="ir.ui.view">
+        <field name="name">acs.physiotherapy.calendar</field>
+        <field name="model">acs.physiotherapy</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Physiotherapy" color="physiotherapist_id" date_start="date">
+                <field name="physiotherapist_id"/>
+                <field name="patient_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_acs_hms_physiotherapy_pivot" model="ir.ui.view">
+        <field name="name">acs.physiotherapy.pivot</field>
+        <field name="model">acs.physiotherapy</field>
+        <field name="arch" type="xml">
+            <pivot string="Physiotherapy">
+                <field name="date" type="row"/>
+                <field name="physiotherapist_id" type="row"/>
+                <field name="patient_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="acs_action_form_physiotherapy">
+        <field name="name">Physiotherapy</field>
+        <field name="path">almightyhms-physiotherapy</field>
+        <field name="res_model">acs.physiotherapy</field>
+        <field name="view_mode">list,form,calendar,pivot</field>
+        <field name="context">{'search_default_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Record Found
+            </p>
+            <p>
+                Click to add new record.
+            </p>
+        </field>
+    </record>
+
+</odoo>

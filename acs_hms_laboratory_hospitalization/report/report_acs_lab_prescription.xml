@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <xpath expr="//td[@name='physician_div_td']" position="after">
+            <t name="hospitalization_td" t-if="doc.hospitalization_id">
+                <strong>Origin:</strong> <span t-field="doc.hospitalization_id"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

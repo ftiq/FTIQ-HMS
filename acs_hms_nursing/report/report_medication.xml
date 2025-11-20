@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="acs_report_hospital_medication_template">
+        <br/>
+        <h2 class="text-center"><strong>Medication Details</strong></h2>
+
+        <t t-call="acs_hms_base.patient_information_template">
+            <t t-set="patient" t-value="doc.patient_id"/>
+        </t>
+
+        <t t-if="doc">
+            <t t-set="sorted_meds" t-value="doc.get_medications()"/>
+            <t t-set="prev_date" t-value="None"/>
+            <table class="table table-sm table-bordered w-100" style="border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color:#f0f0f0;">
+                        <th class="text-center fw-bold">Nurse</th>
+                        <th class="text-center fw-bold">Medicine</th>
+                        <th class="text-center fw-bold">Dose</th>
+                        <th class="text-center fw-bold">Route</th>
+                        <th class="text-center fw-bold">Done Date</th>
+                        <th class="text-center fw-bold">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="sorted_meds" t-as="med">
+                        <t t-if="med.date != prev_date">
+                            <tr>
+                                <td colspan="6" class="fw-bold ps-3" style="background-color: #dfefff;">
+                                    <span t-field="med.date"/>
+                                </td>
+                            </tr>
+                            <t t-set="prev_date" t-value="med.date"/>
+                        </t>
+                        <tr class="text-center">
+                            <td><span t-field="med.nurse_id.name"/></td>
+                            <td><span t-field="med.product_id.name"/> [<span t-field="med.form_id"/>]</td>
+                            <td><span t-field="med.dose"/> <span t-field="med.dosage_uom_id"/></td>
+                            <td><span t-field="med.route_id"/></td>
+                            <td>
+                                <t t-if="med.state == 'cancel'">-</t>
+                                <t t-elif="med.done_date">
+                                    <span t-field="med.done_date"/>
+                                </t>
+                            </td>
+                            <td>
+                                <t t-if="med.state == 'draft'">ⴵ</t>
+                                <t t-elif="med.state == 'done'">✔ - 
+                                    <t t-if="med.given_state == 'early'"> Early</t>
+                                    <t t-elif="med.given_state == 'ontime'"> On Time</t>
+                                    <t t-elif="med.given_state == 'late'"> Late</t>
+                                </t>
+                                <t t-elif="med.state == 'cancel'">✗</t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <h4 class="mt-5"><strong>Summary</strong></h4>
+            <table class="table table-bordered table-sm w-100" style="border-collapse: collapse;">
+                <thead style="background-color:#f0f0f0;">
+                    <tr class="text-center fw-bold">
+                        <th class="text-center"></th>
+                        <th class="text-center">To-Do</th>
+                        <th class="text-center">Done <small>(Early / On Time / Late)</small></th>
+                        <th class="text-center">Cancelled</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="total_draft" t-value="len(sorted_meds.filtered(lambda m: m.state == 'draft'))"/>
+                    <t t-set="total_done" t-value="len(sorted_meds.filtered(lambda m: m.state == 'done'))"/>
+                    <t t-set="total_cancel" t-value="len(sorted_meds.filtered(lambda m: m.state == 'cancel'))"/>
+                    <t t-set="done_meds" t-value="sorted_meds.filtered(lambda m: m.state == 'done')"/>
+                    <t t-set="total_early" t-value="len(done_meds.filtered(lambda m: m.given_state == 'early'))"/>
+                    <t t-set="total_ontime" t-value="len(done_meds.filtered(lambda m: m.given_state == 'ontime'))"/>
+                    <t t-set="total_late" t-value="len(done_meds.filtered(lambda m: m.given_state == 'late'))"/>
+                    <t t-set="grand_total" t-value="total_draft + total_done + total_cancel"/>
+
+                    <tr class="text-center">
+                        <td class="fw-bold">Total</td>
+                        <td><t t-esc="total_draft"/></td>
+                        <td><t t-esc="total_done"/> <span>(<span class="text-success text-nowrap">E: <t t-esc="total_early"/> / </span><span class="text-primary text-nowrap">O: <t t-esc="total_ontime"/> / </span><span class="text-danger text-nowrap">L: <t t-esc="total_late"/></span>)</span></td>
+                        <td><t t-esc="total_cancel"/></td>
+                        <td><t t-esc="grand_total"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+        <t t-else="">
+            <div class="text-center pt-3">
+                <h5>No medications prescribed</h5>
+            </div>
+        </t>
+    </template>
+
+    <template id="acs_report_hospital_medication">
+        <t t-call="web.external_layout">
+            <main class="o_report_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="acs_hms_nursing.acs_report_hospital_medication_template"/>
+                </t>
+            </main>
+        </t>
+    </template>
+
+    <record id="acs_report_action_report_medication" model="ir.actions.report">
+        <field name="name">Medication Report</field>
+        <field name="model">acs.medication.report.wiz</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acs_hms_nursing.acs_report_hospital_medication</field>
+        <field name="report_file">acs_hms_nursing.acs_report_hospital_medication</field>
+        <field name="print_report_name">'Medication Report - %s' % (object.patient_id.name)</field>
+    </record>
+</odoo>

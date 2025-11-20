@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_hms_referral_form" model="ir.ui.view">
+        <field name="name">hms.referral.form</field>
+        <field name="model">hms.referral</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_closed" type="object" string="Closed" invisible="state == 'closed'" class="oe_highlight"/>
+                    <button name="action_create_patient" type="object" string="Create Patient" invisible="auto_patient_creation or patient_id"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="referral_type" readonly="state!='active'"/>
+                            <field name="referring_partner_id"/>
+                            <field name="referred_date" readonly="state!='active'"/>
+                            <field name="referred_physician_id" domain="[('is_referring_doctor', '=', True)]" readonly="state!='active'"/>
+                        </group>
+                        <group>
+                            <field name="patient_id" readonly="state!='active'"/>
+                            <field name="patient_name" readonly="state!='active'"/>
+                            <field name="patient_dob" readonly="state!='active'"/>
+                            <field name="phone" readonly="state!='active'"/>
+                            <field name="gender"/>
+                            <field name="auto_patient_creation" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <separator string="Description" name="description"/>
+                            <field name="description" widget="text" placeholder="Description" readonly="state!='active'"/>
+                        </page>
+                        <page name="attachments" string="Attachments">
+                            <field name="attachment_ids" widget="many2many_binary" readonly="state!='active'"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hms_referral_kanban" model="ir.ui.view">
+        <field name="name">hms.referral.kanban</field>
+        <field name="model">hms.referral</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <main class="ps-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                                </div>
+                                <div class="col-6">
+                                    <field class="float-end" name="state" widget="label_selection" options="{'classes': {'active': 'warning', 'closed': 'success'}}"/>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <b>Referral Title :</b> <field name="name"/>
+                                </li>
+                                <li>
+                                    <div class="d-flex row">
+                                        <div class="col-6">
+                                            <b>Patient :</b>
+                                            <field name="patient_id" class="ms-2"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <b>Type :</b> <field name="referral_type"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <b>Referred Physician :</b> <field name="referred_physician_id"/>
+                                </li>
+                                <li>
+                                    <b>Referring By :</b> <field name="referring_partner_id"/>
+                                </li>
+                            </ul>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_hms_referral_list" model="ir.ui.view">
+        <field name="name">hms.referral.list</field>
+        <field name="model">hms.referral</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="phone"/>
+                <field name="referral_type"/>
+                <field name="referred_physician_id"/>
+                <field name="referring_partner_id"/>
+                <field name="referred_date"/>
+                <field name="state" optional="show" decoration-success="state=='closed'" decoration-warning="state=='active'" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hms_referral_filter" model="ir.ui.view">
+        <field name="name">hms.referral.filter</field>
+        <field name="model">hms.referral</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="patient_name" filter_domain="[('patient_name', 'ilike', self)]"/>
+                <field name="phone" filter_domain="[('phone', 'ilike', self)]"/>
+                <separator/>
+                <field name="referring_partner_id"/>
+                <field name="referred_physician_id"/>
+                <separator/>
+                <filter string="Active" name="state" domain="[('state','=','active')]"/>
+                <filter string="Close" name="state" domain="[('state','=','closed')]"/>
+                <group name="group_by">
+                    <filter string="Referral Type" name="referral_type_groupby" domain="[]" context="{'group_by':'referral_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hms_referral" model="ir.actions.act_window">
+        <field name="name">Referrals</field>
+        <field name="path">almightyhms-referrals</field>
+        <field name="res_model">hms.referral</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                There is no Referrals at the moment.
+            </p>
+        </field>
+    </record>
+
+</odoo>

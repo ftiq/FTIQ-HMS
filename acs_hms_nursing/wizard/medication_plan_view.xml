@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_acs_medication_plan_wizard" model="ir.ui.view">
+        <field name="name">acs.medication.plan.wiz.form</field>
+        <field name="model">acs.medication.plan.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Split Record">
+                <group>
+                    <group>
+                        <field name="hospitalization_id"/>
+                        <field name="patient_id"/>
+                        <field name="physician_id"/>
+                        <field name="start_date"/>
+                    </group>
+                    <field name="line_ids" nolabel="1" colspan="2">
+                        <list string="Lines" editable="bottom">
+                            <field name="product_id"/>
+                            <field name="dose"/>
+                            <field name="dosage_uom_id"/>
+                            <field name="form_id" optional="hide"/>
+                            <field name="route_id" optional="hide"/>
+                            <field name="short_comment" optional="hide"/>
+                            <field name="acs_medication_time_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                            <field name="days"/>
+                        </list> 
+                    </field>
+                </group>
+                <footer>
+                    <button name="create_planning" type="object" string="Confirm" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel" type="object"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+
+    <record id="action_acs_medication_plan_wizard" model="ir.actions.act_window">
+        <field name="name">Medication Planning</field>
+        <field name="res_model">acs.medication.plan.wiz</field>
+        <field name="binding_model_id" ref="acs_hms_hospitalization.model_acs_hospitalization"/>
+        <field name="view_id" ref="view_acs_medication_plan_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

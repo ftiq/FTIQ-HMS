@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <xpath expr="//tr[@name='patient_gov_phone_tr']" position="after">
+            <tr name="customer_start_end_date" t-if="subscription">
+                <td name="customer_name">
+                    <strong class="text-center ms-2">Start Date:</strong> <span t-field="subscription.start_date"/>
+                </td>
+                <td name="customer_age">
+                    <strong>End Date:</strong> <span t-field="subscription.end_date"/>
+                </td>
+            </tr>
+            <tr name="customer_contract_null" t-if="subscription">
+                <td name="customer_contract">
+                    <strong class="text-center ms-2">Contract:</strong> <span t-field="subscription.contract_id"/>
+                </td>
+                <td name="customer_null"></td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="report_acs_subscription_inherit" inherit_id="acs_subscription.report_acs_subscription">
+        <xpath expr="//div[@id='informations']" position="replace">
+            <t t-call="acs_hms_base.patient_information_template">
+                <t t-set="patient" t-value="doc.patient_id"/>
+                <t t-set="subscription" t-value="doc"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

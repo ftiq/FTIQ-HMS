@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="claim_report_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context({'lang':doc.create_uid.partner_id.lang})"/>
+            <div class="page acs_report">
+                <div class="oe_structure"/>
+
+                <div class="row mb32 mt32">
+                    <div class="col-12 text-center">
+                        <h3>
+                            <strong>
+                                <span>Claim: </span>
+                                <span t-field="doc.name"/>
+                            </strong>
+                        </h3>
+                    </div>
+                </div>
+                <br/><br/>
+
+                <t t-call="acs_hms_base.patient_information_template">
+                    <t t-set="patient" t-value="doc.patient_id"/>
+                    <t t-set="claim" t-value="doc"/>
+                </t>
+
+                <table class="table table-bordered mt32">
+                    <tr>
+                        <td style="width:50%;">
+                            <strong>Claim Amount: </strong><span t-field="doc.amount_requested"/>
+                        </td>
+                        <td style="width:50%;">
+                            <strong>Claim Status: </strong><span t-field="doc.state"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Passed Amount: </strong><span t-field="doc.amount_pass"/>
+                        </td>
+                        <td>
+                            <strong>Claim Received Date:</strong> <span t-field="doc.date_received"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Difference Amount: </strong><span t-field="doc.amount_difference"/>
+                        </td>
+                        <td>
+                            <strong>Received Amount: </strong><span t-field="doc.amount_received"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <div t-if="doc.question" class="col-12 mt8 mt8" style="page-break-inside: avoid;">
+                    <span><u><b>Question</b></u>:</span><br/>
+                    <div class="ml32" t-field="doc.question"/>
+                </div>
+
+                <div t-if="doc.answer" class="col-12 mt8 mt8" style="page-break-inside: avoid;">
+                    <span><u><b>Answer</b></u>:</span><br/>
+                    <div class="ml32" t-field="doc.answer"/>
+                </div>
+
+                <p class="mt32">
+                    Should you have any questions please contact us at your convenience.<br/><br/>
+                    Best regards,<br/>
+                </p>
+
+                <div class="row" t-if="doc.acs_insurance_claim_sign">
+                    <div class="col-6">
+                        <b>Doctor's Stamp/Signature</b>
+                        <br/>
+                        <t t-if="doc.appointment_id.physician_id.signature and doc.sudo().appointment_id.physician_id.signature">
+                            <img t-att-src="image_data_uri(doc.sudo().appointment_id.physician_id.signature)" alt="Sign" style="max-height: 100px !important;"/>
+                        </t>
+                    </div>
+
+                    <div class="col-6" style="text-align: right;">
+                        <b>Patient's Stamp/Signature</b>
+                        <br/>
+                        <t t-if="doc.patient_signature">
+                            <img t-att-src="image_data_uri(doc.patient_signature)"
+                                alt="Patient Sign" style="max-height: 100px !important;"/>
+                            <p>
+                                <small>Signed by <t t-esc="doc.patient_signed_by_id.name"/> on <span t-field="doc.patient_signed_on"/></small>
+                            </p>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="claim_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="acs_hms_insurance.claim_report_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_insurance_claim_report" model="ir.actions.report">
+        <field name="name">Claim</field>
+        <field name="model">hms.insurance.claim</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acs_hms_insurance.claim_report</field>
+        <field name="report_file">acs_hms_insurance.claim_report</field>
+        <field name="print_report_name">(object.name).replace('/','_') + '_claim'</field>
+        <field name="binding_model_id" ref="model_hms_insurance_claim"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

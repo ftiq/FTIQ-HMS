@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <menuitem id="menu_acs_hms_bill_sheet" sequence="150" action="action_acs_bill_sheet" parent="account.menu_finance_payables"/>
+
+</odoo>

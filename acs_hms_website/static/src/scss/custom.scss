@@ -1,0 +1,28 @@
+.acs-card img {
+  height: 150px;
+  width: 140px;
+  border: 5px solid;
+  border-radius: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.acs-card img:hover {
+  transform: scale(0.2);
+  box-shadow: 0 0 8px #50505074;
+}
+.acs-card-body:hover img {
+  transform: scale(1.2);
+}
+.acs-card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.acs-card-body {
+  transition:0.3s ease;
+}
+.acs-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 10px rgba(122, 122, 122, 0.3);
+}
+.physician-img {
+  border-right: 2px solid;
+  height: 100%;
+}

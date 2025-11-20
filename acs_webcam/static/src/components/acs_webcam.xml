@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="acs_webcam.AcsWebCam">
+        <div class="acs-webcam-container">
+            <div class="acs-webcam-header">
+                <div class="acs-icon-img" t-on-click="acsShowPopup">
+                    <i class="fa fa-home text-primary acs-webcam-icon"/>
+                </div>
+                <h1 class="text-center flex-grow-1 fw-bold m-0 text-shadow">
+                    <t t-if="state.user_data.user_name">
+                        <t t-esc="state.user_data.user_name"/>
+                    </t>
+                </h1>
+                <div class="acs-icon-img text-end">
+                    <t t-if="state.user_data.user_img">
+                        <img t-att-src="'data:image/png;base64,' + state.user_data.user_img" class="acs-web-img"/>
+                    </t>
+                    <t t-else="">
+                        <div class="acs-icon-img">
+                            <i class="fa fa-photo text-primary acs-webcam-icon"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+            <div class="acs-webcam-body">
+                <div class="col-md-5 col-12 text-center">
+                    <div class="acs-video-wrapper">
+                        <video t-ref="acsWebcamVideo" autoplay="true" class="w-100 rounded-4"></video>
+                    </div>
+                    <button t-on-click="acsTakeSnapshot" class="acs-video-btn" t-att-disabled="!state.cameraReady">
+                        <i class="fa fa-camera me-2"></i>Snap Photo
+                    </button>
+                </div>
+
+                <div class="col-md-5 col-12 text-center">
+                    <div class="acs-canvas-wrapper">
+                        <canvas t-ref="acsWebcamCanvas" width="800" height="600" class="w-100 rounded-4"></canvas>
+                    </div>
+                    <button t-on-click="acsSaveImage" class="acs-canvas-btn" t-att-disabled="!state.snapshotTaken">
+                        <i class="fa fa-save me-2"></i>Save Image
+                    </button>
+                </div>
+            </div>
+            <!-- MKA: As of now we don't need cancel button -->
+            <!-- <div class="acs-webcam-footer">
+                <button t-on-click="acsShowPopup" class="acs-footer-btn">
+                    <i class="fa fa-times me-2"></i>Cancel
+                </button>
+            </div> -->
+        </div>
+
+        <t t-if="state.popup.show">
+            <div class="webcam-popup-overlay">
+                <div class="webcam-popup-content" t-att-class="'webcam-popup-' + state.popup.type">
+                    <span t-esc="state.popup.message"/>
+                    <div class="webcam-popup-actions mt-3">
+                        <button type="button" class="webcam-popup-yes btn btn-primary me-2" t-on-click="acsCancel">
+                            Yes
+                        </button>
+                        <button type="button" class="webcam-popup-no btn btn-secondary" t-on-click="acsClosePopup">
+                            No
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

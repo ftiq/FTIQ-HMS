@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <xpath expr="//tr[@name='patient_gov_phone_tr']" position="after">
+            <tr name="patient_certificate_data" t-if="certificate">
+                <td name="certificate_name">
+                    <strong class="text-center ms-2">Reg No:</strong> <span t-field="certificate.name"/>
+                </td>
+                <td name="certificate_given_by">
+                    <strong>Given By:</strong> <span t-field="certificate.sudo().user_id.name"/>
+                </td>
+            </tr>
+            <tr name="patient_certificate_data_2" t-if="certificate">
+                <td name="certificate_date">
+                    <strong class="text-center ms-2">Date. :</strong> <span t-field="certificate.date"/>
+                </td>
+                <td name="certificate_null"></td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="certificate_report_document" inherit_id="acs_certification.certificate_report_document">
+        <xpath expr="//t[@t-if='doc.print_header_in_report']/table" position="replace">
+            <t t-call="acs_hms_base.patient_information_template">
+                <t t-set="patient" t-value="doc.patient_id"/>
+                <t t-set="certificate" t-value="doc"/>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-if='doc.print_header_in_report']" position="after">
+            <div class="row" t-if="doc.sudo().company_id.acs_certificate_qrcode">
+                <div class="col-12 pull-right">
+                    <img t-if="doc.qr_image" t-att-src="image_data_uri(doc.qr_image)" alt="Logo" style="width: 100px;height: 100px" class="float-end"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

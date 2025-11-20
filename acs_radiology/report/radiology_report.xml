@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="patient_information_template" inherit_id="acs_hms_base.patient_information_template">
+        <xpath expr="//tr[@name='patient_gov_phone_tr']" position="after">
+            <tr name="radiology_test_date" t-if="radiology_data">
+                <td name="raiology_physician">
+                    <strong class="text-center ms-2">Prescribing Doctor:</strong> <span t-field="radiology_data.physician_id"/>
+                </td>
+                <td name="radiology_test_date">
+                    <strong class="text-center">Date:</strong> <span t-field="radiology_data.date"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="report_acs_radiology_test_document_details">
+        <h2 class="text-center">Investigation: <span t-field="doc.name"/></h2>
+        <t t-call="acs_hms_base.patient_information_template">
+            <t t-set="patient" t-value="doc.patient_id"/>
+            <t t-set="radiology_data" t-value="doc"/>
+            <t t-set="radiology_data" t-value="doc.radiology_request_id"/>
+        </t>
+
+        <p class="mt32">
+            <b>Diagnosis:</b><br/>
+            <span t-field="doc.diagnosis"/>
+        </p>
+
+        <t t-set="image_lists" t-value="doc.get_reprot_images()"/>
+        <p class="mt32" t-if="image_lists">
+            <b>Images:</b><br/>
+            <t t-foreach="image_lists" t-as="image_list">
+                <div class="row mt8">
+                    <t t-foreach="image_list" t-as="image">
+                        <div class="col-4">
+                            <span t-field="image.description" t-if="image.description"/>
+                            <img t-att-src="image_data_uri(image.datas)" alt="Img" style="max-width: 260px;"/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </p>
+        
+        <p class="mt32" t-if="doc.note">
+            <b>Comment:</b><br/>
+            <span t-field="doc.note"/>
+        </p>
+        <div class="mt16 row" name="sign_and_code">
+            <div class="col-6" name="signature">
+                <t t-if="doc.radiology_physician_id and doc.radiology_physician_id.signature">
+                    <b>Doctor’s Stamp/Signature</b>
+                    <br/>
+                    <img t-att-src="image_data_uri(doc.radiology_physician_id.signature)" alt="Sign" style="max-height: 100px !important;"/>
+                </t>
+            </div>
+            <div class="col-6" name="qrcode">
+                <div class="text-end" t-if="doc.sudo().company_id.acs_radiology_result_qrcode">
+                    <img t-if="doc.qr_image" t-att-src="image_data_uri(doc.qr_image)" alt="LAB Result QR" style="width: 100px;height: 100px" class="float-end"/>
+                </div>
+            </div>
+        </div>
+        <p t-if="doc.disclaimer" class="mt64">
+            <b>Disclaimer: </b>
+            <span t-field="doc.disclaimer"/>
+        </p>
+    </template>
+
+    <template id="report_acs_radiology_test_document">
+        <!-- Just for Portal Isuse -->
+        <t t-set="doc" t-value="doc.sudo()"/>
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context({'lang':doc.patient_id.lang})"/>
+            <div class="page">
+                <!-- Manage details in template so combined repotr can be printed in same page easily. -->
+                <t t-call="acs_radiology.report_acs_radiology_test_document_details"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_acs_radiology_test">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="acs_radiology.report_acs_radiology_test_document" t-lang="doc.sudo().patient_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_acs_radiology_test" model="ir.actions.report">
+        <field name="name">Radiology Report</field>
+        <field name="model">patient.radiology.test</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acs_radiology.report_acs_radiology_test</field>
+        <field name="report_file">acs_radiology.report_acs_radiology_test</field>
+        <field name="print_report_name">(object.name or 'RadiologyReport').replace('/','_') + '_RadiologyReport'</field>
+        <field name="binding_model_id" ref="model_patient_radiology_test"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

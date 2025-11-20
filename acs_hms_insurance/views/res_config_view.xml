@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="acs_hms_base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='other_configurations_setting_container']" position="before">
+                <block title="Insurance" name="insurance_setting_container">
+                    <setting help="Set this True if need patient and doctor sign on Claims." id="acs_insurance_claim_sign_setting">
+                        <field name="acs_insurance_claim_sign" class="o_light_label" string="Signature in Insurance Claims"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

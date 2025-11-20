@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="acs_bill_sheet_search_view" model="ir.ui.view">
+        <field name="name">acs.bill.sheet.search</field>
+        <field name="model">acs.bill.sheet</field>
+        <field name="arch" type="xml">
+            <search string="Bill Sheet">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="acs_bill_sheet_list_view" model="ir.ui.view">
+        <field name="name">acs.bill.sheet.list</field>
+        <field name="model">acs.bill.sheet</field>
+        <field name="arch" type="xml">
+            <list string="Bill Sheet">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="amount_total"/>
+                <field name="state"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="acs_bill_sheet_form_view" model="ir.ui.view">
+        <field name="name">Bill Sheet</field>
+        <field name="model">acs.bill.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Bill Sheet" class="oe_form_configuration">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state!='draft'"/>
+                    <button name="action_done" string="Done" type="object" class="btn-primary" invisible="state!='confirm'"/>
+                    <button name="action_draft" string="Reset to Draft" type="object" invisible="state not in ['cancel','done']"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state not in ['draft','cancel']"/>
+                    <button name="acs_get_data" invisible="state!='draft'" string="Refresh Data" class="btn-primary" type="object"/>
+                    <button name="acs_create_bill" invisible="state!='confirm' or bill_count" string="Create Bill" class="btn-primary" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" class="oe_stat_button" icon="fa-money" name="view_bill" >
+                            <field string="Bill" name="bill_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="state in ['done','cancel']"/>
+                            <field name="bill_type" readonly="state in ['done','cancel']"/>
+                            <field name="date_from" readonly="state in ['done','cancel']"/>
+                            <field name="date_to" readonly="state in ['done','cancel']"/>
+                        </group>
+                        <group>
+                            <field name="date" readonly="state in ['done','cancel']"/>
+                            <field name="user_id" readonly="state in ['done','cancel']"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" readonly="state in ['done','cancel']"/>
+                        </group>
+                    </group>
+                    <field name="note"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_acs_bill_sheet" model="ir.actions.act_window">
+        <field name="name">Bill Sheet</field>
+        <field name="res_model">acs.bill.sheet</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Record Found
+            </p>
+            <p>
+                Click to add new Bill Sheet.
+            </p>
+        </field>
+    </record>
+
+</odoo>

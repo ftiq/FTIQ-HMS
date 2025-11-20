@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="acs_webcam_partner_view" model="ir.actions.client">
+        <field name="name">Webcam</field>
+        <field name="tag">AcsWebCam</field>
+        <field name="res_model">res.partner</field>
+    </record>
+
+    <record id="view_partner_form" model="ir.ui.view" >
+        <field name="name">res.partner.form.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="before">
+                <group>
+                    <button name="%(acs_webcam.acs_webcam_partner_view)d" string="Take Picture" 
+                            class="btn btn-link pt-0 pb-0 ps-3" 
+                            type="action" data-hotkey="p">
+                        <span class="o_button_icon fa fa-fw fa-camera"/><span> Take Picture</span>
+                    </button>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="acs_webcam_user_view" model="ir.actions.client">
+        <field name="name">Webcam</field>
+        <field name="tag">AcsWebCam</field>
+        <field name="res_model">res.users</field>
+    </record>
+
+    <record id="view_users_form" model="ir.ui.view" >
+        <field name="name">res.users.form.inherited</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='partner_id']" position="before">
+                <button name="%(acs_webcam.acs_webcam_user_view)d" string="Take Picture" 
+                        class="btn btn-link pt-0 pb-0 ps-3" 
+                        type="action" data-hotkey="p">
+                    <span class="o_button_icon fa fa-fw fa-camera"/><span> Take Picture</span>
+                </button>
+                <br/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

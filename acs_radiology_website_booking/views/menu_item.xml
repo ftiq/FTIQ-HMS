@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_action_online_requests" name="Online Requests"
+        parent="acs_radiology.menu_radiology" sequence="11" action="action_online_requests"/>
+
+    <menuitem id="menu_request_slot_lines" name="Booking Slots"
+        parent="acs_radiology.menu_radiology" sequence="12" action="action_radiology_schedule_slot_lines"/>
+
+</odoo>

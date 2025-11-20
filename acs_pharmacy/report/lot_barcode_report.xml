@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="lot_barcode_table">
+        <div style="width:144px;height:80px;display:inline-block;margin:2px;font-size:8px;vertical-align:top;border:0px solid #ccc;box-sizing:border-box;">
+            <table style="width:100%;border:0;">
+                <tr>
+                    <td style="padding:2px;">
+                        <center>
+                            <div><b t-field="lot.company_id.name"/></div>
+                        </center>
+                        <span style="float:left;margin-left:4px;"><b t-field="lot.expiration_date" t-options="{'format': 'd/M/y'}" /></span>
+                        <span style="float:right; margin-right:4px;"><b t-esc="lot.company_id.currency_id.symbol"/><span t-field="lot.mrp"/></span>
+                        <center style="margin-top:2px;">
+                            <div t-if="lot.name" t-field="lot.name" class="barcode" t-options="{'widget': 'barcode', 'symbology': 'Code128', 'width': 140, 'height': 35, 'img_align': 'center'}"/>
+                        </center>
+                        <center>
+                            <strong t-field="lot.name" />
+                        </center>
+                        <center>
+                            <strong t-field="lot.product_id.name" style="font-size:8px" />
+                        </center>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="lot_blank_table">
+        <div style="width:144px;height:80px;display:inline-block;margin:2px;font-size:8px;vertical-align:top;">
+            <table style="width:100%;border:0;">
+                <tr><td></td></tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_product_barcode">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc"> 
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <t t-foreach="range(data['form']['starting_position'])" t-as="s">
+                            <t t-call="acs_pharmacy.lot_blank_table"/>
+                        </t>
+                        <t t-foreach="range(data['form']['quantity'])" t-as="l">
+                            <t t-call="acs_pharmacy.lot_barcode_table">
+                                <t t-set="lot" t-value="doc"/>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_stock_product_barcode" model="ir.actions.report">
+        <field name="name">Product BarCode</field>
+        <field name="model">stock.lot</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acs_pharmacy.report_product_barcode</field>
+        <field name="report_file">acs_pharmacy.report_product_barcode</field>
+        <field name="binding_model_id" ref="stock.model_stock_lot"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

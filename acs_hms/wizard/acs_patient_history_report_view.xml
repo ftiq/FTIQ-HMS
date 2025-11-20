@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="acs_patient_history_report_wiz" model="ir.ui.view">
+        <field name="name">acs.patient.history.report.wiz</field>
+        <field name="model">acs.patient.history.report.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Select Date">
+                <group>
+                    <group>
+                        <field name="acs_date_from"/>
+                        <!-- <field name="patient_id"/> -->
+                    </group>
+                    <group>
+                            <field name="acs_date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="acs_print_patient_history_report" string="Patient History Report" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="acs_action_select_date_report_wiz" model="ir.actions.act_window">
+        <field name="name">Patient History Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">acs.patient.history.report.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <!-- <field name="binding_type">report</field> -->
+        <field name="binding_model_id" ref="acs_hms_base.model_hms_patient"/>
+    </record>
+
+</odoo>

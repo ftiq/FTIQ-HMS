@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="claim_report_document" inherit_id="acs_hms_insurance.patient_information_template">
+        <xpath expr="//tr[@name='claim_tpa_package']/td[2]" position="replace">
+            <td name="claim_package">
+                <strong class="text-center">Package :</strong> <span t-field="claim.package_id"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

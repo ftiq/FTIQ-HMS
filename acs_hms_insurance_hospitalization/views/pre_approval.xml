@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="acs_view_insurance_preapproval_form_inherit" model="ir.ui.view">
+        <field name="name">acs.insurance.pre.approval.form.inherit</field>
+        <field name="model">acs.insurance.pre.approval</field>
+        <field name="inherit_id" ref="acs_hms_insurance.acs_view_insurance_preapproval_form"/>
+        <field name="arch" type="xml">
+            <field name="acs_drug_administration_route" position="after">
+                <field name="acs_surgery_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="acs_medication_time_list" model="ir.ui.view">
+        <field name="name">acs.medication.time.list</field>
+        <field name="model">acs.medication.time</field>
+        <field name="arch" type="xml">
+            <list string="Medication Time" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="acs_time" widget="float_time"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="acs_medication_time_search" model="ir.ui.view">
+        <field name="name">acs.medication.time.search</field>
+        <field name="model">acs.medication.time</field>
+        <field name="arch" type="xml">
+            <search string="Medication Time">
+                <field name="acs_time" widget="float_time"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_acs_medication_time" model="ir.actions.act_window">
+        <field name="name">Medication Time</field>
+        <field name="path">almightyhms-medication-time</field>
+        <field name="res_model">acs.medication.time</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Medication Time</p>
+        </field>
+    </record>
+
+    <record id="acs_patient_medication_calendar" model="ir.ui.view">
+        <field name="name">acs.patient.medication.calendar</field>
+        <field name="model">acs.patient.medication</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar js_class="acs_nursing_calendar" string="Patient Medication" color="state" date_start="date" quick_create="0" date_stop="date" mode="day">
+                <field name="patient_id"/>
+                <field name="physician_id"/>
+                <field name="nurse_id"/>
+                <field name="product_id"/>
+                <field name="dose"/>
+                <field name="state" filters="1"/>
+                <field name="patient_id" avatar_field="image_128"/>
+                <field name="physician_id" avatar_field="image_128"/>
+                <field name="nurse_id" avatar_field="image_128"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="acs_patient_medication_view" model="ir.ui.view">
+        <field name="name">acs.patient.medication.list</field>
+            <field name="model">acs.patient.medication</field>
+            <field name="arch" type="xml">
+            <list string="Patient Medication" decoration-danger="state=='cancel'" decoration-primary="state=='draft'">
+                <field name="name"/>
+                <field name="nurse_id"/>
+                <field name="patient_id"/>   
+                <field name="date"/>
+                <field name="acs_time"/>
+                <field name="product_id"/>
+                <field name="dose"/>
+                <field name="given_state"/>
+                <field name="state" decoration-info="state=='draft'" decoration-success="state=='done'" widget="badge"/>
+             </list>
+        </field>
+    </record>
+
+    <record id="acs_patient_medication_form_view" model="ir.ui.view">
+        <field name="name">acs.patient.medication.from</field>
+        <field name="model">acs.patient.medication</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_done" invisible="state!='draft'" string="Done" type="object" class="oe_highlight"/>
+                    <button name="action_cancel" invisible="state!='draft'" string="Cancel" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>        
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="hospitalization_id" readonly="state!='draft'"/>
+                            <field name="patient_id" readonly="state!='draft'"/>
+                            <field name="nurse_id" domain="[('department_id.department_type','=','nurse')]" readonly="state!='draft'"/>
+                            <field name="physician_id" readonly="state!='draft'"/>
+                            <field name="date" readonly="state!='draft'"/>
+                            <field name="acs_time" readonly="1"/>
+                            <field name="done_date" readonly="state!='draft'"/>
+                        </group>
+                        <group>
+                            <field name="product_id" readonly="state!='draft'"/>
+                            <label for="dose"/>
+                            <div class="o_row">
+                                <field name="dose" readonly="state!='draft'"/>
+                                <span><field name="dosage_uom_id" readonly="state!='draft'"/></span>
+                            </div>
+                            <field name="form_id" readonly="state!='draft'"/>
+                            <field name="route_id" readonly="state!='draft'"/>
+                            <field name="short_comment" readonly="state!='draft'"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state!='draft'"/>
+                            <field name="given_state"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" colspan="4" readonly="state!='draft'"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="acs_patient_medication_pivot_view" model="ir.ui.view">
+        <field name="name">acs.patient.medication.pivot</field>
+        <field name="model">acs.patient.medication</field>
+        <field name="arch" type="xml">
+            <pivot string="Patient Medication">
+                <field name="nurse_id" type="measure"/>
+                <field name="patient_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="acs_patient_medication_search_view" model="ir.ui.view">
+        <field name="name">acs.patient.medication.search</field>
+        <field name="model">acs.patient.medication</field>
+        <field name="arch" type="xml">
+            <search string="Patient Medication">
+                <field name="nurse_id"/>
+                <field name="patient_id"/>
+                <field name="hospitalization_id"/>
+                <field name="name"/>
+                <newline/>
+                <group name="group_by">
+                    <filter string="Nurse Id" name="nurse_id" domain="[]" context="{'group_by':'nurse_id'}"/>
+                    <filter string="Patient Id" name="patient_id" domain="[]" context="{'group_by':'patient_id'}"/> 
+                    <filter string="Hospitalization" name="hospitalization_id" domain="[]" context="{'group_by':'hospitalization_id'}"/>
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="hms_acs_patient_medication_action" model="ir.actions.act_window">
+        <field name="name">Patient Medication</field>
+        <field name="path">almightyhms-patient-medication</field>
+        <field name="res_model">acs.patient.medication</field>
+        <field name="view_mode">calendar,list,form,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Patient Medication</p>
+        </field>
+    </record>
+
+</odoo>

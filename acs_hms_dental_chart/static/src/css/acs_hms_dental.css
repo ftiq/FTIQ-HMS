@@ -1,0 +1,795 @@
+.acs_hms_dental_panel {
+    overflow-y: auto;
+    max-height: 93vh;
+    padding: 5px;
+    overflow-x: hidden;
+}
+
+.acs-hms-dental {
+    padding: -0.8rem 0 2.6rem 0 !important;
+    border-bottom: 1px solid #3f3f3f1a !important;
+    color: #444444;
+    background-color: #ffffff !important;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+    margin-left: 10px;
+    margin-right: 5px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1),
+                0 0.9375rem 1.40625rem rgba(90,97,105,0.1),
+                0 0.25rem 0.53125rem rgba(90,97,105,0.12),
+                0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+
+.acs-patient-card {
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.acs-patient-card:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
+
+.patient-avatar {
+    height: 80px;
+    width: 80px;
+    border: 3px solid var(--dental-chart-color, #985184);
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.patient-avatar:hover {
+    transform: scale(1.1);
+    border-color: var(--dental-chart-color, #985184);
+}
+
+.acs-patient-code {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--dental-chart-color, #985184);
+    background: #e6f7f6;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.patient-name {
+    font-size: 20px;
+    color: #333;
+}
+
+.icon-circle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    color: var(--dental-chart-color, #985184);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-circle a {
+    color: var(--dental-chart-color, #985184);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.icon-circle:hover {
+    background: var(--dental-chart-color, #985184);
+    transform: scale(1.1);
+}
+
+.icon-circle:hover a,
+.icon-circle:hover i {
+    color: #fff !important;
+}
+
+.detail-card {
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    background: #f0fdfd;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.detail-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: #fff;
+    margin-right: 12px;
+    font-size: 16px;
+    background-color: var(--dental-chart-color, #985184);
+}
+
+.detail-icon i {
+    color: #fff;
+}
+
+.detail-info {
+    line-height: 1.2;
+}
+.detail-info .fw-bold {
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .acs-patient-card {
+        text-align: center;
+    }
+    .acs-patient-header {
+        justify-content: center;
+    }
+    .acs-patient-details {
+        text-align: center;
+    }
+}
+
+.btn-filter {
+    border: none;
+    background: #eef9ff;
+    color: var(--dental-chart-color, #985184);
+    font-weight: 600;
+    margin-right: 8px;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-filter:hover {
+    background: #d0f0ff;
+    color: var(--dental-chart-color, #985184);
+}
+
+.btn-filter.active {
+    background: var(--dental-chart-color, #985184);
+    color: #fff;
+}
+
+.btn-filter::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: 0;
+}
+
+.btn-filter:active::after {
+    width: 120%;
+    height: 120%;
+}
+
+.filter-button {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.filter-button::-webkit-scrollbar {
+    height: 6px;
+}
+
+.filter-button::-webkit-scrollbar-thumb {
+    background: var(--dental-chart-color, #985184);
+    border-radius: 10px;
+}
+.filter-button::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.filter-button .ms-auto {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.btn-add-procedure {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 1.5rem 0;
+    color: var(--dental-chart-color, #985184);
+    position: relative;
+}
+
+.btn-add-procedure::before, .btn-add-procedure::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--dental-chart-color, #985184), transparent);
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.6;
+}
+
+.btn-add-procedure span {
+    background: #eef9ff;
+    padding: 6px 16px;
+    border-radius: 25px;
+    color: var(--dental-chart-color, #985184);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-add-procedure span:hover {
+    background: var(--dental-chart-color, #985184);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.btn-add-procedure span i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-add-procedure span:hover i.fa-arrow-circle-o-down {
+    transform: rotate(180deg);
+}
+
+.divide {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 1.5rem 0;
+    color: var(--dental-chart-color, #985184);
+    position: relative;
+}
+
+.divide::before, .divide::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--dental-chart-color, #985184), transparent);
+    margin: 0 10px;
+    opacity: 0.6;
+}
+
+.divide span {
+    background: #eef9ff;
+    padding: 6px 16px;
+    border-radius: 25px;
+    color: var(--dental-chart-color, #985184);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.divide span:hover i.fa-arrow-circle-o-down {
+    transform: rotate(180deg);
+}
+
+.tooth-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    width: 78px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    cursor: pointer;
+    position: relative;
+}
+
+.tooth-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: #f9ffff;
+}
+
+.tooth-img {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.tooth-code {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--dental-chart-color, #985184);
+}
+
+.tooth-card.active {
+    color: #f9ffff;
+    border-color: var(--dental-chart-color, #985184);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: var(--dental-chart-color, #985184);
+}
+
+.tooth-card.active .tooth-code {
+    color: #fff;
+}
+
+.surface-label, .procedure-label {
+    background: #f0f8ff;
+    color: var(--dental-chart-color, #985184);
+    font-weight: 600;
+    padding: 6px 14px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.surface-label:hover, .procedure-label:hover {
+    transform: translateY(-2px);
+    background: #d0f0ff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.surface-label.active, .procedure-label.active {
+    background: var(--dental-chart-color, #985184);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.surface-label::after, .procedure-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: 0;
+}
+
+.surface-label:active::after, .procedure-label:active::after {
+    width: 120%;
+    height: 120%;
+}
+
+.acs-dental-table {
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+    position: relative;
+    z-index: 1;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.acs-dental-header {
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1),
+                0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+                0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12),
+                0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+    overflow: hidden;
+}
+
+.acs-dental-table-header {
+    background-color: #f8f9fa;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.acs-dental-table-header h3 {
+    color: var(--dental-chart-color, #985184);
+    margin: 0;
+}
+
+.acs-dental-icon-info {
+    color: var(--dental-chart-color, #985184);
+    outline: none;
+    position: relative; 
+    padding-left: 10px;
+    padding-top: 0px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.procedure-table-responsive thead {
+    background-color: #017e78;
+    color: #ffffff;
+}
+
+.procedure-table-responsive th,
+.procedure-table-responsive td {
+    padding: 12px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.procedure-table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.procedure-table-responsive table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+}
+
+.procedure-table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.procedure-table-responsive::-webkit-scrollbar-thumb {
+    background: rgba(1, 126, 120, 0.5);
+    border-radius: 10px;
+}
+
+.procedure-table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.acs-dental {
+    display: inline-block;
+    padding: 2px 6px;
+    font-weight: 12px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 1.25rem;
+    color: white;
+}
+
+.acs-dental.badge-primary {
+    background-color: #714B67
+}
+
+.acs-dental.badge-secondary {
+    background-color: #D8DADD
+}
+
+.acs-dental.badge-success {
+    background-color: #54ca68
+}
+
+.acs-dental.badge-info {
+    background-color: #3abaf4
+}
+
+.acs-dental.badge-danger {
+    background-color: #D44C59
+}
+
+.acs-dental.badge-warning {
+    background-color: #E99D00
+}
+
+.acs-dental.badge-dark {
+    background-color: #191d21
+}
+
+.acs-dental.badge-it {
+    background-color: #2B7B7F
+}
+
+.acs-dental.badge-invoice {
+    background-color: #3276CF
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    min-width: 360px;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transform: scale(0.8);
+    animation: popupIn 0.3s forwards;
+}
+
+.popup-success {
+    border-left: 6px solid #28a745;
+}
+
+.popup-error {
+    border-left: 6px solid #dc3545;
+}
+
+.popup-close {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    bottom: 25px;
+}
+
+.popup-close:hover {
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    60% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.form-select {
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    width: 35%;
+}
+.form-select:hover {
+    border-color: #666;
+    background-color: #fff;
+}
+.form-select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+}
+
+.dental-procedure-img {
+    height: 26px; 
+    width: 26px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    margin-left: 0px;
+    margin-right: 8px;
+}
+
+.acs-patient-drawer-wrapper { 
+    position: relative; 
+}
+
+.acs-quick-toggle {
+  position: fixed;
+  left: 0;
+  top: 20%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  cursor: pointer;
+  z-index: 1950;
+  padding: 6px;
+}
+
+.acs-quick-toggle .fa { 
+    font-size: 16px; 
+}
+
+.tooth-img-top-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 10;
+    /* background: rgba(255,255,255,0.05); */
+    /* box-shadow: 0 0 4px rgba(0,0,0,0.3); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooth-status-img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.tooth-disabled {
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.tooth-removed-full {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--dental-chart-color, #985184);
+    background: rgba(255,255,255,0.5);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.show-procedure-img {
+    width: 105%;
+    height: 90%;
+    max-height: 80px;
+    object-fit: contain;
+    padding-top: 14px;
+}
+
+.surface-count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--dental-chart-color, #985184);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.dental-ptn-icon {
+    color: white;
+    background: var(--dental-chart-color, #985184);
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 17px;
+    user-select: none;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 56px;
+    height: 28px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ddd;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* .slider i {
+    color: #888;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+} */
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 6px;
+    bottom: 5px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: var(--toggle-color, #007bff);
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-switch input:checked + .slider .icon-on {
+    color: #fff;
+    opacity: 1;
+    transform: scale(1.2);
+}
+.toggle-switch input:checked + .slider .icon-off {
+    color: rgba(255,255,255,0.6);
+    opacity: 0.4;
+    transform: scale(0.9);
+}
+
+.toggle-switch.cleaning input:checked + .slider {
+    background-color: #17c671;
+}
+
+.toggle-switch.removed input:checked + .slider {
+    background-color: #dc3545;
+}
