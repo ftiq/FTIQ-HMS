@@ -73,6 +73,13 @@ class ACSPatient(models.Model):
     caste = fields.Char("Tribe")
     nationality_id = fields.Many2one("res.country", string="Nationality")
     passport = fields.Char("Passport Number")
+    mother_name = fields.Char("Mother Name")
+    employment_sector = fields.Selection([
+        ('public', 'Public'),
+        ('private', 'Private'),
+        ('military', 'Military'),
+        ('other', 'Other'),
+    ], string='Employment Sector')
     acs_source_id = fields.Many2one('acs.source', string="Source")
     active = fields.Boolean(string="Active", default=True)
     location_url = fields.Text(string="Location URL")
