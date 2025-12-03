@@ -88,6 +88,7 @@
         'report/report_prescription.xml',
         'report/report_medical_advice.xml',
         'report/appointment_report.xml',
+        'report/appointment_admission_form_report.xml',
         'report/evaluation_report.xml',
         'report/treatment_report.xml',
         'report/procedure_report.xml',

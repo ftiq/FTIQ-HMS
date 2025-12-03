@@ -290,9 +290,19 @@
                                 </group>
                                 <group>
                                     <field name="urgency" readonly="state in ['cancel','done']"/>
+                                    <field name="review_status" readonly="state in ['cancel','done']"/>
                                     <field name="outside_appointment" readonly="state in ['cancel','done']"/>
                                     <field name="location" widget="url" invisible="not outside_appointment" readonly="state in ['cancel','done']"/>
                                     <field name="is_video_call" readonly="state in ['cancel','done']"/>
+                                </group>
+                            </group>
+                            <separator string="Sick Leave"/>
+                            <group>
+                                <group>
+                                    <field name="sick_leave_days"/>
+                                </group>
+                                <group>
+                                    <field name="sick_leave_text"/>
                                 </group>
                             </group>
                             <separator string="Chief Complaints" name="chief_complain"/>

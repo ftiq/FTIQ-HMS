@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_appointment_admission_form_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context({'lang': doc.patient_id.lang})"/>
+            <div class="page" style="direction: rtl; font-size:12px;">
+                <div class="oe_structure"/>
+
+                <div class="row mb8 mt8">
+                    <div class="col-12 text-center">
+                        <h3><strong>استمارة دخول المرضى</strong></h3>
+                    </div>
+                </div>
+
+                <!-- Precompute frequently used records -->
+                <t t-set="hosp" t-value="doc.env['acs.hospitalization'].search([('appointment_id','=', doc.id)], limit=1)"/>
+                <t t-set="ec_list" t-value="doc.patient_id.emergency_contact_ids[:1]"/>
+                <t t-set="diag_code" t-value="(doc.treatment_id.diagnosis_id and doc.treatment_id.diagnosis_id.code) or (hosp and hosp.diseases_ids and hosp.diseases_ids[0].code) or ''"/>
+                <t t-set="diag_name" t-value="(doc.treatment_id.diagnosis_id and doc.treatment_id.diagnosis_id.name) or (hosp and hosp.diseases_ids and hosp.diseases_ids[0].name) or ''"/>
+
+                <table class="table table-sm table-bordered" style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%">رقم السجل</td>
+                            <td style="width:30%"><span t-field="doc.name"/></td>
+                            <td style="width:10%">الجنس</td>
+                            <td style="width:15%"><span t-field="doc.patient_id.gender"/></td>
+                            <td style="width:10%">رمز التحديد</td>
+                            <td style="width:15%"><span t-field="doc.patient_id.gov_code"/></td>
+                        </tr>
+                        <tr>
+                            <td>اسم المريض الثلاثي</td>
+                            <td colspan="3"><span t-field="doc.patient_id.name"/></td>
+                            <td>اسم الأم</td>
+                            <td><span t-field="doc.patient_id.mother_name"/></td>
+                        </tr>
+                        <tr>
+                            <td>العنوان الكامل</td>
+                            <td colspan="5"><span t-field="doc.patient_id.partner_id.acs_contact_address_complete"/></td>
+                        </tr>
+                        <tr>
+                            <td>مكان الولادة</td>
+                            <td><span t-out="''"/></td>
+                            <td>العمر</td>
+                            <td><span t-field="doc.patient_id.age"/></td>
+                            <td>الحالة الاجتماعية</td>
+                            <td><span t-field="doc.patient_id.marital_status"/></td>
+                        </tr>
+                        <tr>
+                            <td>أقرب شخص</td>
+                            <td>
+                                <t t-foreach="ec_list" t-as="ec">
+                                    <span t-field="ec.name"/>
+                                </t>
+                            </td>
+                            <td>هاتف</td>
+                            <td>
+                                <t t-foreach="ec_list" t-as="ec">
+                                    <span t-field="ec.phone"/>
+                                </t>
+                            </td>
+                            <td>العنوان</td>
+                            <td>
+                                <t t-foreach="ec_list" t-as="ec">
+                                    <span t-field="ec.partner_id.acs_contact_address_complete"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المهنة</td>
+                            <td><span t-field="doc.patient_id.acs_occupation_id"/></td>
+                            <td>محل الأشغال</td>
+                            <td><span t-out="''"/></td>
+                            <td>قطاع الاستخدام</td>
+                            <td>
+                                <span t-out="'☑' if doc.patient_id.employment_sector=='public' else '☐'"/> حكومي
+                                <span t-out="'☑' if doc.patient_id.employment_sector=='private' else '☐'"/> خاص
+                                <span t-out="'☑' if doc.patient_id.employment_sector=='military' else '☐'"/> عسكري
+                                <span t-out="'☑' if doc.patient_id.employment_sector=='other' else '☐'"/> أخرى
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>حالة المراجعة</td>
+                            <td colspan="5">
+                                <span t-out="'☑' if doc.review_status=='urgent' else '☐'"/> مستعجلة
+                                <span class="ms-2" t-out="'☑' if doc.review_status=='scheduled' else '☐'"/> مجدولة
+                                <span class="ms-2" t-out="'☑' if doc.review_status=='walkin' else '☐'"/> بدون موعد
+                                <span class="ms-2" t-out="'☑' if doc.review_status=='other' else '☐'"/> أخرى
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>تاريخ الدخول</td>
+                            <td><span t-field="hosp.hospitalization_date"/></td>
+                            <td>الوحدة/الغرفة</td>
+                            <td><span t-field="hosp.ward_id"/></td>
+                            <td>الطابق</td>
+                            <td><span t-field="hosp.ward_id.floor"/></td>
+                        </tr>
+                        <tr>
+                            <td>السرير</td>
+                            <td><span t-field="hosp.bed_id"/></td>
+                            <td>حالة الخروج</td>
+                            <td><span t-field="hosp.patient_status"/></td>
+                            <td>تاريخ الخروج</td>
+                            <td><span t-field="hosp.discharge_date"/></td>
+                        </tr>
+                        <tr>
+                            <td>تاريخ الوفاة</td>
+                            <td><span t-field="hosp.death_register_id.date_of_death"/></td>
+                            <td>ICD-10</td>
+                            <td colspan="3"><span t-out="diag_code"/> - <span t-out="diag_name"/></td>
+                        </tr>
+                        <tr>
+                            <td>التشخيص الأولي</td>
+                            <td colspan="5"><span t-out="diag_name"/></td>
+                        </tr>
+                        <tr>
+                            <td>الإجازات الممنوحة (رقماً)</td>
+                            <td><span t-field="doc.sick_leave_days"/></td>
+                            <td>الإجازات (كتابة)</td>
+                            <td colspan="3"><span t-field="doc.sick_leave_text"/></td>
+                        </tr>
+                        <tr>
+                            <td>وثائق تصوير مرفقة</td>
+                            <td colspan="2"><span t-out="'نعم' if doc.attachment_ids else 'لا'"/></td>
+                            <td>المقيم الأقدم</td>
+                            <td colspan="2"><span t-field="doc.responsible_id"/></td>
+                        </tr>
+                        <tr>
+                            <td>الطبيب الاختصاصي</td>
+                            <td colspan="2"><span t-out="(hosp and hosp.physician_id and hosp.physician_id.display_name) or (doc.physician_id and doc.physician_id.display_name) or ''"/></td>
+                            <td>التاريخ</td>
+                            <td colspan="2"><span t-out="(doc.date and doc.date.date()) or ''"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_appointment_admission_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="acs_hms.report_appointment_admission_form_document" t-lang="doc.patient_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_appointment_admission_form" model="ir.actions.report">
+        <field name="name">Admission Form</field>
+        <field name="model">hms.appointment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acs_hms.report_appointment_admission_form</field>
+        <field name="report_file">acs_hms.report_appointment_admission_form</field>
+        <field name="print_report_name">('Admission_Form_' + (object.name or ''))</field>
+        <field name="binding_model_id" ref="model_hms_appointment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

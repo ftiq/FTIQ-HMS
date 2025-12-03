@@ -205,6 +205,14 @@ class Appointment(models.Model):
     consultation_type = fields.Selection([
         ('consultation','Consultation'),
         ('followup','Follow Up')],'Consultation Type', copy=False)
+    review_status = fields.Selection([
+        ('urgent', 'Urgent'),
+        ('scheduled', 'Scheduled'),
+        ('walkin', 'Walk-in'),
+        ('other', 'Other'),
+    ], string='Review Status')
+    sick_leave_days = fields.Integer('Sick Leave Days')
+    sick_leave_text = fields.Char('Sick Leave Text')
 
     diseases_ids = fields.Many2many('hms.diseases', 'diseases_appointment_rel', 'diseas_id', 'appointment_id', 'Diseases')
     medical_history = fields.Text(related='patient_id.medical_history', 
